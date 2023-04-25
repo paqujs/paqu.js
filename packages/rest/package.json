@@ -18,7 +18,9 @@
         "http",
         "api",
         "client",
-        "server"
+        "server",
+        "undici",
+        "node-fetch"
     ],
     "author": "hanzydev",
     "license": "Apache-2.0",
