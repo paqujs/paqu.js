@@ -6,7 +6,7 @@
         "url": "git+https://github.com/paqujs/paqu.js.git"
     },
     "scripts": {
-        "lint": "prettier --check packages/**/*.{js,ts} --ignore-path .gitignore"
+        "lint": "prettier --write packages/**/*.{js,ts} --ignore-path .gitignore"
     },
     "author": "hanzydev",
     "license": "GPL-3.0",
@@ -14,5 +14,8 @@
         "url": "https://github.com/paqujs/paqu.js/issues"
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
-    "type": "module"
+    "type": "module",
+    "devDependencies": {
+        "prettier": "^2.8.8"
+    }
 }
