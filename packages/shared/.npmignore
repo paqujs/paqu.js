@@ -4,4 +4,3 @@ tsconfig.json
 tsup.config.ts
 *.lock
 *.log
-.npmrc
