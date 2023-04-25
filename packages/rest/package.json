@@ -35,6 +35,7 @@
         "typescript": "^5.0.4"
     },
     "dependencies": {
+        "@paqujs/collection": "^1.0.2",
         "@sapphire/async-queue": "^1.5.0",
         "lodash.merge": "^4.6.2",
         "tslib": "^2.5.0",

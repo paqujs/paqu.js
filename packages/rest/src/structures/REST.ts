@@ -3,6 +3,7 @@ import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { Blob } from 'node:buffer';
 import { HttpError, RateLimitError, RequestBody } from '../index';
+import { Collection } from '@paqujs/collection';
 import merge from 'lodash.merge';
 
 export interface RESTOptions {
@@ -70,8 +71,8 @@ export const parseResponse = async (res: Response) => {
 export class REST {
     #options: RESTOptions;
     #queue = new AsyncQueue();
-    #retries = new Map<`/${string}`, number>();
-    #rateLimits = new Map<`/${string}`, RateLimitData>();
+    #retries = new Collection<`/${string}`, number>();
+    #rateLimits = new Collection<`/${string}`, RateLimitData>();
     #globalRateLimit: RateLimitData = { limited: false };
     #token: string | null = null;
 
@@ -103,11 +104,11 @@ export class REST {
         return this.#queue;
     }
 
-    public get retries(): ReadonlyMap<`/${string}`, number> {
+    public get retries(): Readonly<Collection<`/${string}`, number>> {
         return this.#retries;
     }
 
-    public get rateLimits(): ReadonlyMap<`/${string}`, RateLimitData> {
+    public get rateLimits(): Readonly<Collection<`/${string}`, RateLimitData>> {
         return this.#rateLimits;
     }
 
