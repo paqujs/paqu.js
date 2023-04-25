@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/collection",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "@paqujs/collection",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
