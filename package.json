@@ -1,0 +1,15 @@
+{
+    "name": "paqu.js",
+    "description": "A powerful, easy-to-use library that allows you to interact with the Discord API.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "author": "hanzydev",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "type": "module"
+}
