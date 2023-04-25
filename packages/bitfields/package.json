@@ -1,0 +1,41 @@
+{
+    "name": "@paqujs/bitfields",
+    "version": "1.0.0",
+    "description": "@paqujs/bitfields",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "keywords": [
+        "@paqujs/ws",
+        "paqu.js",
+        "bit",
+        "bits",
+        "bitfield",
+        "bitfields",
+        "bitwise"
+    ],
+    "author": "hanzydev",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "devDependencies": {
+        "@types/node": "^18.16.0",
+        "tsup": "^6.7.0",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@paqujs/resolvers": "^1.0.0",
+        "@paqujs/shared": "^1.0.1",
+        "discord-api-types": "^0.37.40",
+        "tslib": "^2.5.0"
+    },
+    "type": "module"
+}
