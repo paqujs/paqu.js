@@ -1,7 +1,7 @@
 {
-    "name": "@paqujs/collection",
-    "version": "1.0.2",
-    "description": "@paqujs/collection",
+    "name": "@paqujs/shared",
+    "version": "1.0.1",
+    "description": "Shared utilities for paqu.js",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -12,13 +12,8 @@
         "url": "git+https://github.com/paqujs/paqu.js.git"
     },
     "keywords": [
-        "@paqujs/collection",
-        "paqu.js",
-        "collection",
-        "map",
-        "set",
-        "array",
-        "list"
+        "@paqujs/shared",
+        "paqu.js"
     ],
     "author": "hanzydev",
     "license": "Apache-2.0",
@@ -31,5 +26,11 @@
         "tsup": "^6.7.0",
         "typescript": "^5.0.4"
     },
-    "type": "module"
+    "dependencies": {
+        "tslib": "^2.5.0"
+    },
+    "type": "module",
+    "publishConfig": {
+        "@paqujs:registry": "https://gitlab.com/api/v4/projects/12345678/packages/npm/"
+    }
 }

@@ -41,5 +41,8 @@
         "tslib": "^2.5.0",
         "undici": "^5.22.0"
     },
-    "type": "module"
+    "type": "module",
+    "publishConfig": {
+        "@paqujs:registry": "https://gitlab.com/api/v4/projects/12345678/packages/npm/"
+    }
 }
