@@ -1,10 +1,6 @@
-import { ApplicationFlags, type Arrayable } from '../index';
+import { ApplicationFlags } from '../index';
 
-export type ApplicationFlagsBitsResolvable = Arrayable<keyof typeof ApplicationFlags | number>;
-
-export function ApplicationFlagsBitsResolver(
-    flags: ApplicationFlagsBitsResolvable,
-): number | number[] {
+export function ApplicationFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;
 
     if (typeof flags === 'string') {

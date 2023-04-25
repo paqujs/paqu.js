@@ -1,5 +1,4 @@
 export * from './resolvers/index';
-export * from './interfaces';
 
 export {
     ApplicationFlags,
