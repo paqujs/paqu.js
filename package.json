@@ -6,7 +6,7 @@
         "url": "git+https://github.com/paqujs/paqu.js.git"
     },
     "scripts": {
-        "lint": "prettier --check packages/**/*.{js,ts}"
+        "lint": "prettier --check packages/**/*.{js,ts} --ignore-path .gitignore"
     },
     "author": "hanzydev",
     "license": "GPL-3.0",
