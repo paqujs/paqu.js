@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/resolvers",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "@paqujs/resolvers",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
