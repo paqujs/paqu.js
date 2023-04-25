@@ -1,11 +1,11 @@
 {
     "name": "@paqujs/collection",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "@paqujs/collection",
     "main": "dist/index.js",
-    "types": "dist/types/index.d.ts",
+    "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "tsup"
     },
     "repository": {
         "type": "git",
@@ -28,6 +28,7 @@
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
         "@types/node": "^18.16.0",
+        "tsup": "^6.7.0",
         "typescript": "^5.0.4"
     },
     "type": "module"
