@@ -1,0 +1,38 @@
+{
+    "name": "@paqujs/rest",
+    "version": "1.0.0",
+    "description": "@paqujs/rest",
+    "main": "dist/index.js",
+    "types": "dist/types/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "keywords": [
+        "@paqujs/rest",
+        "paqu.js",
+        "rest",
+        "http",
+        "api",
+        "client",
+        "server"
+    ],
+    "author": "hanzydev",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "devDependencies": {
+        "@types/node": "^18.16.0",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@sapphire/async-queue": "^1.5.0",
+        "node-fetch": "^3.3.1"
+    },
+    "type": "module"
+}

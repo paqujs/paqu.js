@@ -1,0 +1,34 @@
+{
+    "name": "@paqujs/collection",
+    "version": "1.0.0",
+    "description": "@paqujs/collection",
+    "main": "dist/index.js",
+    "types": "dist/types/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "keywords": [
+        "@paqujs/collection",
+        "paqu.js",
+        "collection",
+        "map",
+        "set",
+        "array",
+        "list"
+    ],
+    "author": "hanzydev",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "devDependencies": {
+        "@types/node": "^18.16.0",
+        "typescript": "^5.0.4"
+    },
+    "type": "module"
+}
