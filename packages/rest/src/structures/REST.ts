@@ -3,7 +3,7 @@ import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { Blob } from 'node:buffer';
 import { HttpError, RateLimitError, RequestBody } from '../index';
-import { Collection } from '@paqujs/collection';
+import { Collection } from '@paqujs/shared';
 import merge from 'lodash.merge';
 
 export interface RESTOptions {

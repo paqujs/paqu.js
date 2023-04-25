@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/rest",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "@paqujs/rest",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
         "typescript": "^5.0.4"
     },
     "dependencies": {
-        "@paqujs/collection": "^1.0.2",
+        "@paqujs/shared": "^1.0.1",
         "@sapphire/async-queue": "^1.5.0",
         "lodash.merge": "^4.6.2",
         "tslib": "^2.5.0",
