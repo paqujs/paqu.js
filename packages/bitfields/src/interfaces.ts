@@ -40,3 +40,6 @@ export type SystemChannelFlagsBitsResolvable = Arrayable<
 
 export type UserFlagsBitsResolvable = Arrayable<keyof typeof UserFlags | UserFlags>;
 
+export type GatewayIntentBitsResolvable = Arrayable<
+    keyof typeof GatewayIntentBits | GatewayIntentBits
+>;
