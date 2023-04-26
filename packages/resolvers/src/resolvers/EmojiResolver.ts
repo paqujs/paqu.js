@@ -1,6 +1,8 @@
 import { FormattingPatterns } from 'discord-api-types/v10';
 
-export function EmojiResolver(emoji: any): any {
+export type ResolvedEmoji = string | { animated: boolean; name: string; id: string };
+
+export function EmojiResolver(emoji: any): ResolvedEmoji {
     if (typeof emoji === 'string') {
         const match = emoji.match(FormattingPatterns.Emoji)!;
 

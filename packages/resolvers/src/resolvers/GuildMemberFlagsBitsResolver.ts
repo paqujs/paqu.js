@@ -1,15 +1,14 @@
 import { GuildMemberFlags } from 'discord-api-types/v10';
+import type { GuildMemberFlagsBitsResolvable } from '@paqujs/bitfields';
 
-export function GuildMemberFlagsBitsResolver(flags: any): number | number[] {
+export function GuildMemberFlagsBitsResolver(flags: GuildMemberFlagsBitsResolvable) {
     let res = flags;
 
     if (typeof flags === 'string') {
-        res = GuildMemberFlags[flags] as number;
+        res = GuildMemberFlags[flags];
     } else if (Array.isArray(flags)) {
-        res = flags.map((flag) =>
-            typeof flag === 'string' ? GuildMemberFlags[flag] : flag,
-        ) as number[];
+        res = flags.map((flag) => (typeof flag === 'string' ? GuildMemberFlags[flag] : flag));
     }
 
-    return res as number | number[];
+    return res as GuildMemberFlags | GuildMemberFlags[];
 }

@@ -1,15 +1,16 @@
 import { GatewayIntentBits } from 'discord-api-types/v10';
+import type { GatewayIntentBitsResolvable } from '@paqujs/bitfields';
 
-export function GatewayIntentBitsResolver(intents: any): number | number[] {
+export function GatewayIntentBitsResolver(intents: GatewayIntentBitsResolvable) {
     let res = intents;
 
     if (typeof intents === 'string') {
-        res = GatewayIntentBits[intents] as number;
+        res = GatewayIntentBits[intents];
     } else if (Array.isArray(intents)) {
         res = intents.map((intent) =>
-            typeof intent === 'string' ? GatewayIntentBits[intent] : intent
-        ) as number[];
+            typeof intent === 'string' ? GatewayIntentBits[intent] : intent,
+        );
     }
 
-    return res as number | number[];
+    return res as GatewayIntentBits | GatewayIntentBits[];
 }
