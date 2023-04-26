@@ -1,6 +1,6 @@
 export function toJSON<T extends object, K extends keyof T>(
     obj: T,
-    filter?: (key: K) => boolean,
+    filter?: (key: K, value: T[K]) => boolean,
 ): Record<K, T[K]> {
     const props = Object.getOwnPropertyNames(obj ?? {});
     const json = {} as Record<K, T[K]>;
@@ -17,7 +17,7 @@ export function toJSON<T extends object, K extends keyof T>(
 
     if (typeof filter === 'function') {
         for (const prop of props) {
-            if (!filter.call(json, prop)) {
+            if (!filter.call(json, prop, json[prop])) {
                 delete json[prop];
             }
         }
