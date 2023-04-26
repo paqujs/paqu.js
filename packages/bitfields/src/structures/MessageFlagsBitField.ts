@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { MessageFlagsBitsResolver } from '@paqujs/resolvers';
-import { MessageFlags, MessageFlagsBitsResolvable } from '../index';
+import { MessageFlags } from 'discord-api-types/v10';
+import { MessageFlagsBitsResolvable } from '../index';
 
 export interface GuildMemberFlaMessageFlagsBitFieldgsBitField {
     toArray(): (keyof typeof MessageFlags)[];

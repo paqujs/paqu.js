@@ -1,4 +1,4 @@
-import {
+import type {
     ApplicationFlags,
     ChannelFlags,
     GuildMemberFlags,
@@ -8,7 +8,8 @@ import {
     ThreadMemberFlags,
     GuildSystemChannelFlags,
     UserFlags,
-} from './index';
+    GatewayIntentBits,
+} from 'discord-api-types/v10';
 import type { Arrayable } from '@paqujs/shared';
 
 export type ApplicationFlagsBitsResolvable = Arrayable<
@@ -38,3 +39,4 @@ export type SystemChannelFlagsBitsResolvable = Arrayable<
 >;
 
 export type UserFlagsBitsResolvable = Arrayable<keyof typeof UserFlags | UserFlags>;
+

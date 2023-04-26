@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { PermissionFlagsBitsResolver } from '@paqujs/resolvers';
-import { PermissionFlagsBits, PermissionFlagsBitsResolvable } from '../index';
+import { PermissionFlagsBits } from 'discord-api-types/v10';
+import { PermissionFlagsBitsResolvable } from '../index';
 
 export interface PermissionFlagsBitField {
     toArray(): (keyof typeof PermissionFlagsBits)[];

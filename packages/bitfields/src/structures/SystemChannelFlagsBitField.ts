@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { SystemChannelFlagsBitsResolver } from '@paqujs/resolvers';
-import { GuildSystemChannelFlags, SystemChannelFlagsBitsResolvable } from '../index';
+import { GuildSystemChannelFlags } from 'discord-api-types/v10';
+import { SystemChannelFlagsBitsResolvable } from '../index';
 
 export interface SystemChannelFlagsBitField {
     toArray(): (keyof typeof GuildSystemChannelFlags)[];

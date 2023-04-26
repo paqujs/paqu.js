@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { GuildMemberFlagsBitsResolver } from '@paqujs/resolvers';
-import { GuildMemberFlagsBitsResolvable, GuildMemberFlags } from '../index';
+import { GuildMemberFlags } from 'discord-api-types/v10';
+import { GuildMemberFlagsBitsResolvable } from '../index';
 
 export interface GuildMemberFlagsBitField {
     toArray(): (keyof typeof GuildMemberFlags)[];

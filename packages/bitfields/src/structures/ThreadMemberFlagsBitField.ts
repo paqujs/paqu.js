@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { ThreadMemberFlagsBitsResolver } from '@paqujs/resolvers';
-import { ThreadMemberFlags, ThreadMemberFlagsBitsResolvable } from '../index';
+import { ThreadMemberFlags } from 'discord-api-types/v10';
+import { ThreadMemberFlagsBitsResolvable } from '../index';
 
 export interface ThreadMemberFlagsBitField {
     toArray(): (keyof typeof ThreadMemberFlags)[];

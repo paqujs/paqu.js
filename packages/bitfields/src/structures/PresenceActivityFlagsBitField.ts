@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { PresenceActivityFlagsBitsResolver } from '@paqujs/resolvers';
-import { ActivityFlags, PresenceActivityFlagsBitsResolvable } from '../index';
+import { ActivityFlags } from 'discord-api-types/v10';
+import { PresenceActivityFlagsBitsResolvable } from '../index';
 
 export interface PresenceActivityFlagsBitField {
     toArray(): (keyof typeof ActivityFlags)[];

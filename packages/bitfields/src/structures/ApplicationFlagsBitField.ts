@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { ApplicationFlagsBitsResolver } from '@paqujs/resolvers';
-import { ApplicationFlagsBitsResolvable, ApplicationFlags } from '../index';
+import { ApplicationFlags } from 'discord-api-types/v10';
+import { ApplicationFlagsBitsResolvable } from '../index';
 
 export interface ApplicationFlagsBitField {
     toArray(): (keyof typeof ApplicationFlags)[];

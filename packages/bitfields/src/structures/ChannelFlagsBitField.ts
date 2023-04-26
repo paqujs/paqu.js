@@ -1,6 +1,7 @@
 import { BitField } from '@paqujs/shared';
 import { ChannelFlagsBitsResolver } from '@paqujs/resolvers';
-import { ChannelFlags, ChannelFlagsBitsResolvable } from '../index';
+import { ChannelFlags } from 'discord-api-types/v10';
+import { ChannelFlagsBitsResolvable } from '../index';
 
 export interface ChannelFlagsBitField {
     toArray(): (keyof typeof ChannelFlags)[];
