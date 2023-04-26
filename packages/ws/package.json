@@ -1,0 +1,45 @@
+{
+    "name": "@paqujs/ws",
+    "version": "1.0.0",
+    "description": "@paqujs/ws",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "keywords": [
+        "@paqujs/ws",
+        "paqu.js",
+        "wss",
+        "ws",
+        "websocket",
+        "discord"
+    ],
+    "author": "hanzydev",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "devDependencies": {
+        "@types/lodash.merge": "^4.6.7",
+        "@types/node": "^18.16.0",
+        "@types/ws": "^8.5.4",
+        "tsup": "^6.7.0",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@paqujs/resolvers": "^1.0.2",
+        "@paqujs/rest": "^1.0.3",
+        "@paqujs/shared": "^1.0.3",
+        "discord-api-types": "^0.37.40",
+        "lodash.merge": "^4.6.2",
+        "tslib": "^2.5.0",
+        "ws": "^8.13.0"
+    },
+    "type": "module"
+}
