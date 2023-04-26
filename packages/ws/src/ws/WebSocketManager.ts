@@ -144,6 +144,10 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         });
     }
 
+    public get instance(): Function {
+        return this.#instance;
+    }
+
     public get uptime(): number {
         return this.uptimeTimestamp === -1 ? 0 : Date.now() - this.uptimeTimestamp;
     }
