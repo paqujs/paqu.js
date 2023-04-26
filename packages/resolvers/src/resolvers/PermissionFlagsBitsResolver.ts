@@ -1,4 +1,4 @@
-import { PermissionFlagsBits } from '../index';
+import { PermissionFlagsBits } from 'discord-api-types/v10';
 
 export function PermissionFlagsBitsResolver(permissions: any): number | number[] {
     let res = permissions;

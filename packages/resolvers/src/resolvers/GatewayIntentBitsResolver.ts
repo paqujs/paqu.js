@@ -1,4 +1,4 @@
-import { GatewayIntentBits } from '../index';
+import { GatewayIntentBits } from 'discord-api-types/v10';
 
 export function GatewayIntentBitsResolver(intents: any): number | number[] {
     let res = intents;

@@ -1,4 +1,4 @@
-import { UserFlags } from '../index';
+import { UserFlags } from 'discord-api-types/v10';
 
 export function UserFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

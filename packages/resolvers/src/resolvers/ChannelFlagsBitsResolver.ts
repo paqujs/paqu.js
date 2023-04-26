@@ -1,4 +1,4 @@
-import { ChannelFlags } from '../index';
+import { ChannelFlags } from 'discord-api-types/v10';
 
 export function ChannelFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

@@ -1,11 +1,10 @@
+import { SystemChannelFlagsBitsResolver, RoleDataResolver } from '../index';
 import {
-    SystemChannelFlagsBitsResolver,
     GuildExplicitContentFilter,
     GuildDefaultMessageNotifications,
     GuildFeature,
     GuildVerificationLevel,
-    RoleDataResolver,
-} from '../index';
+} from 'discord-api-types/v10';
 import { SystemChannelFlagsBitField } from '@paqujs/bitfields';
 
 export function GuildDataResolver(guild: any) {

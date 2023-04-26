@@ -1,4 +1,4 @@
-import { FormattingPatterns } from '../index';
+import { FormattingPatterns } from 'discord-api-types/v10';
 
 export function EmojiResolver(emoji: any): any {
     if (typeof emoji === 'string') {

@@ -1,4 +1,4 @@
-import { GuildMemberFlags } from '../index';
+import { GuildMemberFlags } from 'discord-api-types/v10';
 
 export function GuildMemberFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

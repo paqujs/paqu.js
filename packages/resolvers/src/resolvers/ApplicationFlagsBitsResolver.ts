@@ -1,4 +1,4 @@
-import { ApplicationFlags } from '../index';
+import { ApplicationFlags } from 'discord-api-types/v10';
 
 export function ApplicationFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

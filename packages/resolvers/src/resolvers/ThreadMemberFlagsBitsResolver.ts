@@ -1,4 +1,4 @@
-import { ThreadMemberFlags } from '../index';
+import { ThreadMemberFlags } from 'discord-api-types/v10';
 
 export function ThreadMemberFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

@@ -1,9 +1,9 @@
+import { DataResolver } from '../index';
 import {
-    DataResolver,
     GuildScheduledEventPrivacyLevel,
     GuildScheduledEventEntityType,
     GuildScheduledEventStatus,
-} from '../index';
+} from 'discord-api-types/v10';
 
 export async function GuildScheduledEventDataResolver(scheduledEvent: any) {
     const res = scheduledEvent;

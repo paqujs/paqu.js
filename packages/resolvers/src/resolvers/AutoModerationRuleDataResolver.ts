@@ -1,4 +1,4 @@
-import { AutoModerationRuleEventType } from '../index';
+import { AutoModerationRuleEventType } from 'discord-api-types/v10';
 
 export function AutoModerationRuleDataResolver(rule: any) {
     const res = rule;

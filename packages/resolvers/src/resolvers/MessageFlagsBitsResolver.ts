@@ -1,4 +1,4 @@
-import { MessageFlags } from '../index';
+import { MessageFlags } from 'discord-api-types/v10';
 
 export function MessageFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

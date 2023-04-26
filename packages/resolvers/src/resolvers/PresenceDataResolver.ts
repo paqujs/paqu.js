@@ -1,4 +1,5 @@
-import { ActivityType, PresenceActivityFlagsBitsResolver } from '../index';
+import { PresenceActivityFlagsBitsResolver } from '../index';
+import { ActivityType } from 'discord-api-types/v10';
 
 export function PresenceDataResolver(presence: any) {
     const res = presence;

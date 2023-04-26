@@ -1,4 +1,4 @@
-import { GuildSystemChannelFlags } from '../index';
+import { GuildSystemChannelFlags } from 'discord-api-types/v10';
 
 export function SystemChannelFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

@@ -1,4 +1,4 @@
-import { ActivityFlags } from '../index';
+import { ActivityFlags } from 'discord-api-types/v10';
 
 export function PresenceActivityFlagsBitsResolver(flags: any): number | number[] {
     let res = flags;

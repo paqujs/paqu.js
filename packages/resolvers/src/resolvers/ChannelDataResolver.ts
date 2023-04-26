@@ -1,12 +1,12 @@
+import { DataResolver } from '../index';
 import {
-    DataResolver,
     ChannelType,
     VideoQualityMode,
     OverwriteType,
     ThreadAutoArchiveDuration,
     ForumLayoutType,
     SortOrderType,
-} from '../index';
+} from 'discord-api-types/v10';
 import { PermissionFlagsBitField, ChannelFlagsBitField } from '@paqujs/bitfields';
 
 export async function ChannelDataResolver(channel: any) {
