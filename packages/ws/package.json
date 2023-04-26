@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/ws",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "@paqujs/ws",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
