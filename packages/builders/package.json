@@ -1,0 +1,41 @@
+{
+    "name": "@paqujs/builders",
+    "version": "1.0.2",
+    "description": "@paqujs/builders",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup",
+        "test": "tsup && node test/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/paqujs/paqu.js.git"
+    },
+    "keywords": [
+        "@paqujs/builders",
+        "paqu.js",
+        "builder",
+        "builders",
+        "discord"
+    ],
+    "author": "hanzydev",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/paqujs/paqu.js/issues"
+    },
+    "homepage": "https://github.com/paqujs/paqu.js#readme",
+    "devDependencies": {
+        "@types/node": "^18.16.0",
+        "tsup": "^6.7.0",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@paqujs/bitfields": "^1.0.3",
+        "@paqujs/resolvers": "^1.0.3",
+        "@paqujs/shared": "^1.0.5",
+        "discord-api-types": "^0.37.40",
+        "tslib": "^2.5.0"
+    },
+    "type": "module"
+}
