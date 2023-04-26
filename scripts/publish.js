@@ -88,7 +88,7 @@ question('Package name?').then((packageName) => {
                 consola.success(`Package builded`);
 
                 question('OTP?').then((otp) => {
-                    execSync(`cd ${packagePath} && npm publish --access public --otp ${otp}`)
+                    execSync(`cd ${packagePath} && yarn publish --otp ${otp}`)
                         .then(() => {
                             consola.success(`Package published`);
                             execSync(`cd ${packagePath} && git add .`)
@@ -102,7 +102,6 @@ question('Package name?').then((packageName) => {
                                                     consola.success(
                                                         `New version ${packageVersion} of package ${packageName} published`,
                                                     );
-                                                    process.exit(1);
                                                 })
                                                 .catch((error) => {
                                                     consola.error(
