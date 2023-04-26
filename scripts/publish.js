@@ -102,6 +102,7 @@ question('Package name?').then((packageName) => {
                                                     consola.success(
                                                         `New version ${packageVersion} of package ${packageName} published`,
                                                     );
+                                                    process.exit(0);
                                                 })
                                                 .catch((error) => {
                                                     consola.error(
