@@ -17,7 +17,7 @@ pnpm add @paqujs/ws
 ```ts
 import { WebSocketManager } from '@paqujs/ws';
 
-const ws = new WebSocketManager();
+const ws = new WebSocketManager({ intents: ['Guilds'] });
 
 ws.on('ready', (user) => {
     console.log(`Logged in as ${user.username}#${user.discriminator}`);
