@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/ws",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "@paqujs/ws",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
         "@paqujs/resolvers": "^1.0.2",
         "@paqujs/rest": "^1.0.3",
         "@paqujs/shared": "^1.0.3",
-        "@paqujs/ws": "^1.0.1",
+        "@paqujs/ws": "^1.0.2",
         "discord-api-types": "^0.37.40",
         "lodash.merge": "^4.6.2",
         "tslib": "^2.5.0",
