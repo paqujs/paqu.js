@@ -245,7 +245,7 @@ export class Collection<K, V> extends Map<K, V> {
         return new Collection<K, V>(this);
     }
 
-    public toObject(): Object {
+    public toObject(): Record<string, V> {
         return Object.fromEntries(this.entries());
     }
 }
