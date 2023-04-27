@@ -87,12 +87,15 @@ question('Package name?').then((packageName) => {
 
                 consola.success(`Package builded`);
 
-                question('Upgrade dependencies? [y/n]').then((answer) => {
+                question('Upgrade dependencies? [y/n]').then(async (answer) => {
                     if (answer === 'y') {
-                        execSync(`cd ${packagePath} && yarn upgrade --latest`);
+                        await execSync(`cd ${packagePath} && yarn upgrade --latest`)
+                            .catch((error) => {
+                                consola.error(`Dependencies upgrade failed with error: ${error}`);
+                                process.exit(1);
+                            })
+                            .then(() => consola.success(`Dependencies upgraded`));
                     }
-
-                    consola.success(`Dependencies upgraded`);
 
                     question('This version is a first release? [y/n]').then((answer) => {
                         question('OTP?').then((otp) => {
