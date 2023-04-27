@@ -12,12 +12,7 @@ import {
     GatewayOpcodes,
     GatewayCloseCodes,
 } from 'discord-api-types/v10';
-import {
-    type WebSocketManager,
-    type GatewayCloseCodesResolvable,
-    type PresenceData,
-    DiscordGatewayVersion,
-} from '../index';
+import type { WebSocketManager, GatewayCloseCodesResolvable, PresenceData } from '../index';
 
 let erlpack: any;
 let zlib: any;
@@ -440,7 +435,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
     public get endpoint() {
         let baseEndpoint = this.resumeURL || 'wss://gateway.discord.gg';
 
-        baseEndpoint += `?v=${DiscordGatewayVersion}`;
+        baseEndpoint += `?v=${this.manager.options.version}`;
         baseEndpoint += `&encoding=${this.encoding}`;
 
         if (!!zlib && this.manager.options.compress) {

@@ -1,7 +1,4 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
 import { TypedEmitter, Collection, BitField } from '@paqujs/shared';
 import { GatewayIntentBitsResolver } from '@paqujs/resolvers';
 import { REST } from '@paqujs/rest';
@@ -14,15 +11,9 @@ import {
     type APIGatewayBotInfo,
     type APIUser,
 } from 'discord-api-types/v10';
-import {
-    type PresenceData,
-    type GatewayIntentBitsResolvable,
-    WebSocketShard,
-    DiscordAPIVersion,
-    DiscordAPIError,
-} from '../index';
+import { type PresenceData, type GatewayIntentBitsResolvable, WebSocketShard } from '../index';
 
-const NonReconnectableCloseCodes = new Set([4004, 4010, 4011, 4012, 4013, 4014]);
+export const NonReconnectableCloseCodes = new Set([4004, 4010, 4011, 4012, 4013, 4014]);
 
 export interface WebSocketProperties {
     os?: NodeJS.Platform;
@@ -36,8 +27,8 @@ export interface WebSocketOptions {
     compress?: boolean;
     properties?: WebSocketProperties;
     autoReconnect?: boolean;
-    rest?: RESTOptions;
-    instance?: Function;
+    rest: REST;
+    version?: number;
 }
 
 export interface WebSocketEvents {
@@ -54,14 +45,6 @@ export interface WebSocketEvents {
     debug: [message: string];
 }
 
-export interface RESTOptions {
-    offset?: number;
-    rejectOnRateLimit?: boolean;
-    authPrefix?: 'Bot' | 'Bearer';
-    retries?: number;
-    requestTimeout?: number;
-}
-
 export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
     public uptimeTimestamp: number;
     #token: string | null;
@@ -69,7 +52,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
     #shardQueue: Set<WebSocketShard> | null;
     #shards = new Collection<number, WebSocketShard>();
     #options: WebSocketOptions;
-    #instance: Function;
+    #rest: REST;
 
     public constructor({
         intents,
@@ -80,7 +63,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         properties,
         autoReconnect,
         rest,
-        instance,
+        version,
     }: WebSocketOptions) {
         super();
 
@@ -95,9 +78,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 },
                 autoReconnect: true,
                 presence: null,
-                rest: {
-                    authPrefix: 'Bot',
-                },
+                version: 10,
             },
             {
                 intents: new BitField().set(GatewayIntentBitsResolver(intents)),
@@ -107,6 +88,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 compress,
                 properties,
                 autoReconnect,
+                version,
                 rest,
             },
         );
@@ -115,33 +97,8 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         this.#shardQueue = null;
 
         this.#token = null;
-        this.uptimeTimestamp = -1;
-        this.#instance = instance ?? this.constructor;
 
-        Object.defineProperty(this.#instance.prototype, 'rest', {
-            value: new REST({
-                baseURL: `https://discord.com/api/v${DiscordAPIVersion}`,
-                agent: `paqu.js (https://github.com/paqujs/paqu.js, ${
-                    JSON.parse(
-                        readFileSync(
-                            join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json'),
-                            'utf-8',
-                        ),
-                    ).version
-                })`,
-                errorFactory: (req, res, url, requestBody, data: any) =>
-                    new DiscordAPIError(
-                        res.status,
-                        data.code,
-                        req.method,
-                        url.toString(),
-                        data.message,
-                        requestBody,
-                        data.errors ? data.errors.data : [],
-                    ),
-                ...this.#options.rest,
-            }),
-        });
+        this.uptimeTimestamp = -1;
     }
 
     public get uptime(): number {
@@ -164,16 +121,12 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         return this.#token;
     }
 
-    public get rest(): Readonly<REST> {
-        return this.#instance.prototype.rest;
-    }
-
     public get options(): Readonly<WebSocketOptions> {
         return this.#options;
     }
 
     public async getGatewayBot() {
-        return await this.rest.get<APIGatewayBotInfo>('/gateway/bot');
+        return await this.options.rest.get<APIGatewayBotInfo>('/gateway/bot');
     }
 
     public get ping() {
@@ -190,7 +143,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         this.emit('debug', '[WS]: Connecting to gateway...');
 
         this.#token = token;
-        this.rest.setToken(token);
+        this.options.rest.setToken(token);
 
         if (process.env.CLUSTER_ID) {
             this.#options.shardCount = +process.env.SHARD_PER_CLUSTER;
