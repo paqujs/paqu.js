@@ -273,7 +273,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
 
         try {
             this.emit('shardSpawn', shard);
-            await shard.connect();
+            shard.connect();
         } catch {
             this.#shardQueue?.add(shard);
         }
@@ -304,7 +304,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
             });
 
             await sleep(5000);
-            await shard.connect();
+            shard.connect();
 
             return true;
         }
@@ -362,10 +362,13 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         return;
     }
 
-    public async bulkRequestGuildMembers(data: GatewayRequestGuildMembersData, shardId?: number) {
+    public bulkRequestGuildMembers(data: GatewayRequestGuildMembersData, shardId?: number) {
         if (shardId) {
             const shard = this.#shards.get(shardId);
-            if (!shard) return;
+
+            if (!shard) {
+                return;
+            }
 
             shard.requestGuildMembers(data);
         } else {
@@ -373,14 +376,15 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 shard.requestGuildMembers(data);
             }
         }
-
-        return;
     }
 
-    public async bulkUpdateVoiceState(data: GatewayVoiceStateUpdateData, shardId?: number) {
+    public bulkUpdateVoiceState(data: GatewayVoiceStateUpdateData, shardId?: number) {
         if (shardId) {
             const shard = this.#shards.get(shardId);
-            if (!shard) return;
+
+            if (!shard) {
+                return;
+            }
 
             shard.updateVoiceState(data);
         } else {
@@ -388,14 +392,15 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 shard.updateVoiceState(data);
             }
         }
-
-        return;
     }
 
-    public async bulkUpdatePresence(data: PresenceData, shardId?: number) {
+    public bulkUpdatePresence(data: PresenceData, shardId?: number) {
         if (shardId) {
             const shard = this.#shards.get(shardId);
-            if (!shard) return;
+
+            if (!shard) {
+                return;
+            }
 
             shard.updatePresence(data);
         } else {
@@ -403,7 +408,5 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 shard.updatePresence(data);
             }
         }
-
-        return;
     }
 }

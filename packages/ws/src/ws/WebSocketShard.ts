@@ -48,19 +48,19 @@ export interface WebSocketShardEvents {
 export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
     public socket: WebSocket | null;
     public inflate: any = undefined;
-    public lastHeartbeat: number = -1;
-    public lastHeartbeatAcked: boolean = false;
-    public lastHeartbeatAck: number = -1;
+    public lastHeartbeat = -1;
+    public lastHeartbeatAcked = false;
+    public lastHeartbeatAck = -1;
     public heartbeatInterval: NodeJS.Timer | null = null;
-    public sequence: number = -1;
-    public closeSequence: number = 0;
+    public sequence = -1;
+    public closeSequence = 0;
     public sessionId: string | null = null;
     public manager: WebSocketManager;
     public id: number;
-    public eventsAppended: boolean = false;
-    public readyTimestamp: number = -1;
+    public eventsAppended = false;
+    public readyTimestamp = -1;
     public status: WebSocketStatus = 'Idle';
-    public packetQueue: number = 0;
+    public packetQueue = 0;
     public unavailableGuilds = new Collection<string, APIUnavailableGuild>();
     public resumeURL: string | null;
 
@@ -109,7 +109,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         return false;
     }
 
-    public async connect(): Promise<boolean> {
+    public connect(): boolean {
         if (this.checkReady()) {
             return false;
         }
@@ -284,7 +284,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
 
     public close(
         code: GatewayCloseCodesResolvable,
-        cleanup: boolean = true,
+        cleanup = true,
         cleanupOptions: WebSocketCleanupOptions = {},
     ) {
         if (typeof code === 'string') {
@@ -332,7 +332,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         this.send({ op: GatewayOpcodes.Heartbeat, d: this.sequence });
     }
 
-    public heartbeatAck(updatePing: boolean = false) {
+    public heartbeatAck(updatePing = false) {
         this.lastHeartbeatAcked = true;
 
         if (updatePing) {

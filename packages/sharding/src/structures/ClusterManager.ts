@@ -230,7 +230,7 @@ export class ClusterManager extends TypedEmitter<ClusterManagerEvents> {
     }
 
     public broadcastEval<T>(
-        script: string | Function,
+        script: (...args: any[]) => any | string,
         { context, clusterId }: BroadcastEvalOptions = {},
     ): Promise<T | T[]> {
         if (!this.spawned) {

@@ -2,7 +2,7 @@ export class BitField {
     public static Flags = {};
     public bitset: number;
 
-    public constructor(defaultBitset: number = 0) {
+    public constructor(defaultBitset = 0) {
         this.bitset = defaultBitset;
     }
 
@@ -33,12 +33,12 @@ export class BitField {
     public has(bits: number | number[]) {
         if (Array.isArray(bits)) {
             for (const bit of bits) {
-                if (!!(this.bitset & bit)) {
+                if (this.bitset & bit) {
                     return false;
                 }
             }
         } else {
-            if (!!(this.bitset & bits)) {
+            if (this.bitset & bits) {
                 return false;
             }
         }

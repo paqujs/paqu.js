@@ -137,7 +137,7 @@ export class Cluster extends TypedEmitter<ClusterEvents> {
         this.spawn();
     }
 
-    public eval<T>(script: string | Function, context?: any) {
+    public eval<T>(script: (...args: any[]) => any | string, context?: any) {
         const resolved =
             typeof script === 'function' ? `(${script})(this, JSON.stringify(${context}))` : script;
 

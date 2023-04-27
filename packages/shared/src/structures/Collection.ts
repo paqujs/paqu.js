@@ -126,7 +126,7 @@ export class Collection<K, V> extends Map<K, V> {
         }
     }
 
-    public random(amount: number = 0): V | V[] | undefined {
+    public random(amount = 0): V | V[] | undefined {
         const values = this.array();
 
         if (amount === 0) {
@@ -139,7 +139,7 @@ export class Collection<K, V> extends Map<K, V> {
         );
     }
 
-    public randomKey(amount: number = 0): K | K[] | undefined {
+    public randomKey(amount = 0): K | K[] | undefined {
         const keys = this.keyArray();
 
         if (amount === 0) {
@@ -149,7 +149,7 @@ export class Collection<K, V> extends Map<K, V> {
         return Array.from({ length: amount }, (): K => keys[Math.floor(Math.random() * this.size)]);
     }
 
-    public first(amount: number = 0): V | V[] | undefined {
+    public first(amount = 0): V | V[] | undefined {
         const iterable = this.values();
 
         if (amount === 0) {
@@ -165,7 +165,7 @@ export class Collection<K, V> extends Map<K, V> {
         return Array.from({ length: amount }, (): V => iterable.next().value);
     }
 
-    public firstKey(amount: number = 0): K | K[] | undefined {
+    public firstKey(amount = 0): K | K[] | undefined {
         const iterable = this.keys();
 
         if (amount === 0) {
@@ -181,7 +181,7 @@ export class Collection<K, V> extends Map<K, V> {
         return Array.from({ length: amount }, (): K => iterable.next().value);
     }
 
-    public last(amount: number = 0): V | V[] | undefined {
+    public last(amount = 0): V | V[] | undefined {
         const values = this.array();
 
         if (amount === 0) {
@@ -196,7 +196,7 @@ export class Collection<K, V> extends Map<K, V> {
         return values.slice(-amount);
     }
 
-    public lastKey(amount: number = 0): K | K[] | undefined {
+    public lastKey(amount = 0): K | K[] | undefined {
         const keys = this.keyArray();
 
         if (amount === 0) {

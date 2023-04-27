@@ -214,7 +214,7 @@ export class REST {
             if (body !== undefined) {
                 if (appendBodyToFormData) {
                     for (const [key, value] of Object.entries(body)) {
-                        let resolvedValue = value;
+                        const resolvedValue = value;
 
                         formData.append(key, resolvedValue);
                     }
@@ -316,11 +316,11 @@ export class REST {
 
                 if (this.#options.rejectOnRateLimit) {
                     throw new RateLimitError(
-                        rateLimit.limit?.toString()!,
-                        rateLimit.remaining?.toString()!,
-                        rateLimit.reset?.toString()!,
+                        rateLimit.limit.toString()!,
+                        rateLimit.remaining.toString()!,
+                        rateLimit.reset.toString()!,
                         hash!,
-                        rateLimit.retry?.toString()!,
+                        rateLimit.retry.toString()!,
                         rateLimit.scope!,
                         status,
                         options.method,

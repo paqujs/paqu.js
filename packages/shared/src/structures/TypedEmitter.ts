@@ -64,10 +64,12 @@ export declare interface TypedEmitter<L extends ListenerSignature<L> = DefaultLi
     listenerCount<S extends string | symbol>(type: Exclude<S, keyof L>): number;
 
     listeners<E extends keyof L>(event: E): L[E][];
-    listeners<S extends string | symbol>(event: Exclude<S, keyof L>): Function[];
+    listeners<S extends string | symbol>(event: Exclude<S, keyof L>): ((...args: any[]) => void)[];
 
     rawListeners<E extends keyof L>(event: E): L[E][];
-    rawListeners<S extends string | symbol>(event: Exclude<S, keyof L>): Function[];
+    rawListeners<S extends string | symbol>(
+        event: Exclude<S, keyof L>,
+    ): ((...args: any[]) => void)[];
 }
 
 export class TypedEmitter extends EventEmitter {
