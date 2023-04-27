@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/sharding",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Cluster manager for paqu.js",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -27,12 +27,13 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^18.16.0",
+        "@types/node": "^18.16.1",
         "tsup": "^6.7.0",
         "typescript": "^5.0.4"
     },
     "dependencies": {
         "@paqujs/shared": "^1.0.6",
+        "discord-api-types": "^0.37.40",
         "tslib": "^2.5.0",
         "undici": "^5.22.0"
     },

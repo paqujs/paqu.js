@@ -1,7 +1,8 @@
-import { isAbsolute, resolve } from 'node:path';
-import { fetch } from 'undici';
-import { TypedEmitter, Collection } from '@paqujs/shared';
 import { setTimeout as sleep } from 'node:timers/promises';
+import { isAbsolute, resolve } from 'node:path';
+import { TypedEmitter, Collection } from '@paqujs/shared';
+import { fetch } from 'undici';
+import { APIGatewayBotInfo } from 'discord-api-types/v10';
 import { Cluster } from '../index';
 
 export interface ClusterManagerEvents {
@@ -33,17 +34,6 @@ export interface ClusterManagerOptions {
 export interface BroadcastEvalOptions {
     context?: any;
     clusterId?: number;
-}
-
-export interface APIGatewayBotInfo {
-    url: string;
-    shards: number;
-    session_start_limit: {
-        total: number;
-        remaining: number;
-        reset_after: number;
-        max_concurrency: number;
-    };
 }
 
 export class ClusterManager extends TypedEmitter<ClusterManagerEvents> {
