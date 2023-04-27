@@ -28,4 +28,8 @@ export class ActionRowBuilder extends BaseBuilder<APIAnyComponent> {
     public addComponents(...components: APIAnyComponent[]) {
         return this.set('components', this.components.concat(components));
     }
+
+    public static from(components: APIAnyComponent[]) {
+        return new ActionRowBuilder(components);
+    }
 }

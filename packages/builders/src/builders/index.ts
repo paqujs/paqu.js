@@ -4,3 +4,6 @@ export * from './TextInputBuilder';
 export * from './ActionRowBuilder';
 export * from './ModalBuilder';
 export * from './ButtonBuilder';
+export * from './ApplicationCommandBuilder';
+export * from './SelectMenu/index';
+export * from './ApplicationCommandOption/index';

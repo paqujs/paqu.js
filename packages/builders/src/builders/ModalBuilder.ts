@@ -31,4 +31,8 @@ export class ModalBuilder extends BaseBuilder<APIModalInteractionResponseCallbac
     public setTitle(title: string): this {
         return this.set('title', title);
     }
+
+    public static from(data: APIModalInteractionResponseCallbackData) {
+        return new ModalBuilder(data);
+    }
 }

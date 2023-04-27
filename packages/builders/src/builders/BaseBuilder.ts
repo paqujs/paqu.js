@@ -15,8 +15,4 @@ export class BaseBuilder<T> {
     public equals(other: this) {
         return isEqual(this, other);
     }
-
-    public static from<T extends BaseBuilder<any>>(this: new (...args: any[]) => T, data: any) {
-        return new this(data);
-    }
 }

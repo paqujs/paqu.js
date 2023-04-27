@@ -54,24 +54,8 @@ export class EmbedBuilder extends BaseBuilder<APIEmbed> {
         return this.set('description', description);
     }
 
-    public setFields(...fields: APIEmbedField[]) {
-        return this.set('fields', fields);
-    }
-
     public addFields(...fields: APIEmbedField[]) {
         return this.set('fields', this.fields.concat(fields));
-    }
-
-    public removeFields(...fields: APIEmbedField[]) {
-        for (const field of fields) {
-            const index = this.fields.indexOf(field);
-
-            if (index > -1) {
-                this.fields.splice(index, 1);
-            }
-        }
-
-        return this;
     }
 
     public setFooter(footer: APIEmbedFooter) {
@@ -111,5 +95,9 @@ export class EmbedBuilder extends BaseBuilder<APIEmbed> {
 
     public setVideo(video: APIEmbedVideo) {
         return this.set('video', video);
+    }
+
+    public static from(data: APIEmbed) {
+        return new EmbedBuilder(data);
     }
 }

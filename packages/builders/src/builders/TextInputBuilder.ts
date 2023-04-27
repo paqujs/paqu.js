@@ -58,4 +58,8 @@ export class TextInputBuilder extends BaseBuilder<APITextInputComponent> {
     public setLabel(label: string) {
         return this.set('label', label);
     }
+
+    public static from(data: APITextInputComponent) {
+        return new TextInputBuilder(data);
+    }
 }

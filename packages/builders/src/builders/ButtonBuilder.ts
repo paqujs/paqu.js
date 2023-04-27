@@ -73,4 +73,8 @@ export class ButtonBuilder extends BaseBuilder<APIButtonComponent> {
     public setURL(url: string) {
         return this.set('url', url);
     }
+
+    public static from(data: APIButtonComponent) {
+        return new ButtonBuilder(data);
+    }
 }
