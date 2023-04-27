@@ -1,5 +1,5 @@
-import { Arrayable } from '@paqujs/shared';
-import {
+import type { PresenceActivityFlagsBitsResolvable } from '@paqujs/bitfields';
+import type {
     GatewayActivityEmoji,
     GatewayActivityParty,
     GatewayActivityAssets,
@@ -7,9 +7,7 @@ import {
     GatewayActivityButton,
     GatewayPresenceClientStatus,
     GatewayActivityTimestamps,
-    GatewayIntentBits,
     Snowflake,
-    ActivityFlags,
     ActivityType,
     GatewayCloseCodes,
 } from 'discord-api-types/v10';
@@ -24,7 +22,7 @@ export interface PresenceData {
     client_status?: GatewayPresenceClientStatus;
 }
 
-export interface PresenceActivityData {
+export type PresenceActivityData = {
     name: string;
     type?: PresenceActivityTypeResolvable;
     url?: string;
@@ -40,25 +38,8 @@ export interface PresenceActivityData {
     instance?: boolean;
     flags?: PresenceActivityFlagsBitsResolvable;
     buttons?: GatewayActivityButton[];
-}
+};
 
-export interface PresenceActivitySecretsData {
-    join?: string;
-    spectate?: string;
-    match?: string;
-}
-
-export interface PresenceActivityAssetsData {
-    largeImage: string | null;
-    largeText: string | null;
-    smallImage: string | null;
-    smallText: string | null;
-}
-
-export type GatewayIntentBitsResolvable = Arrayable<keyof typeof GatewayIntentBits | number>;
-
-export type PresenceActivityFlagsBitsResolvable = Arrayable<keyof typeof ActivityFlags | number>;
-
-export type PresenceActivityTypeResolvable = keyof typeof ActivityType | number;
+export type PresenceActivityTypeResolvable = keyof typeof ActivityType | ActivityType;
 
 export type GatewayCloseCodesResolvable = number | keyof typeof GatewayCloseCodes;

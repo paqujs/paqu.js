@@ -1,6 +1,6 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { TypedEmitter, Collection, BitField } from '@paqujs/shared';
-import { GatewayIntentBitsResolver } from '@paqujs/resolvers';
+import { TypedEmitter, Collection } from '@paqujs/shared';
+import { type GatewayIntentBitsResolvable, GatewayIntentsBitField } from '@paqujs/bitfields';
 import { REST } from '@paqujs/rest';
 import merge from 'lodash.merge';
 import {
@@ -11,7 +11,7 @@ import {
     type APIGatewayBotInfo,
     type APIUser,
 } from 'discord-api-types/v10';
-import { type PresenceData, type GatewayIntentBitsResolvable, WebSocketShard } from '../index';
+import { type PresenceData, WebSocketShard } from '../index';
 
 export const NonReconnectableCloseCodes = new Set([4004, 4010, 4011, 4012, 4013, 4014]);
 
@@ -81,7 +81,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 version: 10,
             },
             {
-                intents: new BitField().set(GatewayIntentBitsResolver(intents)),
+                intents: new GatewayIntentsBitField().set(intents),
                 largeThreshold,
                 presence,
                 shardCount,
