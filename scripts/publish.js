@@ -87,22 +87,41 @@ question('Package name?').then((packageName) => {
 
                 consola.success(`Package builded`);
 
-                question('OTP?').then((otp) => {
-                    execSync(`cd ${packagePath} && yarn publish --otp ${otp}`)
-                        .then(() => {
-                            consola.success(`Package published`);
-                            execSync(`cd ${packagePath} && git add .`)
+                question('Upgrade dependencies? [y/n]').then((answer) => {
+                    if (answer === 'y') {
+                        execSync(`cd ${packagePath} && yarn upgrade --latest`);
+                    }
+
+                    consola.success(`Dependencies upgraded`);
+
+                    question('This version is a first release? [y/n]').then((answer) => {
+                        question('OTP?').then((otp) => {
+                            execSync(
+                                `cd ${packagePath} && yarn publish --otp ${otp}${
+                                    answer === 'y' ? ' --access public' : ''
+                                }`,
+                            )
                                 .then(() => {
-                                    execSync(
-                                        `cd ${packagePath} && git commit -m "${packageName}: v${packageVersion}"`,
-                                    )
+                                    consola.success(`Package published`);
+                                    execSync(`cd ${packagePath} && git add .`)
                                         .then(() => {
-                                            execSync(`cd ${packagePath} && git push`)
+                                            execSync(
+                                                `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
+                                            )
                                                 .then(() => {
-                                                    consola.success(
-                                                        `New version ${packageVersion} of package ${packageName} published`,
-                                                    );
-                                                    process.exit(0);
+                                                    execSync(`cd ${packagePath} && git push`)
+                                                        .then(() => {
+                                                            consola.success(
+                                                                `New version ${packageVersion} of package ${packageName} published`,
+                                                            );
+                                                            process.exit(0);
+                                                        })
+                                                        .catch((error) => {
+                                                            consola.error(
+                                                                `Package publish failed with error: ${error}`,
+                                                            );
+                                                            process.exit(1);
+                                                        });
                                                 })
                                                 .catch((error) => {
                                                     consola.error(
@@ -122,11 +141,8 @@ question('Package name?').then((packageName) => {
                                     consola.error(`Package publish failed with error: ${error}`);
                                     process.exit(1);
                                 });
-                        })
-                        .catch((error) => {
-                            consola.error(`Package publish failed with error: ${error}`);
-                            process.exit(1);
                         });
+                    });
                 });
             })
             .catch((error) => {
