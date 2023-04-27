@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/rest",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "@paqujs/rest",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -30,12 +30,12 @@
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
         "@types/lodash.merge": "^4.6.7",
-        "@types/node": "^18.16.0",
+        "@types/node": "^18.16.1",
         "tsup": "^6.7.0",
         "typescript": "^5.0.4"
     },
     "dependencies": {
-        "@paqujs/shared": "^1.0.3",
+        "@paqujs/shared": "^1.0.7",
         "@sapphire/async-queue": "^1.5.0",
         "lodash.merge": "^4.6.2",
         "tslib": "^2.5.0",
