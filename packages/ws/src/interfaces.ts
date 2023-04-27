@@ -17,14 +17,14 @@ import {
 export type PresenceStatus = 'online' | 'idle' | 'dnd' | 'offline';
 
 export interface PresenceData {
-    activities?: PresenceActivity[];
+    activities?: PresenceActivityData[];
     status?: PresenceStatus;
     afk?: boolean;
     since?: number;
     client_status?: GatewayPresenceClientStatus;
 }
 
-export interface PresenceActivity {
+export interface PresenceActivityData {
     name: string;
     type?: PresenceActivityTypeResolvable;
     url?: string;
@@ -42,13 +42,13 @@ export interface PresenceActivity {
     buttons?: GatewayActivityButton[];
 }
 
-export interface PresenceActivitySecrets {
+export interface PresenceActivitySecretsData {
     join?: string;
     spectate?: string;
     match?: string;
 }
 
-export interface PresenceActivityAssets {
+export interface PresenceActivityAssetsData {
     largeImage: string | null;
     largeText: string | null;
     smallImage: string | null;
