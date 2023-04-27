@@ -1,10 +1,21 @@
-import { fetch, FormData, type Response, type RequestInit, type BodyInit } from 'undici';
+import {
+    fetch,
+    FormData,
+    type Response,
+    type BodyInit,
+    type RequestCredentials,
+    type RequestMode,
+    type ReferrerPolicy,
+    type Dispatcher,
+    type RequestDuplex,
+    type RequestRedirect,
+} from 'undici';
 import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { Blob } from 'node:buffer';
-import { HttpError, RateLimitError, RequestBody } from '../index';
 import { Collection } from '@paqujs/shared';
 import merge from 'lodash.merge';
+import { HttpError, RateLimitError, RequestBody } from '../index';
 
 export interface RESTOptions {
     offset?: number;
@@ -33,7 +44,18 @@ export type RequestOptions = {
     appendBodyToFormData?: boolean;
     reason?: string;
     agent?: string;
-} & RequestInit;
+    keepalive?: boolean;
+    integrity?: string;
+    signal?: AbortSignal;
+    credentials?: RequestCredentials;
+    mode?: RequestMode;
+    referrer?: string;
+    referrerPolicy?: ReferrerPolicy;
+    window?: null;
+    dispatcher?: Dispatcher;
+    duplex?: RequestDuplex;
+    redirect?: RequestRedirect;
+};
 
 export interface FileData {
     key?: string;
