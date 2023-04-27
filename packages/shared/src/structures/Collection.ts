@@ -245,7 +245,12 @@ export class Collection<K, V> extends Map<K, V> {
         return new Collection<K, V>(this);
     }
 
-    public toObject(): Record<string, V> {
+    public toJSON(): Record<string, V> {
         return Object.fromEntries(this.entries());
+    }
+
+    public setAndReturnValue(key: K, value: V) {
+        this.set(key, value);
+        return value;
     }
 }
