@@ -39,7 +39,7 @@ export type RequestOptions = {
     method?: RequestMethods;
     headers?: Record<string, string>;
     files?: FileData[];
-    query?: Record<string, string> | URLSearchParams;
+    query?: Record<string, any> | URLSearchParams;
     body?: Record<string, any> | BodyInit;
     appendBodyToFormData?: boolean;
     reason?: string;
