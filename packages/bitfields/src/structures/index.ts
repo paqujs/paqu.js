@@ -1,5 +1,6 @@
 export * from './ApplicationFlagsBitField';
 export * from './ChannelFlagsBitField';
+export * from './GatewayIntentsBitField';
 export * from './GuildMemberFlagsBitField';
 export * from './MessageFlagsBitField';
 export * from './PermissionFlagsBitField';
