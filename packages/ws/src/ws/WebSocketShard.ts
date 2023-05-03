@@ -1,13 +1,12 @@
 import { TextDecoder } from 'node:util';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { TypedEmitter, Collection } from '@paqujs/shared';
+import { TypedEmitter } from '@paqujs/shared';
 import { PresenceDataResolver } from '@paqujs/resolvers';
 import { WebSocket } from 'ws';
 import {
     type GatewayRequestGuildMembersData,
     type GatewayVoiceStateUpdateData,
     type GatewayReceivePayload,
-    type APIUnavailableGuild,
     type GatewayReadyDispatch,
     GatewayOpcodes,
     GatewayCloseCodes,
@@ -61,7 +60,6 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
     public readyTimestamp = -1;
     public status: WebSocketStatus = 'Idle';
     public packetQueue = 0;
-    public unavailableGuilds = new Collection<string, APIUnavailableGuild>();
     public resumeURL: string | null;
 
     public constructor(manager: WebSocketManager, id: number) {
@@ -174,10 +172,6 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                             this.status = 'Ready';
                             this.resumeURL = d.resume_gateway_url;
 
-                            for (const guild of d.guilds) {
-                                this.unavailableGuilds.set(guild.id, guild);
-                            }
-
                             this.sendHeartbeat();
                             this.emit('ready', resolved);
                             break;
@@ -276,8 +270,6 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
             this.sequence = -1;
             this.sessionId = null;
             this.socket = null;
-
-            this.unavailableGuilds.clear();
         }
     }
 
