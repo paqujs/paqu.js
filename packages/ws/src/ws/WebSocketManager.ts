@@ -3,15 +3,13 @@ import { TypedEmitter, Collection } from '@paqujs/shared';
 import { type GatewayIntentBitsResolvable, GatewayIntentsBitField } from '@paqujs/bitfields';
 import { REST } from '@paqujs/rest';
 import merge from 'lodash.merge';
-import {
-    type GatewayRequestGuildMembersData,
-    type GatewayVoiceStateUpdateData,
-    type GatewayDispatchPayload,
-    type GatewayReceivePayload,
-    type APIGatewayBotInfo,
-    type APIUser,
+import type {
+    GatewayRequestGuildMembersData,
+    GatewayVoiceStateUpdateData,
+    APIGatewayBotInfo,
+    GatewayReadyDispatch,
 } from 'discord-api-types/v10';
-import { type PresenceData, WebSocketShard } from '../index';
+import { type PresenceData, type GatewayReceivePayloadWithShardId, WebSocketShard } from '../index';
 
 export const NonReconnectableCloseCodes = new Set([4004, 4010, 4011, 4012, 4013, 4014]);
 
@@ -32,9 +30,8 @@ export interface WebSocketOptions {
 }
 
 export interface WebSocketEvents {
-    ready: [user: APIUser];
-    dispatch: [data: GatewayDispatchPayload];
-    receive: [data: GatewayReceivePayload];
+    ready: [payload: GatewayReadyDispatch];
+    raw: [payload: GatewayReceivePayloadWithShardId];
     shardSpawn: [shard: WebSocketShard];
     shardReady: [shard: WebSocketShard];
     shardClosed: [shard: WebSocketShard, code: number, reason: string];
@@ -52,7 +49,6 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
     #shardQueue: Set<WebSocketShard> | null;
     #shards = new Collection<number, WebSocketShard>();
     #options: WebSocketOptions;
-    #rest: REST;
 
     public constructor({
         intents,
@@ -225,13 +221,13 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         this.#shardQueue?.delete(shard);
 
         if (!shard.eventsAppended) {
-            shard.on('ready', (user) => {
+            shard.on('ready', (data) => {
                 this.emit('debug', `[WS]: Shard ${shard.id} is ready`);
                 this.emit('shardReady', shard);
 
                 if (this.checkReady() && this.uptimeTimestamp < 0) {
                     this.uptimeTimestamp = Date.now();
-                    this.emit('ready', user);
+                    this.emit('ready', data);
                 }
             });
 

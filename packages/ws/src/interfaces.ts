@@ -10,6 +10,7 @@ import type {
     Snowflake,
     ActivityType,
     GatewayCloseCodes,
+    GatewayReceivePayload,
 } from 'discord-api-types/v10';
 
 export type PresenceStatus = 'online' | 'idle' | 'dnd' | 'offline';
@@ -39,6 +40,8 @@ export type PresenceActivityData = {
     flags?: PresenceActivityFlagsBitsResolvable;
     buttons?: GatewayActivityButton[];
 };
+
+export type GatewayReceivePayloadWithShardId = GatewayReceivePayload & { shard_id: number };
 
 export type PresenceActivityTypeResolvable = keyof typeof ActivityType | ActivityType;
 

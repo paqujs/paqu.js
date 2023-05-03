@@ -8,7 +8,7 @@ import {
     type GatewayVoiceStateUpdateData,
     type GatewayReceivePayload,
     type APIUnavailableGuild,
-    type APIUser,
+    type GatewayReadyDispatch,
     GatewayOpcodes,
     GatewayCloseCodes,
 } from 'discord-api-types/v10';
@@ -39,7 +39,7 @@ export interface WebSocketCleanupOptions {
 }
 
 export interface WebSocketShardEvents {
-    ready: [user: APIUser];
+    ready: [data: GatewayReadyDispatch];
     close: [code: number, reason: string];
     resumed: [replayed: number];
     error: [error: Error];
@@ -109,7 +109,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         return false;
     }
 
-    public connect(): boolean {
+    public connect() {
         if (this.checkReady()) {
             return false;
         }
@@ -133,7 +133,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                 this.sequence = s;
             }
 
-            this.manager.emit('receive', resolved);
+            this.manager.emit('raw', { ...resolved, shard_id: this.id });
 
             switch (op) {
                 case GatewayOpcodes.Hello:
@@ -179,7 +179,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                             }
 
                             this.sendHeartbeat();
-                            this.emit('ready', d.user);
+                            this.emit('ready', resolved);
                             break;
                         case 'RESUMED':
                             this.heartbeatAck();
@@ -193,7 +193,6 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                         'debug',
                         `[WS]: Shard ${this.id} received a dispatch event: ${t}`,
                     );
-                    this.manager.emit('dispatch', resolved);
                     break;
             }
         });
