@@ -26,7 +26,8 @@
         "outDir": "dist",
         "noUnusedLocals": false,
         "noUnusedParameters": false,
+        "skipLibCheck": true,
         "declarationDir": "dist/types"
     },
-    "exclude": ["node_modules", "test"]
+    "exclude": ["node_modules", "test", "dist"]
 }
