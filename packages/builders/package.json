@@ -33,7 +33,7 @@
         "@paqujs/bitfields": "^1.0.4",
         "@paqujs/resolvers": "^1.0.4",
         "@paqujs/shared": "^1.0.6",
-        "discord-api-types": "^0.37.40",
+        "discord-api-types": "^0.37.42",
         "tslib": "^2.5.0"
     },
     "type": "module"
