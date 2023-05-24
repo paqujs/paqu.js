@@ -123,7 +123,7 @@ export class REST {
         });
     }
 
-    public get options(): Readonly<RESTOptions> {
+    public get _options(): Readonly<RESTOptions> {
         return this.#options;
     }
 
@@ -149,8 +149,8 @@ export class REST {
 
     public setToken(token: string | null) {
         this.#token = token
-            ? this.options.authPrefix
-                ? `${this.options.authPrefix} ${token}`
+            ? this._options.authPrefix
+                ? `${this._options.authPrefix} ${token}`
                 : token
             : null;
     }
@@ -173,10 +173,10 @@ export class REST {
             appendBodyToFormData: false,
         });
 
-        const url = new URL(this.options.baseURL);
+        const url = new URL(this._options.baseURL);
         url.pathname += route;
 
-        const requestHeaders = defu(headers, this.options.baseHeaders);
+        const requestHeaders = defu(headers, this._options.baseHeaders);
 
         if (this.token && !requestHeaders.Authorization) {
             requestHeaders.Authorization = this.token;
@@ -186,8 +186,8 @@ export class REST {
             requestHeaders['X-Audit-Log-Reason'] = encodeURIComponent(reason);
         }
 
-        if (this.options.agent?.length || agent?.length) {
-            requestHeaders['User-Agent'] = this.options.agent || agent;
+        if (this._options.agent?.length || agent?.length) {
+            requestHeaders['User-Agent'] = this._options.agent || agent;
         }
 
         if (query) {
@@ -257,7 +257,7 @@ export class REST {
         }
 
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), this.options.requestTimeout);
+        const timeout = setTimeout(() => controller.abort(), this._options.requestTimeout);
 
         try {
             const response = await fetch(url.toString(), {
@@ -291,9 +291,9 @@ export class REST {
                         limit: limit ? +limit : Infinity,
                         remaining: remaining ? +remaining : 1,
                         reset: reset
-                            ? Date.now() + +reset * 1000 + this.options.offset
+                            ? Date.now() + +reset * 1000 + this._options.offset
                             : Date.now(),
-                        retry: retry ? +retry * 1000 + this.options.offset : 0,
+                        retry: retry ? +retry * 1000 + this._options.offset : 0,
                         limited: true,
                         route,
                     };
@@ -303,9 +303,9 @@ export class REST {
                         limit: limit ? +limit : Infinity,
                         remaining: remaining ? +remaining : 1,
                         reset: reset
-                            ? Date.now() + +reset * 1000 + this.options.offset
+                            ? Date.now() + +reset * 1000 + this._options.offset
                             : Date.now(),
-                        retry: retry ? +retry * 1000 + this.options.offset : 0,
+                        retry: retry ? +retry * 1000 + this._options.offset : 0,
                         limited: true,
                         route,
                     });
@@ -332,7 +332,7 @@ export class REST {
                 await sleep(rateLimit.retry);
                 return this.request(route, options);
             } else if ((status >= 400 && status < 500) || (status >= 500 && status < 600)) {
-                throw this.options.errorFactory.call(
+                throw this._options.errorFactory.call(
                     this,
                     {
                         method,
@@ -352,7 +352,7 @@ export class REST {
         } catch (e) {
             let retries = this.retries.get(route) || 0;
 
-            if (e instanceof Error && e.name === 'AbortError' && retries < this.options.retries) {
+            if (e instanceof Error && e.name === 'AbortError' && retries < this._options.retries) {
                 this.#retries.set(route, ++retries);
                 return this.request(route, options);
             }
@@ -369,6 +369,10 @@ export class REST {
         return this.request<T>(route, { ...options, method: 'Get' });
     }
 
+    public head<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
+        return this.request<T>(route, { ...options, method: 'Head' });
+    }
+
     public post<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Post' });
     }
@@ -377,11 +381,23 @@ export class REST {
         return this.request<T>(route, { ...options, method: 'Put' });
     }
 
-    public patch<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
-        return this.request<T>(route, { ...options, method: 'Patch' });
-    }
-
     public delete<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Delete' });
+    }
+
+    public connect<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
+        return this.request<T>(route, { ...options, method: 'Connect' });
+    }
+
+    public options<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
+        return this.request<T>(route, { ...options, method: 'Options' });
+    }
+
+    public trace<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
+        return this.request<T>(route, { ...options, method: 'Trace' });
+    }
+
+    public patch<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
+        return this.request<T>(route, { ...options, method: 'Patch' });
     }
 }
