@@ -2,7 +2,7 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import { TypedEmitter, Collection } from '@paqujs/shared';
 import { type GatewayIntentBitsResolvable, GatewayIntentsBitField } from '@paqujs/bitfields';
 import { REST } from '@paqujs/rest';
-import merge from 'lodash.merge';
+import { defu } from 'defu';
 import type {
     GatewayRequestGuildMembersData,
     GatewayVoiceStateUpdateData,
@@ -63,19 +63,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
     }: WebSocketOptions) {
         super();
 
-        this.#options = merge(
-            {},
-            {
-                shardCount: 'auto',
-                largeThreshold: 50,
-                compress: true,
-                properties: {
-                    os: process.platform,
-                },
-                autoReconnect: true,
-                presence: null,
-                version: 10,
-            },
+        this.#options = defu(
             {
                 intents: new GatewayIntentsBitField().set(intents),
                 largeThreshold,
@@ -86,6 +74,17 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                 autoReconnect,
                 version,
                 rest,
+            },
+            {
+                shardCount: 'auto' as const,
+                largeThreshold: 50,
+                compress: true,
+                properties: {
+                    os: process.platform,
+                },
+                autoReconnect: true,
+                presence: null,
+                version: 10,
             },
         );
 

@@ -26,7 +26,6 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/lodash.merge": "^4.6.7",
         "@types/node": "^18.16.3",
         "@types/ws": "^8.5.4",
         "tsup": "^6.7.0",
@@ -37,8 +36,8 @@
         "@paqujs/resolvers": "^1.0.4",
         "@paqujs/rest": "^1.0.6",
         "@paqujs/shared": "^1.0.7",
+        "defu": "^6.1.2",
         "discord-api-types": "^0.37.41",
-        "lodash.merge": "^4.6.2",
         "tslib": "^2.5.0",
         "ws": "^8.13.0"
     },
