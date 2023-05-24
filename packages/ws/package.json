@@ -37,7 +37,7 @@
         "@paqujs/rest": "^1.0.6",
         "@paqujs/shared": "^1.0.7",
         "defu": "^6.1.2",
-        "discord-api-types": "^0.37.41",
+        "discord-api-types": "^0.37.42",
         "tslib": "^2.5.0",
         "ws": "^8.13.0"
     },
