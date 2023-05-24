@@ -240,7 +240,7 @@ export class REST {
             }
         }
 
-        if (method === 'Get') {
+        if (method === 'Get' || method === 'Trace' || method === 'Head' || method === 'Options') {
             resolvedBody = undefined;
         }
 
@@ -365,23 +365,23 @@ export class REST {
         }
     }
 
-    public get<T>(route: `/${string}`, options?: RequestOptions) {
+    public get<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Get' });
     }
 
-    public post<T>(route: `/${string}`, options?: RequestOptions) {
+    public post<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Post' });
     }
 
-    public put<T>(route: `/${string}`, options?: RequestOptions) {
+    public put<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Put' });
     }
 
-    public patch<T>(route: `/${string}`, options?: RequestOptions) {
+    public patch<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Patch' });
     }
 
-    public delete<T>(route: `/${string}`, options?: RequestOptions) {
+    public delete<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Delete' });
     }
 }
