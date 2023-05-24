@@ -1,4 +1,4 @@
-import type { RequestMethods } from '../index';
+import type { HTTPMethods } from '../index';
 
 export class RateLimitError extends Error {
     public limit: string;
@@ -8,7 +8,7 @@ export class RateLimitError extends Error {
     public retry: string;
     public scope: 'global' | 'shared' | 'user';
     public status: number;
-    public method: RequestMethods;
+    public method: HTTPMethods;
     public url: string;
     public override message: string;
 
@@ -20,7 +20,7 @@ export class RateLimitError extends Error {
         retry: string,
         scope: 'global' | 'shared' | 'user',
         status: number,
-        method: RequestMethods,
+        method: HTTPMethods,
         url: string,
     ) {
         super('You Are Being Rate Limited');

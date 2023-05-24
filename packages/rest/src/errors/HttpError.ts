@@ -1,15 +1,15 @@
 import { STATUS_CODES } from 'node:http';
-import type { FileData, RequestMethods } from '../index';
+import type { FileData, HTTPMethods } from '../index';
 
 export type RequestBody = { files: FileData[] | undefined; body: unknown | undefined };
 
 export class HttpError extends Error {
     public status: number;
-    public method: RequestMethods;
+    public method: HTTPMethods;
     public url: string;
     public body: RequestBody;
 
-    public constructor(status: number, method: RequestMethods, url: string, body: RequestBody) {
+    public constructor(status: number, method: HTTPMethods, url: string, body: RequestBody) {
         super(STATUS_CODES[status]);
 
         this.status = status;
