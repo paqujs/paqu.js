@@ -36,7 +36,7 @@ export interface RESTOptions {
 }
 
 export type RequestOptions = {
-    method?: RequestMethods;
+    method?: HTTPMethods;
     headers?: Record<string, string>;
     files?: FileData[];
     query?: Record<string, any> | URLSearchParams;
@@ -74,7 +74,7 @@ export interface RateLimitData {
     route?: `/${string}`;
 }
 
-export type RequestMethods =
+export type HTTPMethods =
     | 'Get'
     | 'Head'
     | 'Post'
