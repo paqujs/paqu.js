@@ -14,7 +14,7 @@ import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { Blob } from 'node:buffer';
 import { Collection } from '@paqujs/shared';
-import merge from 'lodash.merge';
+import { defu } from 'defu';
 import { HttpError, RateLimitError, RequestBody } from '../index';
 
 export interface RESTOptions {
@@ -99,23 +99,19 @@ export class REST {
     #token: string | null = null;
 
     public constructor(options: RESTOptions) {
-        this.#options = merge(
-            {},
-            {
-                offset: 250,
-                rejectOnRateLimit: false,
-                retries: 3,
-                baseHeaders: {},
-                requestTimeout: 15000,
-                errorFactory: (
-                    req: RequestOptions,
-                    res: Response,
-                    url: URL,
-                    requestBody: RequestBody,
-                ) => new HttpError(res.status, req.method, url.toString(), requestBody),
-            },
-            options,
-        );
+        this.#options = defu(options, {
+            offset: 250,
+            rejectOnRateLimit: false,
+            retries: 3,
+            baseHeaders: {},
+            requestTimeout: 15000,
+            errorFactory: (
+                req: RequestOptions,
+                res: Response,
+                url: URL,
+                requestBody: RequestBody,
+            ) => new HttpError(res.status, req.method, url.toString(), requestBody),
+        });
     }
 
     public get options(): Readonly<RESTOptions> {
@@ -163,19 +159,15 @@ export class REST {
             reason,
             agent,
             ...rest
-        } = merge(
-            {},
-            {
-                method: 'Get',
-                appendBodyToFormData: false,
-            },
-            options,
-        );
+        } = defu(options, {
+            method: 'Get',
+            appendBodyToFormData: false,
+        });
 
         const url = new URL(this.options.baseURL);
         url.pathname += route;
 
-        const requestHeaders = merge({}, this.options.baseHeaders, headers);
+        const requestHeaders = defu(headers, this.options.baseHeaders);
 
         if (this.token && !requestHeaders.Authorization) {
             requestHeaders.Authorization = this.token;
