@@ -5,8 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc",
-        "test": "tsup && node test/index.js"
+        "build": "tsc"
     },
     "repository": {
         "type": "git",
@@ -21,7 +20,10 @@
         "bot",
         "wrapper",
         "api",
-        "node"
+        "node",
+        "ws",
+        "rest",
+        "client"
     ],
     "author": "hanzydev",
     "license": "Apache-2.0",
