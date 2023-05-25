@@ -66,20 +66,11 @@ question('Package name?').then((packageName) => {
                                 }
                             },
                         );
-                    } else {
-                        fs.stat(path.join(distPath, file.name), (error, stats) => {
+                    } else if (file.name !== 'index.js' && file.name !== 'index.d.ts') {
+                        fs.rm(path.join(distPath, file.name), (error) => {
                             if (error) {
                                 consola.error(`Package build failed with error: ${error}`);
                                 process.exit(1);
-                            }
-
-                            if (stats.size <= 0) {
-                                fs.rm(path.join(distPath, file.name), { force: true }, (error) => {
-                                    if (error) {
-                                        consola.error(`Package build failed with error: ${error}`);
-                                        process.exit(1);
-                                    }
-                                });
                             }
                         });
                     }
