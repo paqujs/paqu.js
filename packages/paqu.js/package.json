@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@paqujs/bitfields": "^1.0.6",
-        "@paqujs/builders": "^1.0.1",
+        "@paqujs/builders": "^1.0.2",
         "@paqujs/resolvers": "^1.0.5",
         "@paqujs/rest": "^1.0.8",
         "@paqujs/shared": "^1.0.8",
