@@ -7,7 +7,7 @@
     },
     "scripts": {
         "lint": "prettier --write packages/**/*.{js,ts} --ignore-path .gitignore && eslint --fix packages/**/*.{js,ts} --ignore-path .gitignore",
-        "s:publish": "node scripts/publish.js"
+        "npm:publish": "node scripts/publish.js"
     },
     "author": "hanzydev",
     "license": "GPL-3.0",
