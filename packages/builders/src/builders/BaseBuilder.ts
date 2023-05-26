@@ -8,9 +8,7 @@ export class BaseBuilder<T> {
     }
 
     public toJSON(): T {
-        return toJSON(this, (_, value) =>
-            typeof value === 'object' ? Object.keys(value).length > 0 : value !== undefined,
-        ) as T;
+        return toJSON(this, (_, value) => value !== undefined) as T;
     }
 
     public equals(other: this) {
