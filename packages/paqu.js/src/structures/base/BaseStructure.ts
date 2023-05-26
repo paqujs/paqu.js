@@ -12,7 +12,7 @@ export abstract class BaseStructure {
     public abstract _patch(data: any): this;
 
     public toJSON() {
-        return toJSON(this);
+        return toJSON(this, (_, value) => value !== undefined);
     }
 
     public equals(other: this) {
