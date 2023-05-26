@@ -1,5 +1,5 @@
 import { toJSON } from '@paqujs/shared';
-import { deepStrictEqual } from 'assert';
+import deepEqual from 'fast-deep-equal';
 
 export class BaseBuilder<T> {
     public set(key: string, value: any) {
@@ -14,14 +14,6 @@ export class BaseBuilder<T> {
     }
 
     public equals(other: this) {
-        let isEqual = true;
-
-        try {
-            deepStrictEqual(this, other);
-        } catch {
-            isEqual = false;
-        }
-
-        return isEqual;
+        return deepEqual(this, other);
     }
 }
