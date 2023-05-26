@@ -1,5 +1,5 @@
 import { toJSON } from '@paqujs/shared';
-import { deepStrictEqual } from 'assert';
+import deepEqual from 'fast-deep-equal';
 import type { Client } from '../../index';
 
 export abstract class BaseStructure {
@@ -16,14 +16,6 @@ export abstract class BaseStructure {
     }
 
     public equals(other: this) {
-        let isEqual = true;
-
-        try {
-            deepStrictEqual(this, other);
-        } catch {
-            isEqual = false;
-        }
-
-        return isEqual;
+        return deepEqual(this, other);
     }
 }
