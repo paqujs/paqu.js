@@ -49,8 +49,17 @@ question('Package name?').then((packageName) => {
 
         consola.success(`Package version updated to v${packageVersion}`);
 
-        execSync(`cd ${packagePath} && yarn build`)
-            .then(() => {
+        question('Upgrade dependencies? [y/n]').then(async (answer) => {
+            if (answer === 'y') {
+                await execSync(`cd ${packagePath} && yarn upgrade --latest`)
+                    .catch((error) => {
+                        consola.error(`Dependencies upgrade failed with error: ${error}`);
+                        process.exit(1);
+                    })
+                    .then(() => consola.success(`Dependencies upgraded`));
+            }
+
+            execSync(`cd ${packagePath} && yarn build`).then(() => {
                 const distPath = path.join(packagePath, 'dist');
                 const dist = fs.readdirSync(distPath, { withFileTypes: true });
 
@@ -78,70 +87,57 @@ question('Package name?').then((packageName) => {
 
                 consola.success(`Package builded`);
 
-                question('Upgrade dependencies? [y/n]').then(async (answer) => {
-                    if (answer === 'y') {
-                        await execSync(`cd ${packagePath} && yarn upgrade --latest`)
-                            .catch((error) => {
-                                consola.error(`Dependencies upgrade failed with error: ${error}`);
-                                process.exit(1);
-                            })
-                            .then(() => consola.success(`Dependencies upgraded`));
-                    }
+                question('This version is a first release? [y/n]').then((answer) => {
+                    question('OTP?').then((otp) => {
+                        execSync(
+                            `cd ${packagePath} && yarn publish --otp ${otp}${
+                                answer === 'y' ? ' --access public' : ''
+                            }`,
+                        )
+                            .then(() => {
+                                consola.success(`Package published`);
 
-                    question('This version is a first release? [y/n]').then((answer) => {
-                        question('OTP?').then((otp) => {
-                            execSync(
-                                `cd ${packagePath} && yarn publish --otp ${otp}${
-                                    answer === 'y' ? ' --access public' : ''
-                                }`,
-                            )
-                                .then(() => {
-                                    consola.success(`Package published`);
-                                    execSync(`cd ${packagePath} && git add .`)
-                                        .then(() => {
-                                            execSync(
-                                                `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
-                                            )
-                                                .then(() => {
-                                                    execSync(`cd ${packagePath} && git push`)
-                                                        .then(() => {
-                                                            consola.success(
-                                                                `New version ${packageVersion} of package ${packageName} published`,
-                                                            );
-                                                            process.exit(0);
-                                                        })
-                                                        .catch((error) => {
-                                                            consola.error(
-                                                                `Package publish failed with error: ${error}`,
-                                                            );
-                                                            process.exit(1);
-                                                        });
-                                                })
-                                                .catch((error) => {
-                                                    consola.error(
-                                                        `Package publish failed with error: ${error}`,
-                                                    );
-                                                    process.exit(1);
-                                                });
-                                        })
-                                        .catch((error) => {
-                                            consola.error(
-                                                `Package publish failed with error: ${error}`,
-                                            );
-                                            process.exit(1);
-                                        });
-                                })
-                                .catch((error) => {
-                                    consola.error(`Package publish failed with error: ${error}`);
-                                    process.exit(1);
-                                });
-                        });
+                                execSync(`cd ${packagePath} && git add .`)
+                                    .then(() => {
+                                        execSync(
+                                            `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
+                                        )
+                                            .then(() => {
+                                                execSync(`cd ${packagePath} && git push`)
+                                                    .then(() => {
+                                                        consola.success(
+                                                            `New version ${packageVersion} of package ${packageName} published`,
+                                                        );
+                                                        process.exit(0);
+                                                    })
+                                                    .catch((error) => {
+                                                        consola.error(
+                                                            `Package publish failed with error: ${error}`,
+                                                        );
+                                                        process.exit(1);
+                                                    });
+                                            })
+                                            .catch((error) => {
+                                                consola.error(
+                                                    `Package publish failed with error: ${error}`,
+                                                );
+                                                process.exit(1);
+                                            });
+                                    })
+                                    .catch((error) => {
+                                        consola.error(
+                                            `Package publish failed with error: ${error}`,
+                                        );
+                                        process.exit(1);
+                                    });
+                            })
+                            .catch((error) => {
+                                consola.error(`Package publish failed with error: ${error}`);
+                                process.exit(1);
+                            });
                     });
                 });
-            })
-            .catch((error) => {
-                consola.error(`Package build failed with error: ${error}`);
-                process.exit(1);
             });
+        });
     });
 });
