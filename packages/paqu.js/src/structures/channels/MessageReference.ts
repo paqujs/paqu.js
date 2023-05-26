@@ -25,7 +25,7 @@ export class MessageReference extends BaseStructure {
         this.guildId = data.guild_id ?? null;
 
         if ('fail_if_not_exists' in data) {
-            this.failIfNotExists = data.fail_if_not_exists as boolean ?? true;
+            this.failIfNotExists = (data.fail_if_not_exists as boolean) ?? true;
         } else {
             this.failIfNotExists ??= true;
         }

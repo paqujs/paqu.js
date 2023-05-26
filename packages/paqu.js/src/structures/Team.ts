@@ -1,10 +1,4 @@
-import {
-    type APITeam,
-    type Client,
-    type Snowflake,
-    type ImageOptions,
-    TeamMember,
-} from '../index';
+import { type APITeam, type Client, type Snowflake, type ImageOptions, TeamMember } from '../index';
 import { Collection } from '@paqujs/shared';
 import { BaseStructure } from './base/BaseStructure';
 

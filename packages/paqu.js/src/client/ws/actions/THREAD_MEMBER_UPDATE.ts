@@ -29,7 +29,7 @@ export class THREAD_MEMBER_UPDATE extends BaseAction {
                 } else {
                     thread.caches.members.cache.set(
                         d.user_id!,
-                        new ThreadMember(this.handler.client, d)
+                        new ThreadMember(this.handler.client, d),
                     );
                 }
             }

@@ -95,7 +95,7 @@ export class GuildMember extends BaseStructure {
         }
 
         if ('permissions' in data) {
-            this.#permissions = data.permissions as number ?? null;
+            this.#permissions = (data.permissions as number) ?? null;
         } else {
             this.#permissions ??= null;
         }

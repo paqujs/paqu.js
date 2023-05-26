@@ -62,7 +62,7 @@ export class WebSocketHandler extends TypedEmitter<WebSocketHandlerEvents> {
     public get ping() {
         return this.#manager.ping;
     }
-    
+
     public get uptime() {
         return this.#manager.uptime;
     }

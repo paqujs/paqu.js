@@ -23,7 +23,7 @@ export class THREAD_LIST_SYNC extends BaseAction {
             if (d.channel_ids) {
                 for (const id of d.channel_ids) {
                     const channel = guild.caches.channels.cache.get(
-                        id
+                        id,
                     ) as ThreadableChannelResolvable;
 
                     if (channel) {
@@ -35,7 +35,6 @@ export class THREAD_LIST_SYNC extends BaseAction {
             } else {
                 for (const channel of guild.caches.channels.cache.values()) {
                     if (channel instanceof TextChannel || channel instanceof AnnouncementChannel) {
-                       
                         for (const thread of channel.caches.threads.cache.values()) {
                             this.removeChannelFromEveryting(thread.id, guild);
                         }
@@ -46,7 +45,7 @@ export class THREAD_LIST_SYNC extends BaseAction {
             const syncedThreads = d.threads.reduce((accumulator, thread) => {
                 return accumulator.set(
                     thread.id,
-                    new ThreadChannel(this.handler.client, guild, thread as APIThreadChannel)
+                    new ThreadChannel(this.handler.client, guild, thread as APIThreadChannel),
                 );
             }, new Collection<Snowflake, ThreadChannel>());
 
@@ -55,7 +54,7 @@ export class THREAD_LIST_SYNC extends BaseAction {
                     if (member.id === thread.id) {
                         thread.caches.members.cache.set(
                             member.user_id!,
-                            new ThreadMember(this.handler.client, member)
+                            new ThreadMember(this.handler.client, member),
                         );
                     }
                 }

@@ -13,7 +13,11 @@ export class MessageReactionCollector extends BaseCollector<MessageReaction> {
     public message: Message;
     public ignore: MessageReactionCollectorIgnoreOption[];
 
-    public constructor(client: Client, message: Message, options?: MessageReactionCollectorOptions) {
+    public constructor(
+        client: Client,
+        message: Message,
+        options?: MessageReactionCollectorOptions,
+    ) {
         super(client, options);
 
         this.message = message;
