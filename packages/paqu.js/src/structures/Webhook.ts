@@ -99,7 +99,7 @@ export class Webhook extends BaseStructure {
     }
 
     public get url() {
-        let baseURL = `${this.client.rest._options.baseURL}/webhooks/${this.id}`;
+        let baseURL = `${this.client.rest.options.baseURL}/webhooks/${this.id}`;
 
         if (this.token) {
             baseURL += `/${this.token}`;

@@ -30,7 +30,7 @@ export class InteractionWebhook extends BaseStructure {
     }
 
     public get url() {
-        return `${this.client.rest._options.baseURL}/webhooks/${this.id}/${this.token}`;
+        return `${this.client.rest.options.baseURL}/webhooks/${this.id}/${this.token}`;
     }
 
     public send(data: CreateWebhookMessageData, options?: CreateWebhookMessageOptions) {
