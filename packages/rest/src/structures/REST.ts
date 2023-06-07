@@ -76,12 +76,9 @@ export interface RateLimitData {
 
 export type HTTPMethods =
     | 'Get'
-    | 'Head'
     | 'Post'
     | 'Put'
     | 'Delete'
-    | 'Connect'
-    | 'Trace'
     | 'Patch';
 
 export const parseResponse = (res: Response) => {
@@ -368,10 +365,6 @@ export class REST {
         return this.request<T>(route, { ...options, method: 'Get' });
     }
 
-    public head<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
-        return this.request<T>(route, { ...options, method: 'Head' });
-    }
-
     public post<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Post' });
     }
@@ -382,14 +375,6 @@ export class REST {
 
     public delete<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
         return this.request<T>(route, { ...options, method: 'Delete' });
-    }
-
-    public connect<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
-        return this.request<T>(route, { ...options, method: 'Connect' });
-    }
-
-    public trace<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
-        return this.request<T>(route, { ...options, method: 'Trace' });
     }
 
     public patch<T>(route: `/${string}`, options?: Omit<RequestOptions, 'method'>) {
