@@ -35,8 +35,8 @@ manager.on('allReady', (clusters) => {
 
 ## Links
 
-- [Website](https://paqujs.github.io/)
-- [Documentation](https://paqujs.github.io/packages/sharding)
-- [GitHub](https://github.com/paqujs/paqujs/tree/main/packages/sharding)
-- [NPM](https://www.npmjs.com/package/@paqujs/sharding)
-- [Discord](https://discord.gg/fJva3Scm5G)
+-   [Website](https://paqujs.github.io/)
+-   [Documentation](https://paqujs.github.io/packages/sharding)
+-   [GitHub](https://github.com/paqujs/paqujs/tree/main/packages/sharding)
+-   [NPM](https://www.npmjs.com/package/@paqujs/sharding)
+-   [Discord](https://discord.gg/fJva3Scm5G)

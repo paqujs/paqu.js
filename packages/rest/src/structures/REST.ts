@@ -74,12 +74,7 @@ export interface RateLimitData {
     route?: `/${string}`;
 }
 
-export type HTTPMethods =
-    | 'Get'
-    | 'Post'
-    | 'Put'
-    | 'Delete'
-    | 'Patch';
+export type HTTPMethods = 'Get' | 'Post' | 'Put' | 'Delete' | 'Patch';
 
 export const parseResponse = (res: Response) => {
     const contentType = res.headers.get('content-type');

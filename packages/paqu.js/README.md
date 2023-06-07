@@ -33,8 +33,8 @@ import { Client } from 'paqu.js';
 
 const client = new Client({
     ws: {
-        intents: ['Guilds', 'GuildMessages', 'MessageContent']
-    }
+        intents: ['Guilds', 'GuildMessages', 'MessageContent'],
+    },
 });
 
 client.ws.on('ready', () => {
@@ -54,8 +54,8 @@ client.ws.connect('your-super-secret-token');
 
 ## Links
 
-- [Website](https://paqujs.github.io/)
-- [Documentation](https://paqujs.github.io/packages/sharding)
-- [GitHub](https://github.com/paqujs/paqujs/tree/main/packages/sharding)
-- [NPM](https://www.npmjs.com/package/@paqujs/sharding)
-- [Discord](https://discord.gg/fJva3Scm5G)
+-   [Website](https://paqujs.github.io/)
+-   [Documentation](https://paqujs.github.io/packages/sharding)
+-   [GitHub](https://github.com/paqujs/paqujs/tree/main/packages/sharding)
+-   [NPM](https://www.npmjs.com/package/@paqujs/sharding)
+-   [Discord](https://discord.gg/fJva3Scm5G)
