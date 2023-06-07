@@ -90,7 +90,7 @@ question('Package name?').then((packageName) => {
                 question('This version is a first release? [y/n]').then((answer) => {
                     question('OTP?').then((otp) => {
                         execSync(
-                            `cd ${packagePath} && pnpm publish --otp ${otp}${
+                            `cd ${packagePath} && yarn publish --otp ${otp}${
                                 answer === 'y' ? ' --access public' : ''
                             }`,
                         )
