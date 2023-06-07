@@ -51,7 +51,7 @@ question('Package name?').then((packageName) => {
 
         question('Upgrade dependencies? [y/n]').then(async (answer) => {
             if (answer === 'y') {
-                await execSync(`cd ${packagePath} && yarn upgrade --latest`)
+                await execSync(`cd ${packagePath} && pnpm upgrade --latest`)
                     .catch((error) => {
                         consola.error(`Dependencies upgrade failed with error: ${error}`);
                         process.exit(1);
@@ -59,7 +59,7 @@ question('Package name?').then((packageName) => {
                     .then(() => consola.success(`Dependencies upgraded`));
             }
 
-            execSync(`cd ${packagePath} && yarn build`).then(() => {
+            execSync(`cd ${packagePath} && pnpm build`).then(() => {
                 const distPath = path.join(packagePath, 'dist');
                 const dist = fs.readdirSync(distPath, { withFileTypes: true });
 
@@ -90,7 +90,7 @@ question('Package name?').then((packageName) => {
                 question('This version is a first release? [y/n]').then((answer) => {
                     question('OTP?').then((otp) => {
                         execSync(
-                            `cd ${packagePath} && yarn publish --otp ${otp}${
+                            `cd ${packagePath} && pnpm publish --otp ${otp}${
                                 answer === 'y' ? ' --access public' : ''
                             }`,
                         )
