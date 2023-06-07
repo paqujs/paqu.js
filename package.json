@@ -6,7 +6,8 @@
         "url": "git+https://github.com/paqujs/paqu.js.git"
     },
     "scripts": {
-        "lint": "prettier --write packages/**/*.{js,ts,json} --ignore-path .gitignore && eslint --fix packages/**/*.{js,ts} --ignore-path .gitignore",
+        "format": "prettier --write packages/**/*.{js,ts,json} --ignore-path .gitignore",
+        "lint": "eslint --fix packages/**/*.{js,ts} --ignore-path .gitignore",
         "npm:publish": "node scripts/publish.js"
     },
     "author": "hanzydev",
