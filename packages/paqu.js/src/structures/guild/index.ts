@@ -20,3 +20,4 @@ export * from './AutoModerationRule';
 export * from './AuditLog';
 export * from './AuditLogEntry';
 export * from './AutoModerationActionException';
+export * from './GuildOnboarding';

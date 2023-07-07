@@ -34,6 +34,7 @@ import {
     type EditGuildData,
     type FetchCommandOptions,
     type APIAuditLog,
+    type APIGuildOnboarding,
     GuildWidgetSettings,
     GuildWidget,
     GuildPreview,
@@ -47,6 +48,7 @@ import {
     ApplicationCommandPermissions,
     AuditLog,
     CachedManager,
+    GuildOnboarding,
 } from '../../index';
 import { ApplicationCommandPermissionType, GuildMFALevel } from 'discord-api-types/v10';
 import { Collection } from '@paqujs/shared';
@@ -486,5 +488,13 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
 
         const auditLogs = await this.client.rest.get<APIAuditLog>(`/guilds/${id}/audit-logs`);
         return new AuditLog(this.client, guild, auditLogs);
+    }
+
+    public async fetchOnboarding(id: Snowflake) {
+        const onboarding = await this.client.rest.get<APIGuildOnboarding>(
+            `/guilds/${id}/onboarding`,
+        );
+
+        return new GuildOnboarding(this.client, onboarding);
     }
 }

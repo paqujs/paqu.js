@@ -113,6 +113,8 @@ import type {
     AuditLogEntry,
     ThreadType,
     APIAnyComponent,
+    GuildOnboardingPromptType,
+    APIPartialEmoji,
 } from './index';
 import type {
     PermissionFlagsBitField,
@@ -1126,6 +1128,25 @@ export interface RoleSubscriptionData {
     tierName: string;
     totalMonthsSubscribed: number;
     isRenewal: boolean;
+}
+
+export interface GuildOnboardingPromptOption {
+    id: Snowflake;
+    channelIds: Snowflake[];
+    roleIds: Snowflake[];
+    emoji: APIPartialEmoji;
+    title: string;
+    description: string | null;
+}
+
+export interface GuildOnboardingPrompt {
+    id: Snowflake;
+    options: GuildOnboardingPromptOption[];
+    title: string;
+    singleSelect: boolean;
+    required: boolean;
+    inOnboarding: boolean;
+    type: keyof typeof GuildOnboardingPromptType;
 }
 
 export interface WebSocketHandlerEvents {
