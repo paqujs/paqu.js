@@ -1070,8 +1070,6 @@ export interface SelectMenuResolvedOptionData {
     value: string;
 }
 
-export type Promiseable<T> = T | Promise<T>;
-
 export interface ApplicationRoleConnectionMetadata {
     description: string;
     descriptionLocalizations: LocalizationMap;
