@@ -1,11 +1,11 @@
 import { EventEmitter } from 'events';
 
 export type DefaultListener = {
-    [event: string]: (...args: any[]) => any;
+    [event: string]: any[];
 };
 
 export type ListenerSignature<L> = {
-    [E in keyof L]: (...args: any[]) => any;
+    [E in keyof L]: L[E] extends [...args: infer A] ? A : never;
 };
 
 export declare interface TypedEmitter<L extends ListenerSignature<L> = DefaultListener> {
