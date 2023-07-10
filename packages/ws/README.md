@@ -26,6 +26,11 @@ ws.on('ready', (user) => {
 ws.connect('your-super-secret-token');
 ```
 
+## Optional Dependencies
+
+-   [zlib-sync](https://www.npmjs.com/package/zlib-sync) for faster WebSocket data (de)compression
+-   [erlpack](https://www.npmjs.com/package/erlpack) for faster WebSocket data (de)serialisation
+
 ## Links
 
 -   [Website](https://paqujs.github.io/)

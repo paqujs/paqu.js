@@ -12,7 +12,7 @@ yarn add paqu.js
 pnpm add paqu.js
 ```
 
-### Features
+## Features
 
 -   Easy to use
 -   Object-oriented
@@ -21,7 +21,7 @@ pnpm add paqu.js
 -   TypeScript support
 -   100% coverage of the Discord API
 
-### Optional Dependencies
+## Optional Dependencies
 
 -   [zlib-sync](https://www.npmjs.com/package/zlib-sync) for faster WebSocket data (de)compression
 -   [erlpack](https://www.npmjs.com/package/erlpack) for faster WebSocket data (de)serialisation
