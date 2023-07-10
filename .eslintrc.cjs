@@ -35,6 +35,7 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-type-assertion': 'off',
         '@typescript-eslint/restrict-plus-operands': 'off',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+        '@typescript-eslint/unbound-method': 'off',
         'no-prototype-builtins': 'off',
         'no-inner-declarations': 'off',
         'no-constant-condition': 'off',
