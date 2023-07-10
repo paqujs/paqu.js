@@ -91,7 +91,6 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
 
         this.#shardList = null;
         this.#shardQueue = null;
-
         this.#token = null;
 
         this.uptimeTimestamp = -1;
