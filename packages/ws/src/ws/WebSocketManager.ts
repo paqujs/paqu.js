@@ -14,6 +14,7 @@ import { type PresenceData, type GatewayReceivePayloadWithShardId, WebSocketShar
 export const NonReconnectableCloseCodes = new Set([4004, 4010, 4011, 4012, 4013, 4014]);
 
 export interface WebSocketProperties {
+    // eslint-disable-next-line no-undef
     os?: NodeJS.Platform;
 }
 

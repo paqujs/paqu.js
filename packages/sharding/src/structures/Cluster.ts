@@ -22,7 +22,9 @@ export enum ClusterDispatchEvents {
 export interface ClusterEvents {
     ready: [];
     respawn: [];
+    // eslint-disable-next-line no-undef
     exit: [code: number, signal: NodeJS.Signals];
+    // eslint-disable-next-line no-undef
     death: [code: number, signal: NodeJS.Signals];
     shardReady: [shardId: number];
     shardReconnect: [shardId: number];

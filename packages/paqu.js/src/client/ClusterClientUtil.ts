@@ -4,6 +4,7 @@ import { type Client } from '../index';
 export class ClusterClientUtil {
     public client: Client;
     public mode: 'process' | 'worker';
+    // eslint-disable-next-line no-undef
     public process: MessagePort | NodeJS.Process;
 
     public constructor(client: Client) {

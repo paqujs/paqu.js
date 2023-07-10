@@ -10,7 +10,9 @@ export interface ClusterManagerEvents {
     clusterCreate: [cluster: Cluster];
     clusterReady: [cluster: Cluster];
     clusterRespawn: [cluster: Cluster];
+    // eslint-disable-next-line no-undef
     clusterExit: [cluster: Cluster, code: number, signal: NodeJS.Signals];
+    // eslint-disable-next-line no-undef
     clusterDeath: [cluster: Cluster, code: number, signal: NodeJS.Signals];
     clusterShardReady: [cluster: Cluster, shardId: number];
     clusterShardReconnect: [cluster: Cluster, shardId: number];
