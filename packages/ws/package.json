@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/ws",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "@paqujs/ws",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
         "@paqujs/bitfields": "^1.1.0",
         "@paqujs/resolvers": "^1.0.9",
         "@paqujs/rest": "^1.1.0",
-        "@paqujs/shared": "^1.1.2",
+        "@paqujs/shared": "^1.1.7",
         "defu": "^6.1.2",
         "discord-api-types": "^0.37.48",
         "tslib": "^2.6.0",

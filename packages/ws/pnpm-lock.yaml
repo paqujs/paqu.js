@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0
   '@paqujs/shared':
-    specifier: ^1.1.2
-    version: 1.1.2
+    specifier: ^1.1.7
+    version: 1.1.7
   defu:
     specifier: ^6.1.2
     version: 6.1.2
@@ -303,7 +303,7 @@ packages:
     resolution: {integrity: sha512-wYmK7FM+ikQDXtnX/aN/sbaJn6JV91rB1FD9DGF/DjrSTdCCY5ZtyjCYDy8GHvxqOSvabvTo7qEppWeyLXYbeA==}
     dependencies:
       '@paqujs/resolvers': 1.0.9
-      '@paqujs/shared': 1.1.2
+      '@paqujs/shared': 1.1.7
       discord-api-types: 0.37.48
       tslib: 2.6.0
     dev: false
@@ -321,15 +321,15 @@ packages:
   /@paqujs/rest@1.1.0:
     resolution: {integrity: sha512-fCrlhc1suOAY1iAvt5apymxjfUhnW1A5WX82/hjVHpWmY1g8KDhNFF4Eq3xumvSr4bTIKQK9ApK6sOsrQMc/4A==}
     dependencies:
-      '@paqujs/shared': 1.1.2
+      '@paqujs/shared': 1.1.7
       '@sapphire/async-queue': 1.5.0
       defu: 6.1.2
       tslib: 2.6.0
       undici: 5.22.1
     dev: false
 
-  /@paqujs/shared@1.1.2:
-    resolution: {integrity: sha512-qLlhk8PWPMk0Dtdcm/ZQibbjOcczTyxhLgkMD38SVbFOJJaAJbUDdCaHXWmkX5dLQ5O6jsoTxG3ClM4kf6GqGA==}
+  /@paqujs/shared@1.1.7:
+    resolution: {integrity: sha512-CN6n7U3cMkgDuhnVxooruN1gszN4XHx0jb2HqFGKCEmn2iQpSqCWd9PTwK6bW9nts5J/6pIylKPEZ463QOcYng==}
     dependencies:
       tslib: 2.6.0
     dev: false
