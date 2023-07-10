@@ -1,5 +1,6 @@
 import { TextDecoder } from 'node:util';
 import { setTimeout as sleep } from 'node:timers/promises';
+import { createRequire } from 'node:module';
 import { TypedEmitter } from '@paqujs/shared';
 import { PresenceDataResolver } from '@paqujs/resolvers';
 import { WebSocket } from 'ws';
@@ -12,6 +13,8 @@ import {
     GatewayCloseCodes,
 } from 'discord-api-types/v10';
 import type { WebSocketManager, GatewayCloseCodesResolvable, PresenceData } from '../index';
+
+const require = createRequire(import.meta.url);
 
 let erlpack: any;
 let zlib: any;
@@ -70,7 +73,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         this.id = id;
         this.socket = null;
 
-        if (!!zlib && this.manager.options.compress) {
+        if (zlib && this.manager.options.compress) {
             this.inflate = new zlib.Inflate({
                 chunkSize: 65535,
                 to: this.encoding === 'json' ? 'string' : '',
@@ -245,7 +248,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
             this.heartbeatInterval = null;
         }
 
-        if (!!zlib && this.manager.options.compress) {
+        if (zlib && this.manager.options.compress) {
             this.inflate = new zlib.Inflate({
                 chunkSize: 65535,
                 to: this.encoding === 'json' ? 'string' : '',
@@ -343,7 +346,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                     token: this.manager.token!,
                     intents: this.manager.options.intents!,
                     large_threshold: this.manager.options.largeThreshold,
-                    compress: !!zlib && this.manager.options.compress,
+                    compress: zlib && this.manager.options.compress,
                     presence: this.manager.options.presence,
                     properties: {
                         ...this.manager.options.properties,
@@ -405,7 +408,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
             data = new Uint8Array(data);
         }
 
-        if (!!zlib && this.manager.options.compress) {
+        if (zlib && this.manager.options.compress) {
             const isFlush = this.isFlush(data);
 
             this.inflate.push(data, isFlush && zlib.Z_SYNC_FLUSH);
@@ -430,7 +433,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         baseEndpoint += `?v=${this.manager.options.version}`;
         baseEndpoint += `&encoding=${this.encoding}`;
 
-        if (!!zlib && this.manager.options.compress) {
+        if (zlib && this.manager.options.compress) {
             baseEndpoint += `&compress=zlib-stream`;
         }
 
