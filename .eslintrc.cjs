@@ -40,7 +40,7 @@ module.exports = {
         'no-constant-condition': 'off',
         'no-async-promise-executor': 'off',
         'no-case-declarations': 'off',
-        'no-undef': 'off',
+        'no-undef': 'error',
         'no-useless-escape': 'off',
         'no-empty': 'off',
         'no-irregular-whitespace': 'off',
