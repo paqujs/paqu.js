@@ -6,23 +6,23 @@ settings:
 
 dependencies:
   '@paqujs/bitfields':
-    specifier: ^1.0.8
-    version: 1.0.8
-  '@paqujs/builders':
-    specifier: ^1.0.4
-    version: 1.0.4
-  '@paqujs/resolvers':
-    specifier: ^1.0.7
-    version: 1.0.7
-  '@paqujs/rest':
-    specifier: ^1.0.9
-    version: 1.0.9
-  '@paqujs/shared':
     specifier: ^1.1.0
     version: 1.1.0
+  '@paqujs/builders':
+    specifier: ^1.0.6
+    version: 1.0.6
+  '@paqujs/resolvers':
+    specifier: ^1.0.9
+    version: 1.0.9
+  '@paqujs/rest':
+    specifier: ^1.1.0
+    version: 1.1.0
+  '@paqujs/shared':
+    specifier: ^1.1.2
+    version: 1.1.2
   '@paqujs/ws':
-    specifier: ^1.1.4
-    version: 1.1.4
+    specifier: ^1.1.6
+    version: 1.1.6
   '@sapphire/snowflake':
     specifier: ^3.5.1
     version: 3.5.1
@@ -305,59 +305,59 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@paqujs/bitfields@1.0.8:
-    resolution: {integrity: sha512-5w4YnFqoj9cIJDWAzp5Uuz6Ev471xdauN4rx5qd8W6MmV/rFK9sr+t+c/90HcLYr/SqBUX5LP3V4aSwhTaNdxA==}
+  /@paqujs/bitfields@1.1.0:
+    resolution: {integrity: sha512-wYmK7FM+ikQDXtnX/aN/sbaJn6JV91rB1FD9DGF/DjrSTdCCY5ZtyjCYDy8GHvxqOSvabvTo7qEppWeyLXYbeA==}
     dependencies:
-      '@paqujs/resolvers': 1.0.7
-      '@paqujs/shared': 1.1.0
+      '@paqujs/resolvers': 1.0.9
+      '@paqujs/shared': 1.1.2
       discord-api-types: 0.37.48
       tslib: 2.6.0
     dev: false
 
-  /@paqujs/builders@1.0.4:
-    resolution: {integrity: sha512-osjfcgmHjWo30xjYqGX4jOSODgD/6FR6uvQHW6Ph137ATa8qVYjuLFVlTV3e6fOnP9wl/ix1avi1/EWvuW/4qQ==}
+  /@paqujs/builders@1.0.6:
+    resolution: {integrity: sha512-tdAdBy73WdARTInFngvSV3/eRcxF0D51UssXTGT2lpLoE5h+b0ERiHptpBRn7bje02K4zEiD2iolY7u8PZmHbQ==}
     dependencies:
-      '@paqujs/bitfields': 1.0.8
-      '@paqujs/resolvers': 1.0.7
-      '@paqujs/shared': 1.1.0
+      '@paqujs/bitfields': 1.1.0
+      '@paqujs/resolvers': 1.0.9
+      '@paqujs/shared': 1.1.2
       discord-api-types: 0.37.48
       fast-deep-equal: 3.1.3
       tslib: 2.6.0
     dev: false
 
-  /@paqujs/resolvers@1.0.7:
-    resolution: {integrity: sha512-L17KA4GH4HbExuog8u5zGBfyRdf4m7GzCyRV1lZN9bt7TcaTOTMfLf4luSgZJX+59BXG6KBFrZ9Umvvs18RYhw==}
+  /@paqujs/resolvers@1.0.9:
+    resolution: {integrity: sha512-BWjOlOPoUdhCWHVb9zaWZSz8oFLl+a7XCyio1NAG9pFrWlKsyWNeaY1MVpa/xZYr8Z3esCkxXwWYH7ev7EIdIg==}
     dependencies:
-      '@paqujs/bitfields': 1.0.8
+      '@paqujs/bitfields': 1.1.0
       discord-api-types: 0.37.48
       file-type: 18.5.0
       tslib: 2.6.0
       undici: 5.22.1
     dev: false
 
-  /@paqujs/rest@1.0.9:
-    resolution: {integrity: sha512-b/sPLz9hEAWgIIifI9tvPn9i4Je48B7JXHrdLPJ78WU71mDdIOtd7cHeMwyazXWs2wbOOfrpYuuNXvzyYJgaow==}
+  /@paqujs/rest@1.1.0:
+    resolution: {integrity: sha512-fCrlhc1suOAY1iAvt5apymxjfUhnW1A5WX82/hjVHpWmY1g8KDhNFF4Eq3xumvSr4bTIKQK9ApK6sOsrQMc/4A==}
     dependencies:
-      '@paqujs/shared': 1.1.0
+      '@paqujs/shared': 1.1.2
       '@sapphire/async-queue': 1.5.0
       defu: 6.1.2
       tslib: 2.6.0
       undici: 5.22.1
     dev: false
 
-  /@paqujs/shared@1.1.0:
-    resolution: {integrity: sha512-uKQ6AanNtEGBBvYG6mypUxPEVs9doqhN1BqDQYhRw1dznPm1yAyyXmP5Txk6/F/Lu4OjJnjUjIkHERzLnY642Q==}
+  /@paqujs/shared@1.1.2:
+    resolution: {integrity: sha512-qLlhk8PWPMk0Dtdcm/ZQibbjOcczTyxhLgkMD38SVbFOJJaAJbUDdCaHXWmkX5dLQ5O6jsoTxG3ClM4kf6GqGA==}
     dependencies:
       tslib: 2.6.0
     dev: false
 
-  /@paqujs/ws@1.1.4:
-    resolution: {integrity: sha512-ZMLGZEZYgvS5kGu7sfNh91Jxb76XLRkTAX5E4SIgXQhXUsOaG9qkZD5NSI5IN8eFYjn+2lDHlHGleyLn3+TqyQ==}
+  /@paqujs/ws@1.1.6:
+    resolution: {integrity: sha512-8zsbtZjA/nYooCGNRK1uH4IjcTBEITQCVDb/T+42Iy4VIM5S5Ab21dMZOCmVa5wSMRWrQOAxQd96mMBXmBV2EA==}
     dependencies:
-      '@paqujs/bitfields': 1.0.8
-      '@paqujs/resolvers': 1.0.7
-      '@paqujs/rest': 1.0.9
-      '@paqujs/shared': 1.1.0
+      '@paqujs/bitfields': 1.1.0
+      '@paqujs/resolvers': 1.0.9
+      '@paqujs/rest': 1.1.0
+      '@paqujs/shared': 1.1.2
       defu: 6.1.2
       discord-api-types: 0.37.48
       tslib: 2.6.0
