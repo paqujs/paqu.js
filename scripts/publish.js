@@ -1,143 +1,110 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { exec } from 'node:child_process';
 import consola from 'consola';
 
-const execSync = (command) => {
-    return new Promise((resolve, reject) => {
-        exec(command, (error, stdout, stderr) => {
-            if (error) {
-                reject(error);
-                return;
-            }
+import { execSync } from './util/execSync.js';
+import { question } from './util/question.js';
+import { panic } from './util/panic.js';
 
-            resolve(stdout || stderr);
-        });
-    });
-};
-
-const question = (question) => {
-    return new Promise((resolve) => {
-        consola.info(question);
-        process.stdout.write('> ');
-
-        process.stdin.once('data', (data) => {
-            resolve(data.toString().trim());
-        });
-    });
-};
-
-question('Package name?').then((packageName) => {
+(async () => {
+    const packageName = await question('Package name?');
     const packagePath = path.resolve(process.cwd(), 'packages', packageName);
 
     if (!fs.existsSync(packagePath)) {
-        consola.error(`Package ${packageName} does not exist`);
-        return process.exit(1);
+        panic(`Package ${packageName} does not exist`);
     }
 
     const packageJSON = JSON.parse(
         fs.readFileSync(path.join(packagePath, 'package.json'), 'utf-8'),
     );
 
-    question(`New version? (Current version is v${packageJSON.version})`).then((packageVersion) => {
-        packageJSON.version = packageVersion;
+    const packageVersion = await question(
+        `New version? (Current version is v${packageJSON.version})`,
+    );
 
-        fs.writeFileSync(
-            path.join(packagePath, 'package.json'),
-            JSON.stringify(packageJSON, null, 4),
-        );
+    packageJSON.version = packageVersion;
 
-        consola.success(`Package version updated to v${packageVersion}`);
+    fs.writeFileSync(path.join(packagePath, 'package.json'), JSON.stringify(packageJSON, null, 4));
 
-        question('Upgrade dependencies? [y/n]').then(async (answer) => {
-            if (answer === 'y') {
-                await execSync(`cd ${packagePath} && pnpm upgrade --latest`)
-                    .catch((error) => {
-                        consola.error(`Dependencies upgrade failed with error: ${error}`);
-                        process.exit(1);
-                    })
-                    .then(() => consola.success(`Dependencies upgraded`));
-            }
+    consola.success(`Package version updated to v${packageVersion}`);
 
-            execSync(`cd ${packagePath} && pnpm build`).then(() => {
-                const distPath = path.join(packagePath, 'dist');
-                const dist = fs.readdirSync(distPath, { withFileTypes: true });
+    const answer = await question('Upgrade dependencies? [y/n]');
+    if (answer === 'y') {
+        await execSync(`cd ${packagePath} && pnpm upgrade --latest`)
+            .catch((error) => {
+                panic(`Dependencies upgrade failed with error: ${error}`);
+            })
+            .then(() => consola.success(`Dependencies upgraded`));
+    }
 
-                dist.forEach((file) => {
-                    if (file.isDirectory()) {
-                        fs.rm(
-                            path.join(distPath, file.name),
-                            { recursive: true, force: true },
-                            (error) => {
-                                if (error) {
-                                    consola.error(`Package build failed with error: ${error}`);
-                                    process.exit(1);
-                                }
-                            },
-                        );
-                    } else if (file.name !== 'index.js' && file.name !== 'index.d.ts') {
-                        fs.rm(path.join(distPath, file.name), (error) => {
+    await execSync(`cd ${packagePath} && pnpm build`)
+        .then(() => {
+            const distPath = path.join(packagePath, 'dist');
+            const dist = fs.readdirSync(distPath, { withFileTypes: true });
+
+            dist.forEach((file) => {
+                if (file.isDirectory()) {
+                    fs.rm(
+                        path.join(distPath, file.name),
+                        { recursive: true, force: true },
+                        (error) => {
                             if (error) {
-                                consola.error(`Package build failed with error: ${error}`);
-                                process.exit(1);
+                                throw error;
                             }
-                        });
-                    }
-                });
-
-                consola.success(`Package builded`);
-
-                question('This version is a first release? [y/n]').then((answer) => {
-                    question('OTP?').then((otp) => {
-                        execSync(
-                            `cd ${packagePath} && yarn publish --otp ${otp}${
-                                answer === 'y' ? ' --access public' : ''
-                            }`,
-                        )
-                            .then(() => {
-                                consola.success(`Package published`);
-
-                                execSync(`cd ${packagePath} && git add .`)
-                                    .then(() => {
-                                        execSync(
-                                            `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
-                                        )
-                                            .then(() => {
-                                                execSync(`cd ${packagePath} && git push`)
-                                                    .then(() => {
-                                                        consola.success(
-                                                            `New version ${packageVersion} of package ${packageName} published`,
-                                                        );
-                                                        process.exit(0);
-                                                    })
-                                                    .catch((error) => {
-                                                        consola.error(
-                                                            `Package publish failed with error: ${error}`,
-                                                        );
-                                                        process.exit(1);
-                                                    });
-                                            })
-                                            .catch((error) => {
-                                                consola.error(
-                                                    `Package publish failed with error: ${error}`,
-                                                );
-                                                process.exit(1);
-                                            });
-                                    })
-                                    .catch((error) => {
-                                        consola.error(
-                                            `Package publish failed with error: ${error}`,
-                                        );
-                                        process.exit(1);
-                                    });
-                            })
-                            .catch((error) => {
-                                consola.error(`Package publish failed with error: ${error}`);
-                                process.exit(1);
-                            });
+                        },
+                    );
+                } else if (file.name !== 'index.js' && file.name !== 'index.d.ts') {
+                    fs.rm(path.join(distPath, file.name), (error) => {
+                        if (error) {
+                            throw error;
+                        }
                     });
-                });
+                }
             });
+
+            consola.success(`Package builded`);
+        })
+        .catch((error) => {
+            panic(`Package build failed with error: ${error}`);
         });
-    });
-});
+
+    const isFirstRelease = await question('This version is a first release? [y/n]');
+    const otp = await question('OTP? (or press enter if 2FA is not enabled)');
+
+    await execSync(
+        `cd ${packagePath} && pnpm publish --no-git-checks${isFirstRelease === 'y' ? ' --access public' : ''}${
+            otp ? ` --otp ${otp}` : ''
+        }`,
+    )
+        .then(() => {
+            consola.success(`Package published to npm`);
+        })
+        .catch((error) => {
+            panic(`Package publish failed with error: ${error}`);
+        });
+
+    await execSync(`cd ${packagePath} && git add .`)
+        .then(() => {
+            execSync(
+                `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
+            )
+                .then(() => {
+                    execSync(`cd ${packagePath} && git push`)
+                        .then(() => {
+                            consola.success(
+                                `New version ${packageVersion} of package ${packageName} published`,
+                            );
+                            process.exit(0);
+                        })
+                        .catch((error) => {
+                            panic(`Package publish failed with error: ${error}`);
+                        });
+                })
+                .catch((error) => {
+                    panic(`Package publish failed with error: ${error}`);
+                });
+        })
+        .catch((error) => {
+            panic(`Package publish failed with error: ${error}`);
+        });
+})();
