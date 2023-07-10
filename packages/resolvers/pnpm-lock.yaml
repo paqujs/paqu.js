@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@paqujs/bitfields':
-    specifier: ^1.0.8
-    version: 1.0.8
+    specifier: ^1.1.0
+    version: 1.1.0
   discord-api-types:
     specifier: ^0.37.48
     version: 0.37.48
@@ -287,8 +287,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@paqujs/bitfields@1.0.8:
-    resolution: {integrity: sha512-5w4YnFqoj9cIJDWAzp5Uuz6Ev471xdauN4rx5qd8W6MmV/rFK9sr+t+c/90HcLYr/SqBUX5LP3V4aSwhTaNdxA==}
+  /@paqujs/bitfields@1.1.0:
+    resolution: {integrity: sha512-wYmK7FM+ikQDXtnX/aN/sbaJn6JV91rB1FD9DGF/DjrSTdCCY5ZtyjCYDy8GHvxqOSvabvTo7qEppWeyLXYbeA==}
     dependencies:
       '@paqujs/resolvers': 1.0.7
       '@paqujs/shared': 1.1.0
@@ -299,7 +299,7 @@ packages:
   /@paqujs/resolvers@1.0.7:
     resolution: {integrity: sha512-L17KA4GH4HbExuog8u5zGBfyRdf4m7GzCyRV1lZN9bt7TcaTOTMfLf4luSgZJX+59BXG6KBFrZ9Umvvs18RYhw==}
     dependencies:
-      '@paqujs/bitfields': 1.0.8
+      '@paqujs/bitfields': 1.1.0
       discord-api-types: 0.37.48
       file-type: 18.5.0
       tslib: 2.6.0
