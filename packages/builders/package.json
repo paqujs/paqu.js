@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/builders",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "description": "@paqujs/builders",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
         "typescript": "^5.1.6"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.0.8",
+        "@paqujs/bitfields": "^1.1.0",
         "@paqujs/resolvers": "^1.0.7",
         "@paqujs/shared": "^1.1.0",
         "discord-api-types": "^0.37.48",
