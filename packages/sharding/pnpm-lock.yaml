@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@paqujs/shared':
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^1.1.7
+    version: 1.1.7
   discord-api-types:
     specifier: ^0.37.48
     version: 0.37.48
@@ -284,8 +284,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@paqujs/shared@1.1.0:
-    resolution: {integrity: sha512-uKQ6AanNtEGBBvYG6mypUxPEVs9doqhN1BqDQYhRw1dznPm1yAyyXmP5Txk6/F/Lu4OjJnjUjIkHERzLnY642Q==}
+  /@paqujs/shared@1.1.7:
+    resolution: {integrity: sha512-CN6n7U3cMkgDuhnVxooruN1gszN4XHx0jb2HqFGKCEmn2iQpSqCWd9PTwK6bW9nts5J/6pIylKPEZ463QOcYng==}
     dependencies:
       tslib: 2.6.0
     dev: false
