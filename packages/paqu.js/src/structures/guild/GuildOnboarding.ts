@@ -3,9 +3,13 @@ import {
     type Snowflake,
     GuildOnboardingPromptType,
 } from 'discord-api-types/v10';
-import { BaseStructure, type Client, type GuildOnboardingPrompt } from '../../index';
+import {
+    BaseStructure,
+    type Client,
+    type GuildOnboardingPrompt,
+    type GuildBasedChannelResolvable,
+} from '../../index';
 import { Collection } from '@paqujs/shared';
-import { GuildBasedChannelResolvable } from '../../../dist';
 
 export class GuildOnboarding extends BaseStructure {
     public defaultChannelIds!: Snowflake[];
