@@ -115,6 +115,7 @@ import type {
     APIAnyComponent,
     GuildOnboardingPromptType,
     APIPartialEmoji,
+    AutoModerationRuleTriggerType,
 } from './index';
 import type {
     PermissionFlagsBitField,
@@ -730,6 +731,7 @@ export interface AutoModerationRuleTriggerMetadata {
     allowList: string[];
     mentionTotalLimit: number;
     regexPatterns: string[];
+    mentionRaidProtectionEnabled: boolean;
 }
 
 export interface AutoModerationRuleActionMetadata {
@@ -757,6 +759,7 @@ export interface EditAndCreateAutoModerationRuleTriggerMetadata {
      * @link https://rustexp.lpil.uk/
      */
     regex_patterns: string[];
+    mention_raid_protection_enabled: boolean;
 }
 
 export interface CreateAndEditAutoModerationRuleActionMetadata {
@@ -769,14 +772,29 @@ export interface EditAndCreateAutoModerationRuleActionData {
     metadata?: CreateAndEditAutoModerationRuleActionMetadata | null;
 }
 
-export interface EditAndCreateAutoModerationRuleData {
-    name?: string;
-    event_type?: AutoModerationRuleEventTypeResolvable;
+export type AutoModerationRuleTriggerTypeResolvable =
+    | keyof typeof AutoModerationRuleTriggerType
+    | AutoModerationRuleTriggerType;
+
+export interface CreateAutoModerationRuleData {
+    name: string;
+    event_type: AutoModerationRuleEventTypeResolvable;
+    trigger_type: AutoModerationRuleTriggerTypeResolvable;
     trigger_metadata?: EditAndCreateAutoModerationRuleTriggerMetadata;
-    actions?: EditAndCreateAutoModerationRuleActionData[];
+    actions: EditAndCreateAutoModerationRuleActionData[];
     enabled?: boolean;
     exempt_roles?: Snowflake[];
     exempt_channels?: Snowflake[];
+}
+
+export interface EditAutoModerationRuleData {
+    name: string;
+    event_type: AutoModerationRuleEventTypeResolvable;
+    trigger_metadata?: EditAndCreateAutoModerationRuleTriggerMetadata;
+    actions: EditAndCreateAutoModerationRuleActionData[];
+    enabled: boolean;
+    exempt_roles: Snowflake[];
+    exempt_channels: Snowflake[];
 }
 
 export interface ApplicationCommandPermissionsChildData {

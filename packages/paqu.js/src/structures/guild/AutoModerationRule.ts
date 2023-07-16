@@ -4,7 +4,7 @@ import type {
     APIAutoModerationRule,
     AutoModerationRuleActionData,
     AutoModerationRuleTriggerMetadata,
-    EditAndCreateAutoModerationRuleData,
+    EditAutoModerationRuleData,
     FetchOptions,
 } from '../../index';
 import {
@@ -59,6 +59,8 @@ export class AutoModerationRule extends BaseStructure {
                   )
                 : [],
             regexPatterns: data.trigger_metadata.regex_patterns ?? [],
+            mentionRaidProtectionEnabled:
+                data.trigger_metadata.mention_raid_protection_enabled ?? false,
         };
         this.triggerType = AutoModerationRuleTriggerType[
             data.trigger_type
@@ -105,7 +107,7 @@ export class AutoModerationRule extends BaseStructure {
         return await this.guild?.caches.autoModerationRules.delete(this.id, reason);
     }
 
-    public async edit(data: EditAndCreateAutoModerationRuleData, reason?: string) {
+    public async edit(data: EditAutoModerationRuleData, reason?: string) {
         return await this.guild?.caches.autoModerationRules.edit(this.id, data, reason);
     }
 

@@ -5,7 +5,8 @@ import type {
     AutoModerationRule,
     Collectionable,
     FetchOptions,
-    EditAndCreateAutoModerationRuleData,
+    CreateAutoModerationRuleData,
+    EditAutoModerationRuleData,
 } from '../../index';
 import { Collection } from '@paqujs/shared';
 import { CachedManager } from '../base/CachedManager';
@@ -53,7 +54,7 @@ export class GuildAutoModerationRuleManager extends CachedManager<Snowflake, Aut
         return this.cache;
     }
 
-    public async edit(id: Snowflake, data: EditAndCreateAutoModerationRuleData, reason?: string) {
+    public async edit(id: Snowflake, data: EditAutoModerationRuleData, reason?: string) {
         const rule = await this.client.caches.guilds.editAutoModerationRule(
             this.guild.id,
             id,
@@ -64,7 +65,7 @@ export class GuildAutoModerationRuleManager extends CachedManager<Snowflake, Aut
         return this.cache.setAndReturnValue(rule.id!, rule);
     }
 
-    public async create(data: EditAndCreateAutoModerationRuleData, reason?: string) {
+    public async create(data: CreateAutoModerationRuleData, reason?: string) {
         const rule = await this.client.caches.guilds.createAutoModerationRule(
             this.guild.id,
             data,

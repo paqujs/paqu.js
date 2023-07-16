@@ -24,7 +24,8 @@ import {
     type RESTPatchAPIGuildVoiceStateUserJSONBody,
     type EditGuildMeVoiceStateData,
     type APIGuildIntegration,
-    type EditAndCreateAutoModerationRuleData,
+    type CreateAutoModerationRuleData,
+    type EditAutoModerationRuleData,
     type APIAutoModerationRule,
     type APIApplicationCommand,
     type CreateCommandData,
@@ -307,7 +308,7 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
 
     public async createAutoModerationRule(
         id: Snowflake,
-        data: EditAndCreateAutoModerationRuleData,
+        data: CreateAutoModerationRuleData,
         reason?: string,
     ) {
         const rule = await this.client.rest.post<APIAutoModerationRule>(
@@ -324,7 +325,7 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
     public async editAutoModerationRule(
         guildId: Snowflake,
         ruleId: Snowflake,
-        data: EditAndCreateAutoModerationRuleData,
+        data: EditAutoModerationRuleData,
         reason?: string,
     ) {
         const rule = await this.client.rest.patch<APIAutoModerationRule>(
