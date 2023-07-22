@@ -42,25 +42,13 @@ import { panic } from './util/panic.js';
             const distPath = path.join(packagePath, 'dist');
             const dist = fs.readdirSync(distPath, { withFileTypes: true });
 
-            dist.forEach((file) => {
+            for (const file of dist) {
                 if (file.isDirectory()) {
-                    fs.rm(
-                        path.join(distPath, file.name),
-                        { recursive: true, force: true },
-                        (error) => {
-                            if (error) {
-                                throw error;
-                            }
-                        },
-                    );
+                    fs.rmSync(path.join(distPath, file.name), { recursive: true, force: true });
                 } else if (file.name !== 'index.js' && file.name !== 'index.d.ts') {
-                    fs.rm(path.join(distPath, file.name), (error) => {
-                        if (error) {
-                            throw error;
-                        }
-                    });
+                    fs.rmSync(path.join(distPath, file.name));
                 }
-            });
+            }
 
             consola.success(`Package builded`);
         })
@@ -72,9 +60,9 @@ import { panic } from './util/panic.js';
     const otp = await question('OTP? (or press enter if 2FA is not enabled)');
 
     await execSync(
-        `cd ${packagePath} && pnpm publish --no-git-checks${isFirstRelease === 'y' ? ' --access public' : ''}${
-            otp ? ` --otp ${otp}` : ''
-        }`,
+        `cd ${packagePath} && pnpm publish --no-git-checks${
+            isFirstRelease === 'y' ? ' --access public' : ''
+        }${otp ? ` --otp ${otp}` : ''}`,
     )
         .then(() => {
             consola.success(`Package published to npm`);
