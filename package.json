@@ -9,7 +9,8 @@
         "format": "prettier --write . --ignore-path .gitignore",
         "lint": "eslint . --ignore-path .gitignore",
         "lint:fix": "eslint --fix . --ignore-path .gitignore",
-        "npm:publish": "node scripts/publish.js"
+        "npm:publish": "node scripts/publish.js",
+        "upgrade:deps": "node scripts/upgrade.js"
     },
     "author": "hanzydev",
     "license": "GPL-3.0",
