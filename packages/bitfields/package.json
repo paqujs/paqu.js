@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/bitfields",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "@paqujs/bitfields",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

@@ -1,11 +1,7 @@
 import { BitField } from '@paqujs/shared';
-//import { RoleFlagsBitsResolver } from '@paqujs/resolvers';
+import { RoleFlagsBitsResolver } from '@paqujs/resolvers';
 import { RoleFlags } from 'discord-api-types/v10';
 import { RoleFlagsBitsResolvable } from '../index';
-
-function RoleFlagsBitsResolver(dA: any) {
-    return dA;
-}
 
 export interface RoleFlagsBitField {
     toArray(): (keyof typeof RoleFlags)[];
