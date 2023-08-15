@@ -10,7 +10,7 @@ import {
     SnowflakeUtil,
 } from '../../index';
 import { HexDecimalToHex } from '@paqujs/resolvers';
-import { PermissionFlagsBitField } from '@paqujs/bitfields';
+import { PermissionFlagsBitField, RoleFlagsBitField } from '@paqujs/bitfields';
 
 import { BaseStructure } from '../base/BaseStructure';
 
@@ -26,6 +26,7 @@ export class Role extends BaseStructure {
     public managed!: boolean;
     public mentionable!: boolean;
     public tags!: RoleTags;
+    public flags!: RoleFlagsBitField;
     public guild: Guild;
 
     public constructor(client: Client, guild: Guild, data: APIRole) {
@@ -56,6 +57,7 @@ export class Role extends BaseStructure {
                   guildConnections: data.tags.guild_connections ?? null,
               }
             : {};
+        this.flags = new RoleFlagsBitField(data.flags ?? 0);
 
         return this;
     }
