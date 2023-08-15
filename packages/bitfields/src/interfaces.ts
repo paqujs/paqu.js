@@ -10,6 +10,7 @@ import type {
     UserFlags,
     GatewayIntentBits,
     RoleFlags,
+    AttachmentFlags,
 } from 'discord-api-types/v10';
 import type { Arrayable } from '@paqujs/shared';
 
@@ -46,3 +47,7 @@ export type GatewayIntentBitsResolvable = Arrayable<
 >;
 
 export type RoleFlagsBitsResolvable = Arrayable<keyof typeof RoleFlags | RoleFlags>;
+
+export type AttachmentFlagsBitsResolvable = Arrayable<
+    keyof typeof AttachmentFlags | AttachmentFlags
+>;
