@@ -1,5 +1,5 @@
 import { BitField } from '@paqujs/shared';
-import { UserFlagsBitsResolver } from '@paqujs/resolvers';
+import { AttachmentFlagsBitsResolver } from '@paqujs/resolvers';
 import { AttachmentFlags } from 'discord-api-types/v10';
 import { AttachmentFlagsBitsResolvable } from '../index';
 
@@ -11,14 +11,14 @@ export class AttachmentFlagsBitField extends BitField {
     public static override Flags = AttachmentFlags;
 
     public override set(bits: AttachmentFlagsBitsResolvable) {
-        return super.set(UserFlagsBitsResolver(bits as any));
+        return super.set(AttachmentFlagsBitsResolver(bits));
     }
 
     public override unset(bits: AttachmentFlagsBitsResolvable) {
-        return super.unset(UserFlagsBitsResolver(bits as any));
+        return super.unset(AttachmentFlagsBitsResolver(bits));
     }
 
     public override has(bits: AttachmentFlagsBitsResolvable) {
-        return super.has(UserFlagsBitsResolver(bits as any));
+        return super.has(AttachmentFlagsBitsResolver(bits));
     }
 }

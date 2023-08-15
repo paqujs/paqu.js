@@ -9,3 +9,4 @@ export * from './SystemChannelFlagsBitField';
 export * from './ThreadMemberFlagsBitField';
 export * from './UserFlagsBitField';
 export * from './RoleFlagsBitField';
+export * from './AttachmentFlagsBitField';
