@@ -2,6 +2,7 @@ import {
     type APIGuildOnboarding,
     type Snowflake,
     GuildOnboardingPromptType,
+    GuildOnboardingMode,
 } from 'discord-api-types/v10';
 import {
     BaseStructure,
@@ -13,9 +14,10 @@ import { Collection } from '@paqujs/shared';
 
 export class GuildOnboarding extends BaseStructure {
     public defaultChannelIds!: Snowflake[];
-    public enabled: boolean;
-    public guildId: Snowflake;
+    public enabled!: boolean;
+    public guildId!: Snowflake;
     public prompts!: GuildOnboardingPrompt[];
+    public mode!: keyof typeof GuildOnboardingMode;
 
     public constructor(client: Client, data: APIGuildOnboarding) {
         super(client);
@@ -43,6 +45,7 @@ export class GuildOnboarding extends BaseStructure {
             title: prompt.title,
             type: GuildOnboardingPromptType[prompt.type] as keyof typeof GuildOnboardingPromptType,
         }));
+        this.mode = GuildOnboardingMode[data.mode] as keyof typeof GuildOnboardingMode;
 
         return this;
     }
