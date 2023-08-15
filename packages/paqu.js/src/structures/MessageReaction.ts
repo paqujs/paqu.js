@@ -19,6 +19,7 @@ export class MessageReaction extends BaseStructure {
     public member!: GuildMember | APIGuildMember | null;
     public messageId!: Snowflake;
     public userId!: Snowflake | null;
+    public messageAuthorId!: Snowflake | null;
 
     public constructor(
         client: Client,
@@ -62,6 +63,12 @@ export class MessageReaction extends BaseStructure {
             this.userId ??= null;
         }
 
+        if ('message_author_id' in data) {
+            this.messageAuthorId = data.message_author_id;
+        } else {
+            this.messageAuthorId ??= null;
+        }
+
         return this;
     }
 
@@ -81,5 +88,9 @@ export class MessageReaction extends BaseStructure {
 
     public get message() {
         return this.channel!.caches.messages.cache.get(this.messageId);
+    }
+
+    public get messageAuthor() {
+        return this.client.caches.users.cache.get(this.messageAuthorId!);
     }
 }
