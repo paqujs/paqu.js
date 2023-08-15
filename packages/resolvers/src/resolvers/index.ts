@@ -19,3 +19,4 @@ export * from './SystemChannelFlagsBitsResolver';
 export * from './ThreadMemberFlagsBitsResolver';
 export * from './UserFlagsBitsResolver';
 export * from './RoleFlagsBitsResolver';
+export * from './AttachmentFlagsBitsResolver';
