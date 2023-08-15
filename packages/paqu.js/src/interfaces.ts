@@ -346,7 +346,7 @@ export interface EditAndCreateGuildChannelData {
     video_quality_mode?: VoiceQualityModeResolvable;
     default_auto_archive_duration?: number;
     flags?: ChannelFlagsBitsResolvable;
-    available_tags?: APIGuildForumTag[];
+    available_tags?: (Partial<APIGuildForumTag> & Pick<APIGuildForumTag, 'name'>)[];
     default_reaction_emoji?: APIGuildForumDefaultReactionEmoji;
     default_thread_rate_limit_per_user?: number;
     default_sort_order?: ForumChannelDefaultSortOrderTypeResolvable;
