@@ -8,3 +8,4 @@ export * from './PresenceActivityFlagsBitField';
 export * from './SystemChannelFlagsBitField';
 export * from './ThreadMemberFlagsBitField';
 export * from './UserFlagsBitfield';
+export * from './RoleFlagsBitField';
