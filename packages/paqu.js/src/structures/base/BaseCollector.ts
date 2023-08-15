@@ -16,7 +16,7 @@ export class BaseCollector<T> extends TypedEmitter<CollectorEvents<T>> {
     public filter: CollectorFilter<T>;
     public time: number | null;
     // eslint-disable-next-line no-undef
-    public terminateTimer: NodeJS.Timer;
+    public terminateTimer: NodeJS.Timeout;
 
     public constructor(client: Client, options: CollectorOptions<T>) {
         super();
