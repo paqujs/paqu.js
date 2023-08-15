@@ -15,6 +15,7 @@ export class User extends BaseStructure {
     public username!: string;
     public discriminator!: string;
     public avatar!: string | null;
+    public avatarDecoration!: string | null;
     public bot!: boolean;
     public system!: boolean;
     public mfaEnabled!: boolean;
@@ -39,6 +40,12 @@ export class User extends BaseStructure {
         this.username = data.username;
         this.discriminator = data.discriminator;
         this.avatar = data.avatar;
+
+        if ('avatar_decoration' in data) {
+            this.avatarDecoration = data.avatar_decoration;
+        } else {
+            this.avatarDecoration ??= null;
+        }
 
         if ('bot' in data) {
             this.bot = data.bot;
@@ -139,6 +146,12 @@ export class User extends BaseStructure {
                   dynamic && this.avatar.startsWith('a_') ? 'gif' : format ?? 'png'
               }?size=${size ?? 1024}`
             : this.defaultAvatarURL;
+    }
+
+    public avatarDecorationURL() {
+        return this.avatarDecoration
+            ? `https://cdn.discordapp.com/avatar-decorations/${this.id}/${this.avatarDecoration}.png`
+            : null;
     }
 
     public bannerURL({ dynamic, size, format }: ImageOptions = { dynamic: true, size: 1024 }) {
