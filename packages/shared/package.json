@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/shared",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "description": "Shared utilities for paqu.js",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -22,12 +22,12 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^20.4.1",
-        "tsup": "^7.1.0",
+        "@types/node": "^20.5.0",
+        "tsup": "^7.2.0",
         "typescript": "^5.1.6"
     },
     "dependencies": {
-        "tslib": "^2.6.0"
+        "tslib": "^2.6.1"
     },
     "type": "module"
 }
