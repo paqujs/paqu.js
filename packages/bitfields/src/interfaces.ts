@@ -9,6 +9,7 @@ import type {
     GuildSystemChannelFlags,
     UserFlags,
     GatewayIntentBits,
+    RoleFlags,
 } from 'discord-api-types/v10';
 import type { Arrayable } from '@paqujs/shared';
 
@@ -43,3 +44,5 @@ export type UserFlagsBitsResolvable = Arrayable<keyof typeof UserFlags | UserFla
 export type GatewayIntentBitsResolvable = Arrayable<
     keyof typeof GatewayIntentBits | GatewayIntentBits
 >;
+
+export type RoleFlagsBitsResolvable = Arrayable<keyof typeof RoleFlags | RoleFlags>;
