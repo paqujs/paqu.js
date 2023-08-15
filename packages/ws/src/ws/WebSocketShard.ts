@@ -54,7 +54,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
     public lastHeartbeatAcked = false;
     public lastHeartbeatAck = -1;
     // eslint-disable-next-line no-undef
-    public heartbeatInterval: NodeJS.Timer | null = null;
+    public heartbeatInterval: NodeJS.Timeout | null = null;
     public sequence = -1;
     public closeSequence = 0;
     public sessionId: string | null = null;

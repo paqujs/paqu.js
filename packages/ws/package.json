@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/ws",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "description": "@paqujs/ws",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -26,19 +26,19 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^20.4.1",
+        "@types/node": "^20.5.0",
         "@types/ws": "^8.5.5",
-        "tsup": "^7.1.0",
+        "tsup": "^7.2.0",
         "typescript": "^5.1.6"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.1.0",
-        "@paqujs/resolvers": "^1.0.9",
-        "@paqujs/rest": "^1.1.0",
-        "@paqujs/shared": "^1.1.7",
+        "@paqujs/bitfields": "^1.1.3",
+        "@paqujs/resolvers": "^1.1.3",
+        "@paqujs/rest": "^1.1.1",
+        "@paqujs/shared": "^1.1.8",
         "defu": "^6.1.2",
-        "discord-api-types": "^0.37.48",
-        "tslib": "^2.6.0",
+        "discord-api-types": "^0.37.53",
+        "tslib": "^2.6.1",
         "ws": "^8.13.0"
     },
     "type": "module"
