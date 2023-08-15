@@ -121,87 +121,90 @@ export class AuditLogEntry extends BaseStructure {
 
     public get target() {
         switch (this.actionType) {
-            case 'ApplicationCommandPermissionUpdate':
-                return this.guild.caches.commands.cache.get(this.targetId);
-                break;
-            case 'BotAdd':
-                return this.guild.caches.members.cache.get(this.targetId);
-                break;
-            case 'ChannelCreate':
-            case 'ChannelDelete':
-            case 'ChannelOverwriteCreate':
-            case 'ChannelOverwriteDelete':
-            case 'ChannelOverwriteUpdate':
-            case 'ChannelUpdate':
-                return this.guild.caches.channels.cache.get(this.targetId);
-                break;
-            case 'EmojiCreate':
-            case 'EmojiDelete':
-            case 'EmojiUpdate':
-                return this.guild.caches.emojis.cache.get(this.targetId);
-                break;
-            case 'GuildScheduledEventCreate':
-            case 'GuildScheduledEventDelete':
-            case 'GuildScheduledEventUpdate':
-                return this.guild.caches.scheduledEvents.cache.get(this.targetId);
-                break;
             case 'GuildUpdate':
                 return this.guild;
                 break;
-            case 'IntegrationCreate':
-            case 'IntegrationDelete':
-            case 'IntegrationUpdate':
-                return this.guild.caches.integrations.cache.get(this.targetId);
+            case 'ChannelCreate':
+            case 'ChannelUpdate':
+            case 'ChannelDelete':
+            case 'ChannelOverwriteCreate':
+            case 'ChannelOverwriteUpdate':
+            case 'ChannelOverwriteDelete':
+                return this.guild.caches.channels.cache.get(this.targetId);
+                break;
+            case 'MemberKick':
+            case 'MemberPrune':
+            case 'MemberBanAdd':
+            case 'MemberBanRemove':
+            case 'MemberUpdate':
+            case 'MemberRoleUpdate':
+            case 'MemberMove':
+            case 'MemberDisconnect':
+            case 'BotAdd':
+                return this.guild.caches.members.cache.get(this.targetId);
+                break;
+            case 'RoleCreate':
+            case 'RoleUpdate':
+            case 'RoleDelete':
+                return this.guild.caches.roles.cache.get(this.targetId);
                 break;
             case 'InviteCreate':
-            case 'InviteDelete':
             case 'InviteUpdate':
+            case 'InviteDelete':
                 return (
                     this.channel as GuildBasedInvitableChannelResolvable
                 ).caches?.invites?.cache?.get(this.targetId);
                 break;
-            case 'MemberBanAdd':
-            case 'MemberBanRemove':
-            case 'MemberDisconnect':
-            case 'MemberKick':
-            case 'MemberMove':
-            case 'MemberPrune':
-            case 'MemberRoleUpdate':
-            case 'MemberUpdate':
-                return this.guild.caches.members.cache.get(this.targetId);
+            case 'WebhookCreate':
+            case 'WebhookUpdate':
+            case 'WebhookDelete':
+                return this.client.caches.webhooks.cache.get(this.targetId);
                 break;
-            case 'MessageBulkDelete':
+            case 'EmojiCreate':
+            case 'EmojiUpdate':
+            case 'EmojiDelete':
+                return this.guild.caches.emojis.cache.get(this.targetId);
+                break;
             case 'MessageDelete':
+            case 'MessageBulkDelete':
             case 'MessagePin':
             case 'MessageUnpin':
                 return this.message;
                 break;
-            case 'RoleCreate':
-            case 'RoleDelete':
-            case 'RoleUpdate':
-                return this.guild.caches.roles.cache.get(this.targetId);
+            case 'IntegrationCreate':
+            case 'IntegrationUpdate':
+            case 'IntegrationDelete':
+                return this.guild.caches.integrations.cache.get(this.targetId);
                 break;
             case 'StageInstanceCreate':
-            case 'StageInstanceDelete':
             case 'StageInstanceUpdate':
+            case 'StageInstanceDelete':
                 return this.guild.caches.stageInstances.cache.get(this.targetId);
                 break;
             case 'StickerCreate':
-            case 'StickerDelete':
             case 'StickerUpdate':
+            case 'StickerDelete':
                 return this.guild.caches.stickers.cache.get(this.targetId);
                 break;
+            case 'GuildScheduledEventCreate':
+            case 'GuildScheduledEventUpdate':
+            case 'GuildScheduledEventDelete':
+                return this.guild.caches.scheduledEvents.cache.get(this.targetId);
+                break;
             case 'ThreadCreate':
-            case 'ThreadDelete':
             case 'ThreadUpdate':
+            case 'ThreadDelete':
                 return (this.channel as ThreadableChannelResolvable).caches.threads.cache.get(
                     this.targetId,
                 );
                 break;
-            case 'WebhookCreate':
-            case 'WebhookDelete':
-            case 'WebhookUpdate':
-                return this.client.caches.webhooks.cache.get(this.targetId);
+            case 'ApplicationCommandPermissionUpdate':
+                return this.guild.caches.commands.cache.get(this.targetId);
+                break;
+            case 'AutoModerationRuleCreate':
+            case 'AutoModerationRuleUpdate':
+            case 'AutoModerationRuleDelete':
+                return this.guild.caches.autoModerationRules.cache.get(this.targetId);
                 break;
             default:
                 return undefined;

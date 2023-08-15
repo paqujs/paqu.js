@@ -1,3 +1,4 @@
+import { AttachmentFlagsBitField } from '@paqujs/bitfields';
 import { type APIAttachment, type Snowflake, SnowflakeUtil } from '../index';
 
 export class Attachment {
@@ -11,6 +12,7 @@ export class Attachment {
     public size!: number;
     public url!: string;
     public width!: number | null;
+    public flags!: AttachmentFlagsBitField;
 
     public constructor(data: APIAttachment) {
         this._patch(data);
@@ -26,6 +28,7 @@ export class Attachment {
         this.size = data.size;
         this.url = data.url;
         this.width = data.width ?? null;
+        this.flags = new AttachmentFlagsBitField(data.flags ?? 0);
 
         return this;
     }
