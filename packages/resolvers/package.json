@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/resolvers",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "@paqujs/resolvers",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
         "typescript": "^5.1.6"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.1.1",
+        "@paqujs/bitfields": "1.1.1",
         "discord-api-types": "^0.37.53",
         "file-type": "^18.5.0",
         "tslib": "^2.6.1",
