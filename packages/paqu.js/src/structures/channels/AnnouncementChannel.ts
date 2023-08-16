@@ -43,20 +43,20 @@ export class AnnouncementChannel extends BaseGuildTextChannel {
         return this.lastPinTimestamp ? new Date(this.lastPinTimestamp) : null;
     }
 
-    public async follow(webhookId: Snowflake) {
-        return await this.guild.caches.channels.followAnnouncementChannel(this.id, webhookId);
+    public follow(webhookId: Snowflake) {
+        return this.guild.caches.channels.followAnnouncementChannel(this.id, webhookId);
     }
 
-    public override async fetch(options?: FetchOptions) {
-        return (await super.fetch(options)) as AnnouncementChannel;
+    public override fetch(options?: FetchOptions) {
+        return super.fetch(options) as Promise<AnnouncementChannel>;
     }
 
-    public override async edit(data: EditChannelData, reason?: string) {
-        return (await super.edit(data, reason)) as AnnouncementChannel;
+    public override edit(data: EditChannelData, reason?: string) {
+        return super.edit(data, reason) as Promise<AnnouncementChannel>;
     }
 
-    public async send(data: CreateMessageData | string) {
-        return await this.caches.messages.create(data);
+    public send(data: CreateMessageData | string) {
+        return this.caches.messages.create(data);
     }
 
     public get lastMessage() {

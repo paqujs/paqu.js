@@ -57,40 +57,40 @@ export class MessageReactionManager extends CachedManager<Snowflake, MessageReac
         return result;
     }
 
-    public async create(emoji: string) {
+    public create(emoji: string) {
         const resolved = EmojiResolver(emoji);
         const emojiStr =
             typeof resolved === 'object' ? `${resolved.name}:${resolved.id}` : resolved;
 
-        return await this.client.rest.put<void>(
+        return this.client.rest.put<void>(
             `/channels/${this.message.channelId}/messages/${this.message.id}/reactions/${emojiStr}/@me`,
         );
     }
 
-    public async delete(emoji: string, userId?: Snowflake | '@me') {
+    public delete(emoji: string, userId?: Snowflake | '@me') {
         const resolved = EmojiResolver(emoji);
         const emojiStr =
             typeof resolved === 'object' ? `${resolved.name}:${resolved.id}` : resolved;
 
-        return await this.client.rest.delete<void>(
+        return this.client.rest.delete<void>(
             `/channels/${this.message.channelId}/messages/${
                 this.message.id
             }/reactions/${emojiStr}/${userId ?? '@me'}`,
         );
     }
 
-    public async deleteAll() {
-        return await this.client.rest.delete<void>(
+    public deleteAll() {
+        return this.client.rest.delete<void>(
             `/channels/${this.message.channelId}/messages/${this.message.id}/reactions`,
         );
     }
 
-    public async deleteAllForEmoji(emoji: string) {
+    public deleteAllForEmoji(emoji: string) {
         const resolved = EmojiResolver(emoji);
         const emojiStr =
             typeof resolved === 'object' ? `${resolved.name}:${resolved.id}` : resolved;
 
-        return await this.client.rest.delete<void>(
+        return this.client.rest.delete<void>(
             `/channels/${this.message.channelId}/messages/${this.message.id}/reactions/${emojiStr}`,
         );
     }

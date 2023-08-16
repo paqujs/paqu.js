@@ -30,15 +30,15 @@ export class StageChannel extends BaseVoiceChannel {
         return (await super.edit(data, reason)) as unknown as StageChannel;
     }
 
-    public async fetchStageInstance(options?: FetchOptions) {
-        return await this.client.caches.stageInstances.fetch(this.id, options);
+    public fetchStageInstance(options?: FetchOptions) {
+        return this.client.caches.stageInstances.fetch(this.id, options);
     }
 
-    public async editStageInstance(data: EditStageInstanceData, reason?: string) {
-        return await this.client.caches.stageInstances.edit(this.id, data, reason);
+    public editStageInstance(data: EditStageInstanceData, reason?: string) {
+        return this.client.caches.stageInstances.edit(this.id, data, reason);
     }
 
-    public async deleteStageInstance(reason?: string) {
-        return await this.client.caches.stageInstances.delete(this.id, reason);
+    public deleteStageInstance(reason?: string) {
+        return this.client.caches.stageInstances.delete(this.id, reason);
     }
 }

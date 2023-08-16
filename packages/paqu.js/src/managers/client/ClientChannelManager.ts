@@ -80,9 +80,9 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
         return channel;
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/channels/${id}`, { reason: reason as string });
+    public delete(id: Snowflake, reason?: string) {
         this.cache.delete(id);
+        return this.client.rest.delete<void>(`/channels/${id}`, { reason: reason as string });
     }
 
     public async edit(id: Snowflake, data: EditChannelData, reason?: string): Promise<AnyChannel> {
@@ -175,16 +175,16 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
         }
     }
 
-    public async deleteMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/channels/${channelId}/messages/${messageId}`, {
-            reason: reason,
-        });
-
+    public deleteMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
         const _channel = this.cache.get(channelId)!;
 
         if (_channel) {
             (_channel as any).caches.messages.cache.delete(messageId);
         }
+
+        return this.client.rest.delete<void>(`/channels/${channelId}/messages/${messageId}`, {
+            reason: reason,
+        });
     }
 
     public async editMessage(
@@ -257,8 +257,8 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
         return _message;
     }
 
-    public async triggerTyping(id: Snowflake) {
-        await this.client.rest.post(`/channels/${id}/typing`);
+    public triggerTyping(id: Snowflake) {
+        return this.client.rest.post<void>(`/channels/${id}/typing`);
     }
 
     public async fetchPins(id: Snowflake) {
@@ -277,14 +277,14 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
         return result;
     }
 
-    public async pinMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
-        return await this.client.rest.put<void>(`/channels/${channelId}/pins/${messageId}`, {
+    public pinMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
+        return this.client.rest.put<void>(`/channels/${channelId}/pins/${messageId}`, {
             reason: reason,
         });
     }
 
-    public async unpinMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
-        return await this.client.rest.delete<void>(`/channels/${channelId}/pins/${messageId}`, {
+    public unpinMessage(channelId: Snowflake, messageId: Snowflake, reason?: string) {
+        return this.client.rest.delete<void>(`/channels/${channelId}/pins/${messageId}`, {
             reason: reason,
         });
     }

@@ -46,8 +46,8 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         this.guild = guild;
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        return await this.client.caches.channels.delete(id, reason);
+    public delete(id: Snowflake, reason?: string) {
+        return this.client.caches.channels.delete(id, reason);
     }
 
     public async edit(id: Snowflake, data: EditChannelData, reason?: string) {
@@ -122,8 +122,8 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         }
     }
 
-    public async setPosition(id: Snowflake, data: EditGuildChannelPositionsData) {
-        return await this.client.rest.patch(`/guilds/${this.guild.id}/channels/`, {
+    public setPosition(id: Snowflake, data: EditGuildChannelPositionsData) {
+        return this.client.rest.patch<void>(`/guilds/${this.guild.id}/channels/`, {
             body: {
                 id,
                 position: data.position,
@@ -133,7 +133,7 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         });
     }
 
-    public async editOverwrite(
+    public editOverwrite(
         id: Snowflake,
         data: CreateChannelOverwriteData,
         reason?: string,
@@ -146,9 +146,11 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
             data.deny = new PermissionFlagsBitField().set(data.deny!);
         }
 
-        if (typeof data.type === 'string') data.type = OverwriteType[data.type!];
+        if (typeof data.type === 'string') {
+            data.type = OverwriteType[data.type!];
+        }
 
-        return await this.client.rest.put(`/channels/${id}/permissions/${data.id}`, {
+        return this.client.rest.put<void>(`/channels/${id}/permissions/${data.id}`, {
             body: {
                 allow: data.allow,
                 deny: data.deny,
@@ -158,16 +160,12 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         });
     }
 
-    public async createOverwrite(id: Snowflake, data: CreateChannelOverwriteData, reason?: string) {
-        return await this.editOverwrite(id, data, reason);
+    public createOverwrite(id: Snowflake, data: CreateChannelOverwriteData, reason?: string) {
+        return this.editOverwrite(id, data, reason);
     }
 
-    public async deleteOverwrite(
-        channelId: Snowflake,
-        overwriteId: Snowflake,
-        reason?: string,
-    ): Promise<void> {
-        return await this.client.rest.delete(`/channels/${channelId}/permissions/${overwriteId}`, {
+    public deleteOverwrite(channelId: Snowflake, overwriteId: Snowflake, reason?: string) {
+        return this.client.rest.delete<void>(`/channels/${channelId}/permissions/${overwriteId}`, {
             reason: reason,
         });
     }
@@ -287,8 +285,8 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         return new Invite(this.client, invite);
     }
 
-    public async deleteInvite(code: string, reason?: string) {
-        return await this.client.rest.delete<void>(`/invites/${code}`, {
+    public deleteInvite(code: string, reason?: string) {
+        return this.client.rest.delete<void>(`/invites/${code}`, {
             reason,
         });
     }
@@ -384,20 +382,20 @@ export class GuildChannelManager extends CachedManager<Snowflake, GuildBasedChan
         }
     }
 
-    public async joinThread(id: Snowflake) {
-        return await this.client.rest.put<void>(`/channels/${id}/thread-members/@me`);
+    public joinThread(id: Snowflake) {
+        return this.client.rest.put<void>(`/channels/${id}/thread-members/@me`);
     }
 
-    public async leaveThread(id: Snowflake) {
-        return await this.client.rest.delete<void>(`/channels/${id}/thread-members/@me`);
+    public leaveThread(id: Snowflake) {
+        return this.client.rest.delete<void>(`/channels/${id}/thread-members/@me`);
     }
 
-    public async addThreadMember(threadId: Snowflake, userId: Snowflake) {
-        return await this.client.rest.put<void>(`/channels/${threadId}/thread-members/${userId}`);
+    public addThreadMember(threadId: Snowflake, userId: Snowflake) {
+        return this.client.rest.put<void>(`/channels/${threadId}/thread-members/${userId}`);
     }
 
-    public async removeThreadMember(threadId: Snowflake, userId: Snowflake) {
-        return await this.client.rest.delete<void>(`/channels/${userId}/thread-members/${userId}`);
+    public removeThreadMember(threadId: Snowflake, userId: Snowflake) {
+        return this.client.rest.delete<void>(`/channels/${userId}/thread-members/${userId}`);
     }
 
     public async fetchThreadMembers(

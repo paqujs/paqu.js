@@ -54,8 +54,8 @@ export class TextChannel extends BaseGuildTextChannel {
         return this.caches.messages.cache.get(this.lastMessageId!);
     }
 
-    public async send(data: CreateMessageData | string) {
-        return await this.caches.messages.create(data);
+    public send(data: CreateMessageData | string) {
+        return this.caches.messages.create(data);
     }
 
     public createMessageCollector(options?: MessageCollectorOptions) {

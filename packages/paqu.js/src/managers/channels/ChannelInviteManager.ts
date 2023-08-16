@@ -18,19 +18,19 @@ export class ChannelInviteManager extends CachedManager<Snowflake, Invite> {
         this.channel = channel;
     }
 
-    public async create(data?: CreateInviteData, reason?: string) {
-        return await this.channel.guild.caches.channels.createInvite(this.channel.id, data, reason);
+    public create(data?: CreateInviteData, reason?: string) {
+        return this.channel.guild.caches.channels.createInvite(this.channel.id, data, reason);
     }
 
-    public async fetch(code?: string, options?: FetchInviteOptions) {
-        return await this.channel.guild.caches.channels.fetchInvites(
+    public fetch(code?: string, options?: FetchInviteOptions) {
+        return this.channel.guild.caches.channels.fetchInvites(
             this.channel.id,
             code,
             options,
         );
     }
 
-    public async delete(code: string, reason?: string) {
-        return await this.channel.guild.caches.channels.deleteInvite(code, reason);
+    public delete(code: string, reason?: string) {
+        return this.channel.guild.caches.channels.deleteInvite(code, reason);
     }
 }

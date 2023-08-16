@@ -68,12 +68,11 @@ export class GuildRoleManager extends CachedManager<Snowflake, Role> {
         return this.cache.setAndReturnValue(role.id, new Role(this.client, this.guild, role));
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/guilds/${this.guild.id}/roles/${id}`, {
+    public delete(id: Snowflake, reason?: string) {
+        this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/roles/${id}`, {
             reason: reason as string,
         });
-
-        this.cache.delete(id);
     }
 
     public async edit(id: Snowflake, data: EditAndCreateRoleData, reason?: string) {

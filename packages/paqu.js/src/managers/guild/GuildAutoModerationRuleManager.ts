@@ -20,9 +20,9 @@ export class GuildAutoModerationRuleManager extends CachedManager<Snowflake, Aut
         this.guild = guild;
     }
 
-    public async delete(id: Snowflake, reason?: string) {
+    public delete(id: Snowflake, reason?: string) {
         this.cache.delete(id);
-        return await this.client.caches.guilds.deleteAutoModerationRule(this.guild.id, id, reason);
+        return this.client.caches.guilds.deleteAutoModerationRule(this.guild.id, id, reason);
     }
 
     public async fetch(

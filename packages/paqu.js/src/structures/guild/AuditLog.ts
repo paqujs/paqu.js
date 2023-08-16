@@ -120,7 +120,7 @@ export class AuditLog extends BaseStructure {
         return this;
     }
 
-    public async fetch() {
-        return await this.guild.fetchAuditLogs();
+    public fetch() {
+        return this.guild.fetchAuditLogs();
     }
 }

@@ -84,7 +84,7 @@ export class GuildPreview extends BaseStructure {
         return this.client.caches.guilds.cache.get(this.id)!;
     }
 
-    public async fetch() {
-        return await this.client.caches.guilds.fetchPreview(this.id);
+    public fetch() {
+        return this.client.caches.guilds.fetchPreview(this.id);
     }
 }

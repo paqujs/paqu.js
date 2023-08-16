@@ -103,12 +103,12 @@ export class AutoModerationRule extends BaseStructure {
         );
     }
 
-    public async delete(reason?: string) {
-        return await this.guild?.caches.autoModerationRules.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.guild?.caches.autoModerationRules.delete(this.id, reason);
     }
 
-    public async edit(data: EditAutoModerationRuleData, reason?: string) {
-        return await this.guild?.caches.autoModerationRules.edit(this.id, data, reason);
+    public edit(data: EditAutoModerationRuleData, reason?: string) {
+        return this.guild?.caches.autoModerationRules.edit(this.id, data, reason);
     }
 
     public async fetch(options?: FetchOptions) {

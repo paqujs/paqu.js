@@ -98,11 +98,11 @@ export class GuildStickerManager extends CachedManager<Snowflake, Sticker> {
         return this.cache.setAndReturnValue(sticker.id!, new Sticker(this.client, sticker));
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/guilds/${this.guild.id}/stickers/${id}`, {
+    public delete(id: Snowflake, reason?: string) {
+        this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/stickers/${id}`, {
             reason: reason as string,
         });
-        this.cache.delete(id);
     }
 
     public async edit(id: Snowflake, data: RESTPatchAPIGuildStickerJSONBody, reason?: string) {

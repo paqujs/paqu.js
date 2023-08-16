@@ -41,7 +41,7 @@ export class BaseGuildTextChannel extends BaseGuildChannel {
         return (await super.edit(data, reason)) as GuildTextBasedChannelResolvable;
     }
 
-    public async bulkDelete(messages: number | Snowflake[], reason?: string) {
-        return await this.guild.caches.channels.bulkDelete(this.id, messages, reason);
+    public bulkDelete(messages: number | Snowflake[], reason?: string) {
+        return this.guild.caches.channels.bulkDelete(this.id, messages, reason);
     }
 }

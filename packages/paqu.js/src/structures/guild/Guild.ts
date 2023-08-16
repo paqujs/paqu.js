@@ -381,72 +381,72 @@ export class Guild extends BaseGuild {
         return this.joinedAt.getTime();
     }
 
-    public async leave() {
-        return await this.client.caches.guilds.leave(this.id);
+    public leave() {
+        return this.client.caches.guilds.leave(this.id);
     }
 
-    public async edit(data: EditGuildData, reason?: string) {
-        return await this.client.caches.guilds.edit(this.id, data, reason);
+    public edit(data: EditGuildData, reason?: string) {
+        return this.client.caches.guilds.edit(this.id, data, reason);
     }
 
-    public async fetchPruneCount(options?: GuildFetchPruneOptions) {
-        return await this.client.caches.guilds.fetchPruneCount(this.id, options);
+    public fetchPruneCount(options?: GuildFetchPruneOptions) {
+        return this.client.caches.guilds.fetchPruneCount(this.id, options);
     }
 
-    public async pruneMembers(options?: RESTPostAPIGuildPruneJSONBody) {
-        return await this.client.caches.guilds.pruneMembers(this.id, options);
+    public pruneMembers(options?: RESTPostAPIGuildPruneJSONBody) {
+        return this.client.caches.guilds.pruneMembers(this.id, options);
     }
 
-    public async fetchPreview() {
-        return await this.client.caches.guilds.fetchPreview(this.id);
+    public fetchPreview() {
+        return this.client.caches.guilds.fetchPreview(this.id);
     }
 
-    public async fetchVoiceRegions() {
-        return await this.client.caches.guilds.fetchVoiceRegions(this.id);
+    public fetchVoiceRegions() {
+        return this.client.caches.guilds.fetchVoiceRegions(this.id);
     }
 
-    public async fetchWidgetImage() {
-        return await this.client.caches.guilds.fetchWidgetImage(this.id);
+    public fetchWidgetImage() {
+        return this.client.caches.guilds.fetchWidgetImage(this.id);
     }
 
-    public async fetchWidgetSettings() {
-        return await this.client.caches.guilds.fetchWidgetSettings(this.id);
+    public fetchWidgetSettings() {
+        return this.client.caches.guilds.fetchWidgetSettings(this.id);
     }
 
-    public async fetchWidget() {
-        return await this.client.caches.guilds.fetchWidget(this.id);
+    public fetchWidget() {
+        return this.client.caches.guilds.fetchWidget(this.id);
     }
 
-    public async fetchVanityURL() {
-        return await this.client.caches.guilds.fetchVanityURL(this.id);
+    public fetchVanityURL() {
+        return this.client.caches.guilds.fetchVanityURL(this.id);
     }
 
-    public async fetchWelcomeScreen() {
-        return await this.client.caches.guilds.fetchWelcomeScreen(this.id);
+    public fetchWelcomeScreen() {
+        return this.client.caches.guilds.fetchWelcomeScreen(this.id);
     }
 
-    public async editWidget(data: RESTPatchAPIGuildWidgetSettingsJSONBody, reason?: string) {
-        return await this.client.caches.guilds.editWidget(this.id, data, reason);
+    public editWidget(data: RESTPatchAPIGuildWidgetSettingsJSONBody, reason?: string) {
+        return this.client.caches.guilds.editWidget(this.id, data, reason);
     }
 
-    public async editWelcomeScreen(data: RESTPatchAPIGuildWelcomeScreenJSONBody, reason?: string) {
-        return await this.client.caches.guilds.editWelcomeScreen(this.id, data, reason);
+    public editWelcomeScreen(data: RESTPatchAPIGuildWelcomeScreenJSONBody, reason?: string) {
+        return this.client.caches.guilds.editWelcomeScreen(this.id, data, reason);
     }
 
-    public async fetchWebhooks() {
-        return await this.client.caches.guilds.fetchWebhooks(this.id);
+    public fetchWebhooks() {
+        return this.client.caches.guilds.fetchWebhooks(this.id);
     }
 
-    public async fetchAuditLogs() {
-        return (await this.client.caches.guilds.fetchAuditLogs(this.id)) as AuditLog;
+    public fetchAuditLogs() {
+        return this.client.caches.guilds.fetchAuditLogs(this.id) as Promise<AuditLog>;
     }
 
-    public async fetchOnboarding() {
-        return await this.client.caches.guilds.fetchOnboarding(this.id);
+    public fetchOnboarding() {
+        return this.client.caches.guilds.fetchOnboarding(this.id);
     }
 
-    public override async fetch(options?: FetchGuildOptions) {
-        return (await super.fetch(options)) as Guild;
+    public override fetch(options?: FetchGuildOptions) {
+        return super.fetch(options) as Promise<Guild>;
     }
 
     public permissionsFor(id: Snowflake) {

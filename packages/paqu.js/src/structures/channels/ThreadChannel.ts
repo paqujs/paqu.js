@@ -105,16 +105,16 @@ export class ThreadChannel extends BaseGuildTextChannel {
         return (await super.edit(data, reason)) as ThreadChannel;
     }
 
-    public async join() {
-        return await this.guild.caches.channels.joinThread(this.id);
+    public join() {
+        return this.guild.caches.channels.joinThread(this.id);
     }
 
-    public async leave() {
-        return await this.guild.caches.channels.leaveThread(this.id);
+    public leave() {
+        return this.guild.caches.channels.leaveThread(this.id);
     }
 
-    public async send(data: CreateMessageData | string) {
-        return await this.caches.messages.create(data);
+    public send(data: CreateMessageData | string) {
+        return this.caches.messages.create(data);
     }
 
     public createMessageCollector(options?: MessageCollectorOptions) {

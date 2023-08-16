@@ -85,11 +85,11 @@ export class GuildEmojiManager extends CachedManager<Snowflake, GuildEmoji> {
         );
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/guilds/${this.guild.id}/emojis/${id}`, {
+    public delete(id: Snowflake, reason?: string) {
+        this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/emojis/${id}`, {
             reason: reason as string,
         });
-        this.cache.delete(id);
     }
 
     public async edit(id: Snowflake, data: EditEmojiData, reason?: string) {

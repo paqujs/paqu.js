@@ -61,8 +61,8 @@ export class DMChannel extends BaseTextChannel {
         return (await super.edit(data, reason)) as DMChannel;
     }
 
-    public async send(data: CreateMessageData | string) {
-        return await this.caches.messages.create(data);
+    public send(data: CreateMessageData | string) {
+        return this.caches.messages.create(data);
     }
 
     public createMessageCollector(options?: MessageCollectorOptions) {

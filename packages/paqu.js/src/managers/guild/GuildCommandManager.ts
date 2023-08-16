@@ -64,10 +64,10 @@ export class GuildCommandManager extends CachedManager<Snowflake, ApplicationCom
         return this.cache.setAndReturnValue(command.id, command);
     }
 
-    public async delete(id: Snowflake) {
+    public delete(id: Snowflake) {
         this.cache.delete(id);
 
-        return await this.client.caches.guilds.deleteCommand(this.guild.id, id);
+        return this.client.caches.guilds.deleteCommand(this.guild.id, id);
     }
 
     public async set(id: Snowflake, commands: CreateCommandData[]) {
@@ -79,16 +79,16 @@ export class GuildCommandManager extends CachedManager<Snowflake, ApplicationCom
         return this.cache;
     }
 
-    public async fetchPermissions(id: Snowflake) {
-        return await this.client.caches.guilds.fetchCommandPermissions(this.guild.id, id);
+    public fetchPermissions(id: Snowflake) {
+        return this.client.caches.guilds.fetchCommandPermissions(this.guild.id, id);
     }
 
-    public async setPermissions(
+    public setPermissions(
         id: Snowflake,
         permissions: ApplicationCommandPermissionsChildData[],
         token?: string,
     ) {
-        return await this.client.caches.guilds.setCommandPermissions(
+        return this.client.caches.guilds.setCommandPermissions(
             this.guild.id,
             id,
             permissions,

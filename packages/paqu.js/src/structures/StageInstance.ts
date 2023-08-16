@@ -47,16 +47,16 @@ export class StageInstance extends BaseStructure {
         return this.guild!.caches.scheduledEvents.cache.get(this.scheduledEventId!);
     }
 
-    public async delete(reason?: string) {
-        return await this.client.caches.stageInstances.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.client.caches.stageInstances.delete(this.id, reason);
     }
 
-    public async edit(data: EditStageInstanceData, reason?: string) {
-        return await this.client.caches.stageInstances.edit(this.id, data, reason);
+    public edit(data: EditStageInstanceData, reason?: string) {
+        return this.client.caches.stageInstances.edit(this.id, data, reason);
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.client.caches.stageInstances.fetch(this.id, options);
+    public fetch(options?: FetchOptions) {
+        return this.client.caches.stageInstances.fetch(this.id, options);
     }
 
     public toString() {

@@ -68,11 +68,11 @@ export class ThreadMember extends BaseStructure {
         return this.client.caches.channels.cache.get(this.threadId!) as ThreadChannel | undefined;
     }
 
-    public async remove() {
-        return await this.thread!.caches.members.remove(this.userId!);
+    public remove() {
+        return this.thread!.caches.members.remove(this.userId!);
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.thread!.caches.members.fetch(this.userId!, options);
+    public fetch(options?: FetchOptions) {
+        return this.thread!.caches.members.fetch(this.userId!, options);
     }
 }

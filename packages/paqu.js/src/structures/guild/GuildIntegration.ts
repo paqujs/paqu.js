@@ -95,8 +95,8 @@ export class GuildIntegration extends BaseStructure {
         return this.roleId ? this.guild.caches.roles.cache.get(this.roleId) : null;
     }
 
-    public async delete(reason?: string) {
-        return await this.guild.caches.integrations.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.guild.caches.integrations.delete(this.id, reason);
     }
 
     public toString() {

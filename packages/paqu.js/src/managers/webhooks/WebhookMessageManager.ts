@@ -29,10 +29,10 @@ export class WebhookMessageManager extends CachedManager<Snowflake, Message> {
         return this.cache.setAndReturnValue(message.id, message);
     }
 
-    public async delete(id: Snowflake, threadId?: string) {
+    public delete(id: Snowflake, threadId?: string) {
         this.cache.delete(id);
 
-        return await this.client.caches.webhooks.deleteMessage(
+        return this.client.caches.webhooks.deleteMessage(
             this.webhook.id,
             this.webhook.token!,
             id,
@@ -63,16 +63,16 @@ export class WebhookMessageManager extends CachedManager<Snowflake, Message> {
         return message ? this.cache.setAndReturnValue(message.id, message) : undefined;
     }
 
-    public async createSlackMessage(options?: CreateWebhookMessageOptions) {
-        return await this.client.caches.webhooks.createSlackMessage(
+    public createSlackMessage(options?: CreateWebhookMessageOptions) {
+        return this.client.caches.webhooks.createSlackMessage(
             this.webhook.id,
             this.webhook.token!,
             options,
         );
     }
 
-    public async createGithubMessage(options?: CreateWebhookMessageOptions) {
-        return await this.client.caches.webhooks.createGithubMessage(
+    public createGithubMessage(options?: CreateWebhookMessageOptions) {
+        return this.client.caches.webhooks.createGithubMessage(
             this.webhook.id,
             this.webhook.token!,
             options,

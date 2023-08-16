@@ -107,14 +107,14 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return this.cache.setAndReturnValue(guild.id, new Guild(this.client, guild));
     }
 
-    public async delete(id: Snowflake) {
-        await this.client.rest.delete(`/guilds/${id}`);
+    public delete(id: Snowflake) {
         this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${id}`);
     }
 
-    public async leave(id: Snowflake) {
-        await this.client.rest.delete(`/users/@me/guilds/${id}`);
+    public leave(id: Snowflake) {
         this.cache.delete(id);
+        return this.client.rest.delete<void>(`/users/@me/guilds/${id}`);
     }
 
     public async edit(id: Snowflake, data: EditGuildData, reason?: string): Promise<Guild> {
@@ -175,12 +175,12 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return new GuildPreview(this.client, preview);
     }
 
-    public async fetchVoiceRegions(id: Snowflake) {
-        return await this.client.rest.get<APIVoiceRegion>(`/guilds/${id}/regions`);
+    public fetchVoiceRegions(id: Snowflake) {
+        return this.client.rest.get<APIVoiceRegion>(`/guilds/${id}/regions`);
     }
 
-    public async fetchWidgetImage(id: Snowflake) {
-        return await this.client.rest.get<RESTGetAPIGuildWidgetImageResult>(
+    public fetchWidgetImage(id: Snowflake) {
+        return this.client.rest.get<RESTGetAPIGuildWidgetImageResult>(
             `/guilds/${id}/widget.png`,
         );
     }
@@ -201,8 +201,8 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return new GuildWidget(this.client, id, widget);
     }
 
-    public async fetchVanityURL(id: Snowflake) {
-        return await this.client.rest.get<RESTGetAPIGuildVanityUrlResult>(
+    public fetchVanityURL(id: Snowflake) {
+        return this.client.rest.get<RESTGetAPIGuildVanityUrlResult>(
             `/guilds/${id}/vanity-url`,
         );
     }
@@ -247,26 +247,26 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return new GuildWelcomeScreen(this.client, id, welcomeScreen);
     }
 
-    public async fetchWebhooks(id: Snowflake) {
+    public fetchWebhooks(id: Snowflake) {
         return this.client.caches.webhooks.fetchGuildWebhooks(id);
     }
 
-    public async editVoiceStateUser(
+    public editVoiceStateUser(
         guildId: Snowflake,
         userId: Snowflake,
         data: RESTPatchAPIGuildVoiceStateUserJSONBody,
     ) {
-        return await this.client.rest.patch<void>(`/guilds/${guildId}/voice-states/${userId}`, {
+        return this.client.rest.patch<void>(`/guilds/${guildId}/voice-states/${userId}`, {
             body: data,
         });
     }
 
-    public async editMeVoiceState(guildId: Snowflake, data: EditGuildMeVoiceStateData) {
+    public editMeVoiceState(guildId: Snowflake, data: EditGuildMeVoiceStateData) {
         (data as any).request_to_speak_timestamp &&= new Date(
             data.request_to_speak_timestamp,
         ).toISOString();
 
-        return await this.client.rest.patch<void>(`/guilds/${guildId}/voice-states/@me`, {
+        return this.client.rest.patch<void>(`/guilds/${guildId}/voice-states/@me`, {
             body: data,
         });
     }
@@ -288,8 +288,8 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return result;
     }
 
-    public async deleteIntegration(guildId: Snowflake, integrationId: Snowflake, reason?: string) {
-        return await this.client.rest.delete<void>(
+    public deleteIntegration(guildId: Snowflake, integrationId: Snowflake, reason?: string) {
+        return this.client.rest.delete<void>(
             `/guilds/${guildId}/integrations/${integrationId}`,
             {
                 reason: reason as string,
@@ -297,8 +297,8 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         );
     }
 
-    public async deleteAutoModerationRule(guildId: Snowflake, ruleId: Snowflake, reason?: string) {
-        return await this.client.rest.delete<void>(
+    public deleteAutoModerationRule(guildId: Snowflake, ruleId: Snowflake, reason?: string) {
+        return this.client.rest.delete<void>(
             `/guilds/${guildId}/auto-moderation/rules/${ruleId}`,
             {
                 reason: reason,
@@ -388,8 +388,8 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         return new ApplicationCommand(this.client, command);
     }
 
-    public async deleteCommand(guildId: Snowflake, commandId: Snowflake) {
-        return await this.client.rest.delete<void>(
+    public deleteCommand(guildId: Snowflake, commandId: Snowflake) {
+        return this.client.rest.delete<void>(
             `/applications/${this.client.user!.id}/guilds/${guildId}/commands/${commandId}`,
         );
     }

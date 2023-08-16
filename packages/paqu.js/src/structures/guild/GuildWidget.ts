@@ -52,8 +52,8 @@ export class GuildWidget extends BaseStructure {
         return this.client.caches.guilds.cache.get(this.guildId)!;
     }
 
-    public async fetch() {
-        return await this.client.caches.guilds.fetchWidgetSettings(this.id);
+    public fetch() {
+        return this.client.caches.guilds.fetchWidgetSettings(this.id);
     }
 
     public toString() {

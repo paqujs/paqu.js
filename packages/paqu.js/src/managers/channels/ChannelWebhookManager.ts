@@ -19,8 +19,8 @@ export class ChannelWebhookManager extends CachedManager<Snowflake, Webhook> {
         this.channel = channel;
     }
 
-    public async create(data: CreateWebhookData, reason?: string) {
-        return await this.client.caches.webhooks.create(this.channel.id, data, reason);
+    public create(data: CreateWebhookData, reason?: string) {
+        return this.client.caches.webhooks.create(this.channel.id, data, reason);
     }
 
     public async fetch(id?: string, options?: FetchOptions) {
@@ -36,18 +36,18 @@ export class ChannelWebhookManager extends CachedManager<Snowflake, Webhook> {
             this.cache.clear();
 
             for (const webhook of webhooks.values()) {
-                this.cache.setAndReturnValue(webhook.id, webhook);
+                this.cache.set(webhook.id, webhook);
             }
 
             return this.cache;
         }
     }
 
-    public async edit(data: EditWebhookData, reason?: string) {
-        return await this.client.caches.webhooks.edit(this.channel.id, data, reason);
+    public edit(data: EditWebhookData, reason?: string) {
+        return this.client.caches.webhooks.edit(this.channel.id, data, reason);
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        return await this.client.caches.webhooks.delete(id, reason);
+    public delete(id: Snowflake, reason?: string) {
+        return this.client.caches.webhooks.delete(id, reason);
     }
 }

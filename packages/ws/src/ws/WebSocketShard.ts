@@ -472,11 +472,11 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
         });
     }
 
-    public async respawn() {
-        return await this.manager.respawn(this.id);
+    public respawn() {
+        return this.manager.respawn(this.id);
     }
 
-    public async reconnect() {
-        return await this.manager.reconnect(this.id);
+    public reconnect() {
+        return this.manager.reconnect(this.id);
     }
 }

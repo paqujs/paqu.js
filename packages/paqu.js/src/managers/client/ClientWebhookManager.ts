@@ -77,8 +77,8 @@ export class ClientWebhookManager extends CachedManager<Snowflake, Webhook> {
         return this.cache.setAndReturnValue(webhook.id, new Webhook(this.client, webhook));
     }
 
-    public async delete(id: Snowflake, token?: string | null, reason?: string) {
-        return await this.client.rest.delete<void>(`/webhooks/${id}${token ? `/${token}` : ''}`, {
+    public delete(id: Snowflake, token?: string | null, reason?: string) {
+        return this.client.rest.delete<void>(`/webhooks/${id}${token ? `/${token}` : ''}`, {
             reason: reason,
         });
     }
@@ -141,13 +141,13 @@ export class ClientWebhookManager extends CachedManager<Snowflake, Webhook> {
         return new Message(this.client, message);
     }
 
-    public async deleteMessage(
+    public deleteMessage(
         webhookId: Snowflake,
         token: string,
         messageId: Snowflake,
         threadId?: Snowflake,
     ) {
-        return await this.client.rest.delete<void>(
+        return this.client.rest.delete<void>(
             `/webhooks/${webhookId}/${token}/messages/${messageId}`,
             {
                 query: { thread_id: threadId },

@@ -20,8 +20,8 @@ export class GuildIntegrationManager extends CachedManager<Snowflake, GuildInteg
         return this.cache;
     }
 
-    public async delete(id: Snowflake, reason?: string) {
+    public delete(id: Snowflake, reason?: string) {
         this.cache.delete(id);
-        return await this.client.caches.guilds.deleteIntegration(this.guild.id, id, reason);
+        return this.client.caches.guilds.deleteIntegration(this.guild.id, id, reason);
     }
 }

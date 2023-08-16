@@ -50,16 +50,16 @@ export class GuildEmoji extends BaseStructure {
         return `https://cdn.discordapp.com/emojis/${this.id}.${this.animated ? 'gif' : 'png'}`;
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.guild.caches.emojis.fetch(this.id!, options);
+    public fetch(options?: FetchOptions) {
+        return this.guild.caches.emojis.fetch(this.id!, options);
     }
 
-    public async delete(reason?: string) {
-        return await this.guild.caches.emojis.delete(this.id!, reason);
+    public delete(reason?: string) {
+        return this.guild.caches.emojis.delete(this.id!, reason);
     }
 
-    public async edit(data: EditEmojiData, reason?: string) {
-        return await this.guild.caches.emojis.edit(this.id!, data, reason);
+    public edit(data: EditEmojiData, reason?: string) {
+        return this.guild.caches.emojis.edit(this.id!, data, reason);
     }
 
     public toString() {

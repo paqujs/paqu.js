@@ -79,9 +79,8 @@ export class ClientUserManager extends CachedManager<Snowflake, User> {
         ) as DMChannel;
     }
 
-    public async deleteDM(id: Snowflake) {
-        await this.client.rest.delete(`/channels/${id}`);
+    public deleteDM(id: Snowflake) {
         this.client.caches.channels.cache.delete(id);
-        return;
+        return this.client.rest.delete<void>(`/channels/${id}`);
     }
 }

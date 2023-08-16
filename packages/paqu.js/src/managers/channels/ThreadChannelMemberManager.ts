@@ -11,16 +11,16 @@ export class ThreadChannelMemberManager extends CachedManager<Snowflake, ThreadM
         this.channel = channel;
     }
 
-    public async add(id: Snowflake): Promise<void> {
-        return await this.channel.guild.caches.channels.addThreadMember(this.channel.id, id);
+    public add(id: Snowflake): Promise<void> {
+        return this.channel.guild.caches.channels.addThreadMember(this.channel.id, id);
     }
 
-    public async remove(id: Snowflake): Promise<void> {
-        return await this.channel.guild.caches.channels.removeThreadMember(this.channel.id, id);
+    public remove(id: Snowflake): Promise<void> {
+        return this.channel.guild.caches.channels.removeThreadMember(this.channel.id, id);
     }
 
-    public async fetch(id?: Snowflake, options?: FetchOptions) {
-        return await this.channel.guild.caches.channels.fetchThreadMembers(
+    public fetch(id?: Snowflake, options?: FetchOptions) {
+        return this.channel.guild.caches.channels.fetchThreadMembers(
             this.channel.id,
             id,
             options,

@@ -93,23 +93,23 @@ export class BaseInteraction extends BaseStructure {
         return this.client.caches.guilds.cache.get(this.guildId!);
     }
 
-    public async fetchReply(messageId: Snowflake | '@original' = '@original') {
-        return await this.webhook.caches.messages.fetch(messageId);
+    public fetchReply(messageId: Snowflake | '@original' = '@original') {
+        return this.webhook.caches.messages.fetch(messageId);
     }
 
-    public async editReply(
+    public editReply(
         data: EditWebhookMessageData,
         messageId: Snowflake | '@original' = '@original',
     ) {
-        return await this.webhook.caches.messages.edit(messageId, data);
+        return this.webhook.caches.messages.edit(messageId, data);
     }
 
-    public async deleteReply(messageId: Snowflake | '@original' = '@original') {
-        return await this.webhook.caches.messages.delete(messageId);
+    public deleteReply(messageId: Snowflake | '@original' = '@original') {
+        return this.webhook.caches.messages.delete(messageId);
     }
 
-    public async followUp(data: CreateWebhookMessageData) {
-        return await this.webhook.send(data, {
+    public followUp(data: CreateWebhookMessageData) {
+        return this.webhook.send(data, {
             wait: undefined,
         });
     }
@@ -199,8 +199,8 @@ export class BaseInteraction extends BaseStructure {
         return undefined;
     }
 
-    public async showModal(data: APIModalInteractionResponseCallbackData) {
-        return await this.client.rest.post<void>(
+    public showModal(data: APIModalInteractionResponseCallbackData) {
+        return this.client.rest.post<void>(
             `/interactions/${this.id}/${this.token}/callback`,
             {
                 body: {

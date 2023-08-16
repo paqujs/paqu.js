@@ -139,13 +139,12 @@ export class Invite extends BaseStructure {
         return this;
     }
 
-    public async delete(reason?: string) {
-        await this.channel?.caches.invites.delete(this.code, reason);
-        return;
+    public delete(reason?: string) {
+        return this.channel?.caches.invites.delete(this.code, reason);
     }
 
-    public async fetch(options?: FetchInviteOptions) {
-        return (await this.channel?.caches.invites.fetch(this.code, options)) as Invite | undefined;
+    public fetch(options?: FetchInviteOptions) {
+        return this.channel?.caches.invites.fetch(this.code, options) as Promise<Invite>;
     }
 
     public get channel() {

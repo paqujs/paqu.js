@@ -109,24 +109,24 @@ export class GuildScheduledEvent extends BaseStructure {
             : null;
     }
 
-    public async delete(reason?: string) {
-        await this.guild!.caches.scheduledEvents.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.guild!.caches.scheduledEvents.delete(this.id, reason);
     }
 
-    public async edit(data: EditGuildScheduledEventData, reason?: string) {
-        return await this.guild!.caches.scheduledEvents.edit(this.id, data, reason);
+    public edit(data: EditGuildScheduledEventData, reason?: string) {
+        return this.guild!.caches.scheduledEvents.edit(this.id, data, reason);
     }
 
-    public async fetch(options?: FetchGuildScheduledEventOptions) {
-        return await this.guild!.caches.scheduledEvents.fetch(this.id, options);
+    public fetch(options?: FetchGuildScheduledEventOptions) {
+        return this.guild!.caches.scheduledEvents.fetch(this.id, options);
     }
 
-    public async fetchUsers() {
-        return await this.guild!.caches.scheduledEvents.fetchUsers(this.id);
+    public fetchUsers() {
+        return this.guild!.caches.scheduledEvents.fetchUsers(this.id);
     }
 
-    public async createInvite(data: CreateInviteData, reason?: string) {
-        return await this.channel?.caches.invites.create(data, reason)!;
+    public createInvite(data: CreateInviteData, reason?: string) {
+        return this.channel?.caches.invites.create(data, reason);
     }
 
     public toString() {

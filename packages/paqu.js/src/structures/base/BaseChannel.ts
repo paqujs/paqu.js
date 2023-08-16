@@ -44,20 +44,20 @@ export class BaseChannel extends BaseStructure {
         return `https://discordapp.com/channels/@me/${this.id}`;
     }
 
-    public async delete(reason?: string) {
-        return await this.client.caches.channels.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.client.caches.channels.delete(this.id, reason);
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.client.caches.channels.fetch(this.id, options);
+    public fetch(options?: FetchOptions) {
+        return this.client.caches.channels.fetch(this.id, options);
     }
 
-    public async edit(data: EditChannelData, reason?: string) {
+    public edit(data: EditChannelData, reason?: string) {
         if (!data.name) {
             data.name = this.name;
         }
 
-        return await this.client.caches.channels.edit(this.id, data, reason);
+        return this.client.caches.channels.edit(this.id, data, reason);
     }
 
     public toString() {

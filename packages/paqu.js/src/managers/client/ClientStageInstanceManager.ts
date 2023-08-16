@@ -71,9 +71,9 @@ export class ClientStageInstanceManager extends BaseManager {
         );
     }
 
-    public async delete(id: Snowflake, reason?: string) {
+    public delete(id: Snowflake, reason?: string) {
         this.cache.delete(id);
-        return await this.client.rest.delete<void>(`/stage-instances/${id}`, {
+        return this.client.rest.delete<void>(`/stage-instances/${id}`, {
             reason: reason as string,
         });
     }

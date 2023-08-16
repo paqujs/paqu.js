@@ -104,20 +104,20 @@ export class Role extends BaseStructure {
         return SnowflakeUtil.timestampFrom(this.id!);
     }
 
-    public async fetch(options?: FetchOptions): Promise<Role> {
-        return (await this.guild.caches.roles.fetch(this.id, options)) as unknown as Role;
+    public fetch(options?: FetchOptions): Promise<Role> {
+        return this.guild.caches.roles.fetch(this.id, options) as Promise<Role>;
     }
 
-    public async delete(reason?: string) {
-        return await this.guild.caches.roles.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.guild.caches.roles.delete(this.id, reason);
     }
 
-    public async edit(data: EditAndCreateRoleData, reason?: string) {
-        return await this.guild.caches.roles.edit(this.id, data, reason);
+    public edit(data: EditAndCreateRoleData, reason?: string) {
+        return this.guild.caches.roles.edit(this.id, data, reason);
     }
 
-    public async setPosition(position: number, reason?: string) {
-        return await this.guild.caches.roles.setPosition(this.id, position, reason);
+    public setPosition(position: number, reason?: string) {
+        return this.guild.caches.roles.setPosition(this.id, position, reason);
     }
 
     public iconURL({ dynamic, size, format }: ImageOptions = { dynamic: true, size: 1024 }) {

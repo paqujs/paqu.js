@@ -87,10 +87,10 @@ export class GuildBanManager extends CachedManager<Snowflake, GuildBan> {
         );
     }
 
-    public async remove(id: Snowflake, reason?: string) {
+    public remove(id: Snowflake, reason?: string) {
         this.cache.delete(id);
 
-        return await this.client.rest.delete<void>(`/guilds/${this.guild.id}/bans/${id}`, {
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/bans/${id}`, {
             reason: reason as string,
         });
     }

@@ -69,39 +69,42 @@ export class ApplicationCommand extends BaseStructure {
         return new Date(this.createdTimestamp);
     }
 
-    public async fetch(options?: FetchOptions) {
+    public fetch(options?: FetchOptions) {
         if (this.guild) {
-            return (await this.guild.caches.commands.fetch(this.id, options)) as ApplicationCommand;
-        } else {
-            return (await this.client.caches.commands.fetch(
+            return this.guild.caches.commands.fetch(
                 this.id,
                 options,
-            )) as ApplicationCommand;
-        }
-    }
-
-    public async edit(data: EditCommandData) {
-        if (this.guild) {
-            return await this.guild.caches.commands.edit(this.id, data);
+            ) as Promise<ApplicationCommand>;
         } else {
-            return await this.client.caches.commands.edit(this.id, data);
+            return this.client.caches.commands.fetch(
+                this.id,
+                options,
+            ) as Promise<ApplicationCommand>;
         }
     }
 
-    public async delete() {
+    public edit(data: EditCommandData) {
         if (this.guild) {
-            return await this.guild.caches.commands.delete(this.id);
+            return this.guild.caches.commands.edit(this.id, data);
         } else {
-            return await this.client.caches.commands.delete(this.id);
+            return this.client.caches.commands.edit(this.id, data);
         }
     }
 
-    public async fetchPermissions() {
-        return await this.guild!.caches.commands.fetchPermissions(this.id);
+    public delete() {
+        if (this.guild) {
+            return this.guild.caches.commands.delete(this.id);
+        } else {
+            return this.client.caches.commands.delete(this.id);
+        }
     }
 
-    public async setPermissions(permissions: ApplicationCommandPermissionsChild[], token?: string) {
-        return await this.guild!.caches.commands.setPermissions(this.id, permissions, token);
+    public fetchPermissions() {
+        return this.guild!.caches.commands.fetchPermissions(this.id);
+    }
+
+    public setPermissions(permissions: ApplicationCommandPermissionsChild[], token?: string) {
+        return this.guild!.caches.commands.setPermissions(this.id, permissions, token);
     }
 
     public toString() {

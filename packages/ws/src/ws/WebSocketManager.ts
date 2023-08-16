@@ -120,8 +120,8 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
         return this.#options;
     }
 
-    public async getGatewayBot() {
-        return await this.options.rest.get<APIGatewayBotInfo>('/gateway/bot');
+    public getGatewayBot() {
+        return this.options.rest.get<APIGatewayBotInfo>('/gateway/bot');
     }
 
     public get ping() {

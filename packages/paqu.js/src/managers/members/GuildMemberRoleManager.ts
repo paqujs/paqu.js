@@ -38,7 +38,7 @@ export class GuildMemberRoleManager extends CachedManager<Snowflake, Role> {
         );
     }
 
-    public async set(roles: Snowflake[], reason?: string) {
+    public set(roles: Snowflake[], reason?: string) {
         this.cache.clear();
 
         for (const id of roles) {
@@ -49,21 +49,21 @@ export class GuildMemberRoleManager extends CachedManager<Snowflake, Role> {
             }
         }
 
-        return await this.member.edit({ roles }, reason);
+        return this.member.edit({ roles }, reason);
     }
 
-    public async add(id: Snowflake, reason?: string) {
+    public add(id: Snowflake, reason?: string) {
         const role = this.guild.caches.roles.cache.get(id);
 
         if (role) {
             this.cache.set(id, role);
         }
 
-        return await this.guild.caches.members.addRole(this.member.id, id, reason);
+        return this.guild.caches.members.addRole(this.member.id, id, reason);
     }
 
-    public async remove(id: Snowflake, reason?: string) {
+    public remove(id: Snowflake, reason?: string) {
         this.cache.delete(id);
-        return await this.guild.caches.members.removeRole(this.member.id, id, reason);
+        return this.guild.caches.members.removeRole(this.member.id, id, reason);
     }
 }

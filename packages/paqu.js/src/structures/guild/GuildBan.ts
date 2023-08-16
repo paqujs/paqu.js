@@ -46,12 +46,12 @@ export class GuildBan extends BaseStructure {
         return this.guild.caches.members.cache.get(this.userId);
     }
 
-    public async fetch(options?: FetchBanOptions) {
-        return await this.guild.caches.bans.fetch(this.userId, options);
+    public fetch(options?: FetchBanOptions) {
+        return this.guild.caches.bans.fetch(this.userId, options);
     }
 
-    public async remove(reason?: string) {
-        return await this.guild.caches.bans.remove(this.userId, reason);
+    public remove(reason?: string) {
+        return this.guild.caches.bans.remove(this.userId, reason);
     }
 
     public toString() {

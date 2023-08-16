@@ -19,8 +19,8 @@ export class ChannelThreadManager extends CachedManager<Snowflake, ThreadChannel
         this.channel = channel;
     }
 
-    public async start(data: StartThreadData, reason?: string | null, messageId?: Snowflake) {
-        return await this.channel.guild.caches.channels.startThread(
+    public start(data: StartThreadData, reason?: string | null, messageId?: Snowflake) {
+        return this.channel.guild.caches.channels.startThread(
             this.channel.id,
             data,
             reason,
@@ -28,24 +28,24 @@ export class ChannelThreadManager extends CachedManager<Snowflake, ThreadChannel
         );
     }
 
-    public async join() {
-        return await this.channel.guild.caches.channels.joinThread(this.channel.id);
+    public join() {
+        return this.channel.guild.caches.channels.joinThread(this.channel.id);
     }
 
-    public async leave() {
-        return await this.channel.guild.caches.channels.leaveThread(this.channel.id);
+    public leave() {
+        return this.channel.guild.caches.channels.leaveThread(this.channel.id);
     }
 
-    public async addMember(id: Snowflake) {
-        return await this.channel.guild.caches.channels.addThreadMember(this.channel.id, id);
+    public addMember(id: Snowflake) {
+        return this.channel.guild.caches.channels.addThreadMember(this.channel.id, id);
     }
 
-    public async removeMember(id: Snowflake) {
-        return await this.channel.guild.caches.channels.removeThreadMember(this.channel.id, id);
+    public removeMember(id: Snowflake) {
+        return this.channel.guild.caches.channels.removeThreadMember(this.channel.id, id);
     }
 
-    public async fetchMembers(id?: Snowflake, options?: FetchOptions) {
-        return await this.channel.guild.caches.channels.fetchThreadMembers(
+    public fetchMembers(id?: Snowflake, options?: FetchOptions) {
+        return this.channel.guild.caches.channels.fetchThreadMembers(
             this.channel.id,
             id,
             options,
@@ -93,8 +93,8 @@ export class ChannelThreadManager extends CachedManager<Snowflake, ThreadChannel
         };
     }
 
-    public async fetchJoins(options?: FetchArchivedThreadOptions) {
-        return await this.channel.guild.caches.channels.fetchJoinedThreads(
+    public fetchJoins(options?: FetchArchivedThreadOptions) {
+        return this.channel.guild.caches.channels.fetchJoinedThreads(
             this.channel.id,
             options,
         );

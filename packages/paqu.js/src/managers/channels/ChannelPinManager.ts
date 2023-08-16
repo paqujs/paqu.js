@@ -11,15 +11,15 @@ export class ChannelPinManager extends CachedManager<Snowflake, Message> {
         this.channel = channel;
     }
 
-    public async create(id: Snowflake, reason?: string) {
-        return await this.channel.caches.messages.pin(id, reason);
+    public create(id: Snowflake, reason?: string) {
+        return this.channel.caches.messages.pin(id, reason);
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        return await this.channel.caches.messages.unpin(id, reason);
+    public delete(id: Snowflake, reason?: string) {
+        return this.channel.caches.messages.unpin(id, reason);
     }
 
-    public async fetch() {
-        return await this.channel.caches.messages.fetchPins();
+    public fetch() {
+        return this.channel.caches.messages.fetchPins();
     }
 }

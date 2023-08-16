@@ -114,11 +114,11 @@ export class GuildScheduledEventManager extends CachedManager<Snowflake, GuildSc
         );
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/guilds/${this.guild.id}/scheduled-events/${id}`, {
+    public delete(id: Snowflake, reason?: string) {
+        this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/scheduled-events/${id}`, {
             reason: reason as string,
         });
-        this.cache.delete(id);
     }
 
     public async fetchUsers(

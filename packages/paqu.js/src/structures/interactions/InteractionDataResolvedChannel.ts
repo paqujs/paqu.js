@@ -56,15 +56,15 @@ export class InteractionDataResolvedChannel extends BaseStructure {
             : `https://discordapp.com/channels/@me/${this.id}`;
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.guild.caches.channels.fetch(this.id, options);
+    public fetch(options?: FetchOptions) {
+        return this.guild.caches.channels.fetch(this.id, options);
     }
 
-    public async delete(reason?: string) {
-        return await this.guild.caches.channels.delete(this.id, reason);
+    public delete(reason?: string) {
+        return this.guild.caches.channels.delete(this.id, reason);
     }
 
-    public async edit(data: EditChannelData, reason?: string) {
-        return await this.guild.caches.channels.edit(this.id, data, reason);
+    public edit(data: EditChannelData, reason?: string) {
+        return this.guild.caches.channels.edit(this.id, data, reason);
     }
 }

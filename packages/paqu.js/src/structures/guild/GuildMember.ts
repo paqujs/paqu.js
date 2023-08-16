@@ -163,24 +163,24 @@ export class GuildMember extends BaseStructure {
         return this.joinedAt.getTime();
     }
 
-    public async edit(data: EditGuildMemberData, reason?: string) {
-        return await this.guild.caches.members.edit(this.id, data, reason);
+    public edit(data: EditGuildMemberData, reason?: string) {
+        return this.guild.caches.members.edit(this.id, data, reason);
     }
 
-    public async fetch(options?: FetchMemberOptions) {
-        return await this.guild.caches.members.fetch(this.id, options);
+    public fetch(options?: FetchMemberOptions) {
+        return this.guild.caches.members.fetch(this.id, options);
     }
 
-    public async kick(reason?: string) {
-        return await this.guild.caches.members.kick(this.id, reason);
+    public kick(reason?: string) {
+        return this.guild.caches.members.kick(this.id, reason);
     }
 
-    public async ban(options?: CreateBanOptions) {
-        return await this.guild.caches.bans.create(this.id, options);
+    public ban(options?: CreateBanOptions) {
+        return this.guild.caches.bans.create(this.id, options);
     }
 
-    public async unban(reason?: string) {
-        return await this.guild.caches.bans.remove(this.id, reason);
+    public unban(reason?: string) {
+        return this.guild.caches.bans.remove(this.id, reason);
     }
 
     public avatarURL({ dynamic, size, format }: ImageOptions = { dynamic: true, size: 1024 }) {

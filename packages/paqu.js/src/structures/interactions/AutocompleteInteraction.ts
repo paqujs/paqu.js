@@ -29,8 +29,8 @@ export class AutocompleteInteraction extends BaseInteraction {
         return this;
     }
 
-    public async result(choices: APIApplicationCommandOptionChoice[]) {
-        return await this.client.rest.post<void>(
+    public result(choices: APIApplicationCommandOptionChoice[]) {
+        return this.client.rest.post<void>(
             `/interactions/${this.id}/${this.token}/callback`,
             {
                 body: {

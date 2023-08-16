@@ -53,18 +53,14 @@ export class ChannelPermissionOverwriteManager extends CachedManager<
         };
     }
 
-    public async delete(id: Snowflake, reason?: string) {
-        return await this.channel.guild.caches.channels.deleteOverwrite(
-            this.channel.id,
-            id,
-            reason,
-        );
+    public delete(id: Snowflake, reason?: string) {
+        return this.channel.guild.caches.channels.deleteOverwrite(this.channel.id, id, reason);
     }
 
-    public async set(permissions: CreateChannelOverwriteData[]) {
+    public set(permissions: CreateChannelOverwriteData[]) {
         this.cache.clear();
-        return (await this.client.caches.channels.edit(this.channel.id, {
+        return this.client.caches.channels.edit(this.channel.id, {
             permission_overwrites: permissions,
-        })) as GuildBasedPermissionOverwritableChannelResolvable;
+        }) as Promise<GuildBasedPermissionOverwritableChannelResolvable>;
     }
 }

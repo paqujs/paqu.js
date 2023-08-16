@@ -28,8 +28,8 @@ export class GroupDMChannelRecipientManager extends CachedManager<Snowflake, Use
             });
     }
 
-    public async remove(userId: Snowflake) {
-        await this.client.rest.delete(`/channels/${this.channel.id}/recipients/${userId}`);
+    public remove(userId: Snowflake) {
         this.cache.delete(userId);
+        return this.client.rest.delete<void>(`/channels/${this.channel.id}/recipients/${userId}`);
     }
 }

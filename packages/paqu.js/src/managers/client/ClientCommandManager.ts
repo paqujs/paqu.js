@@ -97,10 +97,10 @@ export class ClientCommandManager extends CachedManager<Snowflake, ApplicationCo
         );
     }
 
-    public async delete(id: Snowflake) {
+    public delete(id: Snowflake) {
         this.cache.delete(id);
 
-        return await this.client.rest.delete<void>(
+        return this.client.rest.delete<void>(
             `/applications/${this.client.user!.id}/commands/${id}`,
         );
     }

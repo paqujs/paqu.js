@@ -31,9 +31,9 @@ export class GuildStageInstanceManager extends CachedManager<Snowflake, StageIns
         return this.cache.setAndReturnValue(stageInstance.id, stageInstance);
     }
 
-    public async delete(id: Snowflake, reason?: string) {
+    public delete(id: Snowflake, reason?: string) {
         this.cache.delete(id);
-        return await this.client.caches.stageInstances.delete(id, reason);
+        return this.client.caches.stageInstances.delete(id, reason);
     }
 
     public async edit(id: Snowflake, data: EditStageInstanceData, reason?: string) {

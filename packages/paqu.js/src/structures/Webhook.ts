@@ -136,28 +136,28 @@ export class Webhook extends BaseStructure {
             : null;
     }
 
-    public async fetch(options?: FetchOptions) {
-        return await this.client.caches.webhooks.fetch(this.id, options);
+    public fetch(options?: FetchOptions) {
+        return this.client.caches.webhooks.fetch(this.id, options);
     }
 
-    public async edit(data: EditWebhookData, reason?: string) {
-        return await this.client.caches.webhooks.edit(this.id, data, reason);
+    public edit(data: EditWebhookData, reason?: string) {
+        return this.client.caches.webhooks.edit(this.id, data, reason);
     }
 
-    public async delete(reason?: string) {
-        return await this.client.caches.webhooks.delete(this.id, this.token, reason);
+    public delete(reason?: string) {
+        return this.client.caches.webhooks.delete(this.id, this.token, reason);
     }
 
-    public async send(data: CreateWebhookMessageData, options?: CreateWebhookMessageOptions) {
-        return await this.caches.messages.create(data, options);
+    public send(data: CreateWebhookMessageData, options?: CreateWebhookMessageOptions) {
+        return this.caches.messages.create(data, options);
     }
 
-    public async sendSlackMessage(options?: CreateWebhookMessageOptions) {
-        return await this.caches.messages.createSlackMessage(options);
+    public sendSlackMessage(options?: CreateWebhookMessageOptions) {
+        return this.caches.messages.createSlackMessage(options);
     }
 
-    public async sendGitHubMessage(options?: CreateWebhookMessageOptions) {
-        return await this.caches.messages.createGithubMessage(options);
+    public sendGitHubMessage(options?: CreateWebhookMessageOptions) {
+        return this.caches.messages.createGithubMessage(options);
     }
 
     public toString() {

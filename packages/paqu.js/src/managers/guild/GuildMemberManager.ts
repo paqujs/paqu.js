@@ -91,11 +91,11 @@ export class GuildMemberManager extends CachedManager<Snowflake, GuildMember> {
         );
     }
 
-    public async kick(id: Snowflake, reason?: string) {
-        await this.client.rest.delete(`/guilds/${this.guild.id}/members/${id}`, {
+    public kick(id: Snowflake, reason?: string) {
+        this.cache.delete(id);
+        return this.client.rest.delete<void>(`/guilds/${this.guild.id}/members/${id}`, {
             reason: reason as string,
         });
-        this.cache.delete(id);
     }
 
     public async edit(id: Snowflake, data: EditGuildMemberData, reason?: string) {
@@ -125,14 +125,14 @@ export class GuildMemberManager extends CachedManager<Snowflake, GuildMember> {
         );
     }
 
-    public async addRole(memberId: Snowflake, roleId: Snowflake, reason?: string) {
-        await this.client.rest.put(`/guilds/${this.guild.id}/members/${memberId}/roles/${roleId}`, {
+    public addRole(memberId: Snowflake, roleId: Snowflake, reason?: string) {
+        return this.client.rest.put<void>(`/guilds/${this.guild.id}/members/${memberId}/roles/${roleId}`, {
             reason: reason as string,
         });
     }
 
-    public async removeRole(memberId: Snowflake, roleId: Snowflake, reason?: string) {
-        await this.client.rest.delete(
+    public removeRole(memberId: Snowflake, roleId: Snowflake, reason?: string) {
+        return this.client.rest.delete<void>(
             `/guilds/${this.guild.id}/members/${memberId}/roles/${roleId}`,
             {
                 reason: reason as string,

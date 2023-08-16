@@ -1,5 +1,4 @@
 import type { Client, CreateMessageData, User } from '../../index';
-
 import { BaseManager } from '../base/BaseManager';
 
 export class UserDMManager extends BaseManager {
@@ -11,16 +10,16 @@ export class UserDMManager extends BaseManager {
         this.user = user;
     }
 
-    public async fetch() {
-        return await this.client.caches.users.fetchDM(this.user.id);
+    public fetch() {
+        return this.client.caches.users.fetchDM(this.user.id);
     }
 
-    public async create() {
-        return await this.client.caches.users.createDM(this.user.id);
+    public create() {
+        return this.client.caches.users.createDM(this.user.id);
     }
 
-    public async delete() {
-        return await this.client.caches.users.deleteDM(this.user.id);
+    public delete() {
+        return this.client.caches.users.deleteDM(this.user.id);
     }
 
     public async send(data: CreateMessageData) {

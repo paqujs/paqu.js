@@ -37,16 +37,16 @@ export class VoiceChannel extends BaseVoiceChannel {
         return this;
     }
 
-    public override async fetch(options?: FetchOptions) {
-        return (await super.fetch(options)) as VoiceChannel;
+    public override fetch(options?: FetchOptions) {
+        return super.fetch(options) as Promise<VoiceChannel>;
     }
 
-    public override async edit(data: EditChannelData, reason?: string) {
-        return (await super.edit(data, reason)) as VoiceChannel;
+    public override edit(data: EditChannelData, reason?: string) {
+        return super.edit(data, reason) as Promise<VoiceChannel>;
     }
 
-    public async send(data: CreateMessageData | string) {
-        return await this.caches.messages.create(data);
+    public send(data: CreateMessageData | string) {
+        return this.caches.messages.create(data);
     }
 
     public get lastMessage() {

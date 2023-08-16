@@ -343,8 +343,8 @@ export class Message extends BaseStructure {
         return this.channel?.caches.messages.edit(this.id, data);
     }
 
-    public async reply(data: ReplyMessageOptions, failIfNotExists?: boolean) {
-        return await this.channel?.caches.messages.create({
+    public reply(data: ReplyMessageOptions, failIfNotExists?: boolean) {
+        return this.channel?.caches.messages.create({
             ...data,
             message_reference: {
                 channel_id: this.channelId,
@@ -375,15 +375,15 @@ export class Message extends BaseStructure {
         return new MessageComponentCollector(this.client, this, options);
     }
 
-    public async crosspost() {
-        return await this.channel.caches.messages.crosspost(this.id);
+    public crosspost() {
+        return this.channel.caches.messages.crosspost(this.id);
     }
 
-    public async react(emoji: string) {
-        return await this.caches.reactions.create(emoji);
+    public react(emoji: string) {
+        return this.caches.reactions.create(emoji);
     }
 
-    public async unreact(emoji: string, userId: Snowflake | '@me') {
-        return await this.caches.reactions.delete(emoji, userId);
+    public unreact(emoji: string, userId: Snowflake | '@me') {
+        return this.caches.reactions.delete(emoji, userId);
     }
 }
