@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.1.8
     version: 1.1.8
   '@paqujs/ws':
-    specifier: ^1.1.8
-    version: 1.1.8
+    specifier: ^1.1.9
+    version: 1.1.9
   '@sapphire/snowflake':
     specifier: ^3.5.1
     version: 3.5.1
@@ -356,8 +356,8 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@paqujs/ws@1.1.8:
-    resolution: {integrity: sha512-VmlnA2SptUD5ok5DQ+ZUurYge4jb2eV5m5kkqvYmWrDgL1ATyVrUtH8RLzJBc6gscQdziKSG5GfOHD9i8b6RAA==}
+  /@paqujs/ws@1.1.9:
+    resolution: {integrity: sha512-SsNyp4dYbXjl1x+0rBs8ku49AddklPE1PZCoV/SBO2whZkNk7RDS07QNNUav8VomN0bjaJOBwULNW/yzZTsQPw==}
     dependencies:
       '@paqujs/bitfields': 1.1.5
       '@paqujs/resolvers': 1.1.4
