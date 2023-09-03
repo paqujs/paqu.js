@@ -5,6 +5,7 @@ import {
     type LocalizationMap,
     type FetchOptions,
     type EditCommandData,
+    type ApplicationCommandPermissions,
     SnowflakeUtil,
     ApplicationCommandPermissionsChild,
 } from '../../index';
@@ -100,11 +101,13 @@ export class ApplicationCommand extends BaseStructure {
     }
 
     public fetchPermissions() {
-        return this.guild!.caches.commands.fetchPermissions(this.id);
+        return this.guild!.caches.commands.permissions.fetch(
+            this.id,
+        ) as Promise<ApplicationCommandPermissions>;
     }
 
-    public setPermissions(permissions: ApplicationCommandPermissionsChild[], token?: string) {
-        return this.guild!.caches.commands.setPermissions(this.id, permissions, token);
+    public setPermissions(token: string, permissions: ApplicationCommandPermissionsChild[]) {
+        return this.guild!.caches.commands.permissions.set(this.id, token, permissions);
     }
 
     public toString() {

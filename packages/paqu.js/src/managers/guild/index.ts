@@ -11,3 +11,4 @@ export * from './GuildVoiceStateManager';
 export * from './GuildIntegrationManager';
 export * from './GuildAutoModerationRuleManager';
 export * from './GuildCommandManager';
+export * from './GuildCommandPermissionsManager';

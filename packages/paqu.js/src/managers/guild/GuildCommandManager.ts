@@ -1,24 +1,26 @@
-import type {
-    Snowflake,
-    Client,
-    Collectionable,
-    FetchCommandOptions,
-    ApplicationCommand,
-    CreateCommandData,
-    Guild,
-    ApplicationCommandPermissionsChildData,
-    EditCommandData,
+import {
+    type Snowflake,
+    type Client,
+    type Collectionable,
+    type FetchCommandOptions,
+    type ApplicationCommand,
+    type CreateCommandData,
+    type Guild,
+    type EditCommandData,
+    GuildCommandPermissionsManager,
 } from '../../index';
 import { Collection } from '@paqujs/shared';
 import { CachedManager } from '../base/CachedManager';
 
 export class GuildCommandManager extends CachedManager<Snowflake, ApplicationCommand> {
     public guild: Guild;
+    public permissions!: GuildCommandPermissionsManager;
 
     public constructor(client: Client, guild: Guild) {
         super(client);
 
         this.guild = guild;
+        this.permissions = new GuildCommandPermissionsManager(client, guild);
     }
 
     public async fetch(
@@ -77,22 +79,5 @@ export class GuildCommandManager extends CachedManager<Snowflake, ApplicationCom
         this.cache.concat(result);
 
         return this.cache;
-    }
-
-    public fetchPermissions(id: Snowflake) {
-        return this.client.caches.guilds.fetchCommandPermissions(this.guild.id, id);
-    }
-
-    public setPermissions(
-        id: Snowflake,
-        permissions: ApplicationCommandPermissionsChildData[],
-        token?: string,
-    ) {
-        return this.client.caches.guilds.setCommandPermissions(
-            this.guild.id,
-            id,
-            permissions,
-            token,
-        );
     }
 }

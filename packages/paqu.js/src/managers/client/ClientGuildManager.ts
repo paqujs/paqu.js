@@ -36,6 +36,7 @@ import {
     type FetchCommandOptions,
     type APIAuditLog,
     type APIGuildOnboarding,
+    type RESTGetAPIGuildApplicationCommandsPermissionsResult,
     GuildWidgetSettings,
     GuildWidget,
     GuildPreview,
@@ -180,9 +181,7 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
     }
 
     public fetchWidgetImage(id: Snowflake) {
-        return this.client.rest.get<RESTGetAPIGuildWidgetImageResult>(
-            `/guilds/${id}/widget.png`,
-        );
+        return this.client.rest.get<RESTGetAPIGuildWidgetImageResult>(`/guilds/${id}/widget.png`);
     }
 
     public async fetchWidgetSettings(id: Snowflake) {
@@ -202,9 +201,7 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
     }
 
     public fetchVanityURL(id: Snowflake) {
-        return this.client.rest.get<RESTGetAPIGuildVanityUrlResult>(
-            `/guilds/${id}/vanity-url`,
-        );
+        return this.client.rest.get<RESTGetAPIGuildVanityUrlResult>(`/guilds/${id}/vanity-url`);
     }
 
     public async fetchWelcomeScreen(id: Snowflake) {
@@ -289,21 +286,15 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
     }
 
     public deleteIntegration(guildId: Snowflake, integrationId: Snowflake, reason?: string) {
-        return this.client.rest.delete<void>(
-            `/guilds/${guildId}/integrations/${integrationId}`,
-            {
-                reason: reason as string,
-            },
-        );
+        return this.client.rest.delete<void>(`/guilds/${guildId}/integrations/${integrationId}`, {
+            reason: reason as string,
+        });
     }
 
     public deleteAutoModerationRule(guildId: Snowflake, ruleId: Snowflake, reason?: string) {
-        return this.client.rest.delete<void>(
-            `/guilds/${guildId}/auto-moderation/rules/${ruleId}`,
-            {
-                reason: reason,
-            },
-        );
+        return this.client.rest.delete<void>(`/guilds/${guildId}/auto-moderation/rules/${ruleId}`, {
+            reason: reason,
+        });
     }
 
     public async createAutoModerationRule(
@@ -439,22 +430,39 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
         }
     }
 
-    public async fetchCommandPermissions(guildId: Snowflake, commandId: Snowflake) {
+    public async fetchCommandPermissions(
+        guildId: Snowflake,
+        commandId?: Snowflake,
+    ): Promise<Collectionable<Snowflake, ApplicationCommandPermissions>> {
+        if (commandId) {
+            const permissions =
+                await this.client.rest.get<RESTGetAPIApplicationCommandPermissionsResult>(
+                    `/applications/${
+                        this.client.user!.id
+                    }/guilds/${guildId}/commands/${commandId}/permissions`,
+                );
+
+            return new ApplicationCommandPermissions(permissions);
+        }
+
         const permissions =
-            await this.client.rest.get<RESTGetAPIApplicationCommandPermissionsResult>(
-                `/applications/${
-                    this.client.user!.id
-                }/guilds/${guildId}/commands/${commandId}/permissions`,
+            await this.client.rest.get<RESTGetAPIGuildApplicationCommandsPermissionsResult>(
+                `/applications/${this.client.user!.id}/guilds/${guildId}/commands/permissions`,
             );
 
-        return new ApplicationCommandPermissions(permissions);
+        return new Collection<Snowflake, ApplicationCommandPermissions>(
+            permissions.map((permission) => [
+                permission.id,
+                new ApplicationCommandPermissions(permission),
+            ]),
+        );
     }
 
     public async setCommandPermissions(
         guildId: Snowflake,
         commandId: Snowflake,
+        token: string,
         data: ApplicationCommandPermissionsChildData[],
-        token?: string,
     ) {
         for (const permission of data) {
             if (typeof permission.type !== 'number') {
@@ -472,7 +480,7 @@ export class ClientGuildManager extends CachedManager<Snowflake, Guild> {
                 {
                     body: { permissions: data },
                     headers: {
-                        Authorization: token!,
+                        Authorization: `Bearer ${token}`,
                     },
                 },
             );
