@@ -188,6 +188,12 @@ export class REST {
                     : new URLSearchParams(query).toString();
         }
 
+        url.searchParams.forEach((value, key) => {
+            if (value === undefined) {
+                url.searchParams.delete(key);
+            }
+        });
+
         let resolvedBody: BodyInit;
 
         if (files?.length) {
