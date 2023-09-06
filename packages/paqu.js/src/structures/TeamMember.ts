@@ -1,5 +1,5 @@
 import type { APITeamMember, Client, Snowflake } from '../index';
-import { TeamMemberMembershipState } from 'discord-api-types/v10';
+import { TeamMemberMembershipState, TeamMemberRole } from 'discord-api-types/v10';
 import { BaseStructure } from './base/BaseStructure';
 
 export class TeamMember extends BaseStructure {
@@ -7,6 +7,7 @@ export class TeamMember extends BaseStructure {
     public permissions!: string[];
     public teamId!: Snowflake;
     public userId!: Snowflake;
+    public role!: keyof typeof TeamMemberRole;
 
     public constructor(client: Client, data: APITeamMember) {
         super(client);
@@ -21,6 +22,7 @@ export class TeamMember extends BaseStructure {
         this.permissions = data.permissions;
         this.teamId = data.team_id;
         this.userId = data.user.id;
+        this.role = TeamMemberRole[data.role] as keyof typeof TeamMemberRole;
 
         return this;
     }
