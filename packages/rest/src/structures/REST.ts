@@ -189,7 +189,7 @@ export class REST {
         }
 
         url.searchParams.forEach((value, key) => {
-            if (value === undefined) {
+            if (value === 'undefined') {
                 url.searchParams.delete(key);
             }
         });
