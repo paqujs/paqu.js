@@ -2,7 +2,7 @@ import {
     type Client,
     type APIAuditLogEntry,
     type Snowflake,
-    type AuditLogEntryInfoData,
+    type AuditLogEntryOptionsData,
     type GuildBasedChannelResolvable,
     type MessageableChannelResolvable,
     type GuildBasedInvitableChannelResolvable,
@@ -14,7 +14,12 @@ import {
     Guild,
     Message,
 } from '../../index';
-import { AuditLogOptionsType, OverwriteType, AuditLogEvent } from 'discord-api-types/v10';
+import {
+    AuditLogOptionsType,
+    OverwriteType,
+    AuditLogEvent,
+    AutoModerationRuleTriggerType,
+} from 'discord-api-types/v10';
 import { PermissionFlagsBitField } from '@paqujs/bitfields';
 import { BaseStructure } from '../base/BaseStructure';
 
@@ -22,7 +27,7 @@ export class AuditLogEntry extends BaseStructure {
     public actionType!: keyof typeof AuditLogEvent;
     public changes!: AuditLogChangeData[];
     public id!: Snowflake;
-    public options!: AuditLogEntryInfoData | null;
+    public options!: AuditLogEntryOptionsData | null;
     public reason!: string | null;
     public targetId!: Snowflake;
     public userId!: Snowflake;
@@ -44,19 +49,22 @@ export class AuditLogEntry extends BaseStructure {
         this.userId = data.user_id;
         this.options = data.options
             ? {
-                  applicationId: (data.options as any).application_id ?? null,
-                  channelId: data.options.channel_id ?? null,
-                  count: data.options.count ? +data.options.count : null,
+                  autoModerationRuleName: data.options.auto_moderation_rule_name ?? null,
+                  autoModerationRuleTriggerType: AutoModerationRuleTriggerType[
+                      data.options.auto_moderation_rule_trigger_type
+                  ] as keyof typeof AutoModerationRuleTriggerType,
                   deleteMemberDays: data.options.delete_member_days
                       ? +data.options.delete_member_days
                       : null,
-                  id: data.options.id,
                   membersRemoved: data.options.members_removed
                       ? +data.options.members_removed
                       : null,
+                  channelId: data.options.channel_id ?? null,
                   messageId: data.options?.message_id ?? null,
-                  roleName: data.options?.role_name ?? null,
+                  count: data.options.count ? +data.options.count : null,
+                  id: data.options.id,
                   type: AuditLogOptionsType[data.options.type],
+                  roleName: data.options?.role_name ?? null,
               }
             : null;
 

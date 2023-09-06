@@ -1002,16 +1002,17 @@ export interface ChatInputCommandResolvedOptionData {
     resolved?: ChatInputCommandResolvedOptionResolvedData;
 }
 
-export interface AuditLogEntryInfoData {
-    applicationId: Snowflake | null;
-    channelId: Snowflake | null;
-    count: number | null;
+export interface AuditLogEntryOptionsData {
+    autoModerationRuleName: string | null;
+    autoModerationRuleTriggerType: keyof typeof AutoModerationRuleTriggerType;
     deleteMemberDays: number | null;
-    id: Snowflake | null;
     membersRemoved: number | null;
+    channelId: Snowflake | null;
     messageId: Snowflake | null;
-    roleName: string | null;
+    count: number | null;
+    id: Snowflake | null;
     type: keyof typeof AuditLogOptionsType;
+    roleName: string | null;
 }
 
 export interface AuditLogChangeData {
