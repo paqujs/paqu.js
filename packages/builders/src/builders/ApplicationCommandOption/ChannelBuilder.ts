@@ -16,7 +16,8 @@ export type GuildBasedChannelTypes =
     | ChannelType.GuildForum
     | ChannelType.AnnouncementThread
     | ChannelType.PublicThread
-    | ChannelType.PrivateThread;
+    | ChannelType.PrivateThread
+    | ChannelType.GuildMedia;
 
 export type GuildBasedChannelTypesResolvable = keyof typeof ChannelType | GuildBasedChannelTypes;
 
