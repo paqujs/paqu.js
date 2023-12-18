@@ -12,12 +12,14 @@ export class GuildIntegrationApplication extends BaseApplication {
     }
 
     public override _patch(data: APIGuildIntegrationApplication) {
-        this.bot = data.bot
-            ? this.client.caches.users.cache.setAndReturnValue(
-                  data.bot.id,
-                  new User(this.client, data.bot),
-              )
-            : null;
+        if ('bot' in data) {
+            this.bot = this.client.caches.users.cache.setAndReturnValue(
+                data.bot.id,
+                new User(this.client, data.bot),
+            );
+        } else {
+            this.bot ??= null;
+        }
 
         return this;
     }

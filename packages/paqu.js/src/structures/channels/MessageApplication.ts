@@ -20,7 +20,6 @@ export class MessageApplication extends BaseApplication {
         scopes: (keyof typeof OAuth2Scopes)[];
         permissions: PermissionFlagsBitField;
     } | null;
-
     public ownerId!: Snowflake | null;
     public rpcOrigins!: string[];
     public tags!: string[];
@@ -50,7 +49,6 @@ export class MessageApplication extends BaseApplication {
             : null;
         this.ownerId = data.owner?.id ?? null;
         this.rpcOrigins = data.rpc_origins ?? [];
-
         this.tags = data.tags ?? [];
         this.team = data.team ? new Team(this.client, data.team) : null;
 

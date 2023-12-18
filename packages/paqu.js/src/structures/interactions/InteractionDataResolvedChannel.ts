@@ -33,11 +33,19 @@ export class InteractionDataResolvedChannel extends BaseStructure {
         this.id = data.id;
         this.name = data.name ?? null;
         this.permissions = new PermissionFlagsBitField(+data.permissions);
-        this.parentId = data.parent_id ?? null;
-        this.threadMetadata = data.thread_metadata
-            ? new ThreadMetadata(this.client, data.thread_metadata)
-            : null;
         this.type = ChannelType[data.type] as keyof typeof ChannelType;
+
+        if ('parent_id' in data) {
+            this.parentId = data.parent_id;
+        } else {
+            this.parentId ??= null;
+        }
+
+        if ('thread_metadata' in data) {
+            this.threadMetadata = new ThreadMetadata(this.client, data.thread_metadata);
+        } else {
+            this.threadMetadata ??= null;
+        }
 
         return this;
     }

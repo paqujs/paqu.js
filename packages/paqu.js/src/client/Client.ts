@@ -60,7 +60,7 @@ export class Client {
             agent: `paqu.js (https://github.com/paqujs/paqu.js, ${
                 JSON.parse(
                     readFileSync(
-                        join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json'),
+                        join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'package.json'),
                         'utf-8',
                     ),
                 ).version
