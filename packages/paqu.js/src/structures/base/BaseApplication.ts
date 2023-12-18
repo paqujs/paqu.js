@@ -1,4 +1,10 @@
-import type { APIApplication, Client, Snowflake, ImageOptions } from '../../index';
+import {
+    type APIApplication,
+    type Client,
+    type Snowflake,
+    type ImageOptions,
+    SnowflakeUtil,
+} from '../../index';
 
 import { BaseStructure } from './BaseStructure';
 
@@ -23,11 +29,23 @@ export class BaseApplication extends BaseStructure {
         return this;
     }
 
+    public get createdTimestamp() {
+        return SnowflakeUtil.timestampFrom(this.id);
+    }
+
+    public get createdAt() {
+        return new Date(this.createdTimestamp);
+    }
+
     public iconURL({ dynamic, size, format }: ImageOptions = { dynamic: true, size: 1024 }) {
         return this.icon
             ? `https://cdn.discordapp.com/app-icons/${this.id}/${this.icon}.${
                   dynamic && this.icon.startsWith('a_') ? 'gif' : format ?? 'png'
               }?size=${size ?? 1024}`
             : null;
+    }
+
+    public toString() {
+        return this.name;
     }
 }
