@@ -63,7 +63,7 @@ import { panic } from './util/panic.js';
         panic(`Package publish failed with error: ${error}`),
     );
 
-    await execa('git', ['commit', '-m', `"chore: release ${packageName}@${packageVersion}"`], {
+    await execa('git', ['commit', '-m', `chore: release ${packageName}@${packageVersion}`], {
         cwd: packagePath,
     }).catch((error) => panic(`Package publish failed with error: ${error}`));
 
