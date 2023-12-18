@@ -11,6 +11,5 @@ export default defineConfig({
     clean: true,
     format: 'esm',
     splitting: true,
-    bundle: false,
     minify: false,
 });
