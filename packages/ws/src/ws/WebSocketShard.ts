@@ -11,6 +11,7 @@ import {
     type GatewayReadyDispatch,
     GatewayOpcodes,
     GatewayCloseCodes,
+    GatewayDispatchEvents,
 } from 'discord-api-types/v10';
 import type { WebSocketManager, GatewayCloseCodesResolvable, PresenceData } from '../index';
 
@@ -170,7 +171,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                     break;
                 case GatewayOpcodes.Dispatch:
                     switch (t) {
-                        case 'READY':
+                        case GatewayDispatchEvents.Ready:
                             this.readyTimestamp = Date.now();
                             this.sessionId = d.session_id;
                             this.status = 'Ready';
@@ -179,7 +180,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                             this.sendHeartbeat();
                             this.emit('ready', resolved);
                             break;
-                        case 'RESUMED':
+                        case GatewayDispatchEvents.Resumed:
                             this.heartbeatAck();
                             this.sendHeartbeat();
 
