@@ -116,6 +116,7 @@ import type {
     GuildOnboardingPromptType,
     APIPartialEmoji,
     AutoModerationRuleTriggerType,
+    GuildIntegrationType,
 } from './index';
 import type {
     PermissionFlagsBitField,
@@ -1004,7 +1005,7 @@ export interface ChatInputCommandResolvedOptionData {
 
 export interface AuditLogEntryOptionsData {
     autoModerationRuleName: string | null;
-    autoModerationRuleTriggerType: keyof typeof AutoModerationRuleTriggerType;
+    autoModerationRuleTriggerType: keyof typeof AutoModerationRuleTriggerType | null;
     deleteMemberDays: number | null;
     membersRemoved: number | null;
     channelId: Snowflake | null;
@@ -1013,6 +1014,7 @@ export interface AuditLogEntryOptionsData {
     id: Snowflake | null;
     type: keyof typeof AuditLogOptionsType;
     roleName: string | null;
+    integrationType: keyof typeof GuildIntegrationType | null;
 }
 
 export interface AuditLogChangeData {

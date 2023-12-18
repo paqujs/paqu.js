@@ -13,6 +13,7 @@ import {
     Role,
     Guild,
     Message,
+    GuildIntegrationType,
 } from '../../index';
 import {
     AuditLogOptionsType,
@@ -60,11 +61,14 @@ export class AuditLogEntry extends BaseStructure {
                       ? +data.options.members_removed
                       : null,
                   channelId: data.options.channel_id ?? null,
-                  messageId: data.options?.message_id ?? null,
+                  messageId: data.options.message_id ?? null,
                   count: data.options.count ? +data.options.count : null,
                   id: data.options.id,
                   type: AuditLogOptionsType[data.options.type],
-                  roleName: data.options?.role_name ?? null,
+                  roleName: data.options.role_name ?? null,
+                  integrationType: data.options.integration_type
+                      ? GuildIntegrationType[data.options.integration_type]
+                      : null,
               }
             : null;
 
