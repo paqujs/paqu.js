@@ -10,6 +10,7 @@ export default defineConfig({
     entryPoints: ['./src/**/*.ts'],
     clean: true,
     format: 'esm',
-    splitting: false,
+    splitting: true,
+    bundle: false,
     minify: false,
 });
