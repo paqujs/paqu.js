@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/rest",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "description": "@paqujs/rest",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -34,7 +34,7 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@paqujs/shared": "^1.1.8",
+        "@paqujs/shared": "^1.1.9",
         "@sapphire/async-queue": "^1.5.1",
         "defu": "^6.1.3",
         "tslib": "^2.6.2",
