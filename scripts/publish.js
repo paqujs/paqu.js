@@ -51,8 +51,8 @@ import { panic } from './util/panic.js';
         [
             'publish',
             '--no-git-checks',
-            isFirstRelease === 'y' && '--access public',
-            otp && `--otp ${otp}`,
+            ...(isFirstRelease === 'y' ? ['--access', 'public'] : []),
+            ...(otp ? ['--otp', otp] : []),
         ].filter(Boolean),
         { cwd: packagePath },
     ).catch((error) => panic(`Package publish failed with error: ${error}`));
