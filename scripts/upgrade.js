@@ -11,9 +11,9 @@ import { panic } from './util/panic.js';
 
         consola.info(`Upgrading dependencies for ${packageName}...`);
 
-        await execa(`cd ${packagePath} && pnpm upgrade --latest`).catch((error) =>
-            panic(`Failed to upgrade dependencies for ${packageName}`, error),
-        );
+        await execa('pnpm', ['upgrade', '--latest'], {
+            cwd: packagePath,
+        }).catch((error) => panic(`Failed to upgrade dependencies for ${packageName}`, error));
     }
 
     consola.success('All dependencies upgraded');
