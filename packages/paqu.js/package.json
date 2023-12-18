@@ -1,6 +1,6 @@
 {
     "name": "paqu.js",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "description": "A powerful, easy-to-use library that allows you to interact with the Discord API.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -37,12 +37,12 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.1.5",
-        "@paqujs/builders": "^1.0.7",
-        "@paqujs/resolvers": "^1.1.4",
-        "@paqujs/rest": "^1.1.3",
-        "@paqujs/shared": "^1.1.8",
-        "@paqujs/ws": "^1.2.0",
+        "@paqujs/bitfields": "^1.1.6",
+        "@paqujs/builders": "^1.0.8",
+        "@paqujs/resolvers": "^1.1.5",
+        "@paqujs/rest": "^1.1.4",
+        "@paqujs/shared": "^1.1.9",
+        "@paqujs/ws": "^1.2.1",
         "@sapphire/snowflake": "^3.5.2",
         "defu": "^6.1.3",
         "discord-api-types": "^0.37.66",
