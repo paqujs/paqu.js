@@ -1,15 +1,3 @@
-import { defineConfig } from 'tsup';
+import tsupConfig from '../../tsup.config';
 
-export default defineConfig({
-    target: 'node16',
-    dts: {
-        resolve: true,
-        entry: './src/index.ts',
-    },
-    keepNames: true,
-    entryPoints: ['./src/**/*.ts'],
-    clean: true,
-    format: 'esm',
-    splitting: false,
-    minify: false,
-});
+export default tsupConfig;
