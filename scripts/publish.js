@@ -30,14 +30,14 @@ import { panic } from './util/panic.js';
 
     const answer = await question('Upgrade dependencies? [y/n]');
     if (answer === 'y') {
-        await execa(`cd ${packagePath} && pnpm upgrade --latest`).catch((error) =>
+        await execa('pnpm', ['upgrade', '--latest'], { cwd: packagePath }).catch((error) =>
             panic(`Dependencies upgrade failed with error: ${error}`),
         );
 
         consola.success('Dependencies upgraded');
     }
 
-    await execa(`cd ${packagePath} && pnpm build`).catch((error) =>
+    await execa('pnpm', ['build'], { cwd: packagePath }).catch((error) =>
         panic(`Package build failed with error: ${error}`),
     );
 
@@ -47,22 +47,27 @@ import { panic } from './util/panic.js';
     const otp = await question('OTP? (or press enter if 2FA is not enabled)');
 
     await execa(
-        `cd ${packagePath} && pnpm publish --no-git-checks${
-            isFirstRelease === 'y' ? ' --access public' : ''
-        }${otp ? ` --otp ${otp}` : ''}`,
+        'pnpm',
+        [
+            'publish',
+            '--no-git-checks',
+            isFirstRelease === 'y' && '--access public',
+            otp && `--otp ${otp}`,
+        ].filter(Boolean),
+        { cwd: packagePath },
     ).catch((error) => panic(`Package publish failed with error: ${error}`));
 
     consola.success('Package published to npm');
 
-    await execa(`cd ${packagePath} && git add .`).catch((error) =>
+    await execa('git', ['add', '.'], { cwd: packagePath }).catch((error) =>
         panic(`Package publish failed with error: ${error}`),
     );
 
-    await execa(
-        `cd ${packagePath} && git commit -m "chore: release ${packageName}@${packageVersion}"`,
-    ).catch((error) => panic(`Package publish failed with error: ${error}`));
+    await execa('git', ['commit', '-m', `"chore: release ${packageName}@${packageVersion}"`], {
+        cwd: packagePath,
+    }).catch((error) => panic(`Package publish failed with error: ${error}`));
 
-    await execa(`cd ${packagePath} && git push`).catch((error) =>
+    await execa('git', ['push'], { cwd: packagePath }).catch((error) =>
         panic(`Package publish failed with error: ${error}`),
     );
 
