@@ -352,6 +352,7 @@ export interface EditAndCreateGuildChannelData {
     default_thread_rate_limit_per_user?: number;
     default_sort_order?: ForumChannelDefaultSortOrderTypeResolvable;
     default_forum_layout?: ForumChannelDefaultForumLayoutTypeResolvable;
+    applied_tags?: Snowflake[];
 }
 
 export type EditChannelData =
