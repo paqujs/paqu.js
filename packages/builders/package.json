@@ -25,17 +25,17 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^20.5.0",
-        "tsup": "^7.2.0",
-        "typescript": "^5.1.6"
+        "@types/node": "^20.10.5",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.1.3",
-        "@paqujs/resolvers": "^1.1.2",
-        "@paqujs/shared": "^1.1.7",
-        "discord-api-types": "^0.37.53",
+        "@paqujs/bitfields": "^1.1.5",
+        "@paqujs/resolvers": "^1.1.4",
+        "@paqujs/shared": "^1.1.8",
+        "discord-api-types": "^0.37.66",
         "fast-deep-equal": "^3.1.3",
-        "tslib": "^2.6.1"
+        "tslib": "^2.6.2"
     },
     "type": "module"
 }

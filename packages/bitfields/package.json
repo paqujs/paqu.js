@@ -27,15 +27,15 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^20.5.0",
-        "tsup": "^7.2.0",
-        "typescript": "^5.1.6"
+        "@types/node": "^20.10.5",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
     },
     "dependencies": {
         "@paqujs/resolvers": "^1.1.4",
         "@paqujs/shared": "^1.1.8",
-        "discord-api-types": "^0.37.53",
-        "tslib": "^2.6.1"
+        "discord-api-types": "^0.37.66",
+        "tslib": "^2.6.2"
     },
     "type": "module"
 }
