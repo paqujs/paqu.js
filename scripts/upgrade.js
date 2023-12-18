@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import consola from 'consola';
+import { execa } from 'execa';
 
-import { execSync } from './util/execSync.js';
 import { panic } from './util/panic.js';
 
 (async () => {
@@ -11,8 +11,10 @@ import { panic } from './util/panic.js';
 
         consola.info(`Upgrading dependencies for ${packageName}...`);
 
-        await execSync(`cd ${packagePath} && pnpm upgrade --latest`).catch((error) => {
-            panic(`Failed to upgrade dependencies for ${packageName}`, error);
-        });
+        await execa(`cd ${packagePath} && pnpm upgrade --latest`).catch((error) =>
+            panic(`Failed to upgrade dependencies for ${packageName}`, error),
+        );
     }
+
+    consola.success('All dependencies upgraded');
 })();

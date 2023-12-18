@@ -41,7 +41,7 @@ import { panic } from './util/panic.js';
         panic(`Package build failed with error: ${error}`),
     );
 
-    consola.success(`Package builded`);
+    consola.success('Package builded');
 
     const isFirstRelease = await question('This version is a first release? [y/n]');
     const otp = await question('OTP? (or press enter if 2FA is not enabled)');
@@ -52,7 +52,7 @@ import { panic } from './util/panic.js';
         }${otp ? ` --otp ${otp}` : ''}`,
     ).catch((error) => panic(`Package publish failed with error: ${error}`));
 
-    consola.success(`Package published to npm`);
+    consola.success('Package published to npm');
 
     await execa(`cd ${packagePath} && git add .`).catch((error) =>
         panic(`Package publish failed with error: ${error}`),
