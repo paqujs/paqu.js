@@ -3,7 +3,7 @@ import {
     type Client,
     type Collectionable,
     type Snowflake,
-    type APIStickerPack,
+    type RESTGetStickerPacksResult,
     StickerPack,
 } from '../../index';
 import { Collection } from '@paqujs/shared';
@@ -22,10 +22,10 @@ export class ClientStickerManager extends BaseManager {
     }
 
     public async fetchPack(id?: Snowflake): Promise<Collectionable<Snowflake, StickerPack>> {
-        const packs = await this.client.rest.get<APIStickerPack[]>(`/sticker-packs`);
+        const packs = await this.client.rest.get<RESTGetStickerPacksResult>(`/sticker-packs`);
         const collection = new Collection<Snowflake, StickerPack>();
 
-        for (const pack of packs) {
+        for (const pack of packs.sticker_packs) {
             collection.set(pack.id, new StickerPack(this.client, pack));
         }
 
