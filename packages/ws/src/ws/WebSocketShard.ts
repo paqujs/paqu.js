@@ -351,8 +351,8 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                     presence: this.manager.options.presence,
                     properties: {
                         ...this.manager.options.properties,
-                        browser: 'addox',
-                        device: 'addox',
+                        browser: 'paqu.js',
+                        device: 'paqu.js',
                     },
                     shard: [
                         this.id,
