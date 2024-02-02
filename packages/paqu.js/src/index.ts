@@ -12,6 +12,7 @@ export type {
     ChannelTypeResolvable,
 } from '@paqujs/builders';
 export type { PresenceStatus } from '@paqujs/ws';
+export { Collection } from '@paqujs/shared';
 
 export { DiscordSnowflake as SnowflakeUtil } from '@sapphire/snowflake';
 export * from 'discord-api-types/v10';
