@@ -22,11 +22,16 @@ import { panic } from './util/panic.js';
         `New version? (Current version is v${packageJSON.version})`,
     );
 
-    packageJSON.version = packageVersion;
+    if (packageVersion.trim() !== '') {
+        packageJSON.version = packageVersion;
 
-    fs.writeFileSync(path.join(packagePath, 'package.json'), JSON.stringify(packageJSON, null, 4));
+        fs.writeFileSync(
+            path.join(packagePath, 'package.json'),
+            JSON.stringify(packageJSON, null, 4),
+        );
 
-    consola.success(`Package version updated to v${packageVersion}`);
+        consola.success(`Package version updated to v${packageVersion}`);
+    }
 
     const answer = await question('Upgrade dependencies? [y/n]');
     if (answer === 'y') {
