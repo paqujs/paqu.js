@@ -1,6 +1,6 @@
 {
     "name": "@paqujs/ws",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "@paqujs/ws",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -32,10 +32,10 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@paqujs/bitfields": "^1.1.6",
-        "@paqujs/resolvers": "^1.1.5",
-        "@paqujs/rest": "^1.1.4",
-        "@paqujs/shared": "^1.1.9",
+        "@paqujs/bitfields": "^1.1.7",
+        "@paqujs/resolvers": "^1.1.6",
+        "@paqujs/rest": "^1.1.5",
+        "@paqujs/shared": "^1.1.10",
         "defu": "^6.1.4",
         "discord-api-types": "^0.37.67",
         "tslib": "^2.6.2",
