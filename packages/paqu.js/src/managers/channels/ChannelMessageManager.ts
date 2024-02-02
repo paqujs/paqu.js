@@ -4,7 +4,7 @@ import type {
     Client,
     MessageableChannelResolvable,
     CreateMessageData,
-    FetchOptions,
+    FetchMessageOptions,
     EditMessageData,
 } from '../../index';
 
@@ -25,16 +25,16 @@ export class ChannelMessageManager extends CachedManager<Snowflake, Message> {
         return this.channel.caches.messages.cache.setAndReturnValue(message.id, message);
     }
 
-    public fetch(id?: Snowflake, { force }: FetchOptions = { force: false }) {
+    public fetch(id?: Snowflake, options: FetchMessageOptions = { force: false }) {
         if (id) {
             const _message = this.channel.caches.messages.cache.get(id);
 
-            if (!force && _message) {
+            if (!options.force && _message) {
                 return _message;
             }
         }
 
-        return this.client.caches.channels.fetchMessages(this.channel.id, id);
+        return this.client.caches.channels.fetchMessages(this.channel.id, id, options);
     }
 
     public edit(id: Snowflake, data: EditMessageData) {

@@ -11,6 +11,7 @@ import {
     type FetchOptions,
     type TextBasedChannelResolvable,
     type APIWebhook,
+    type FetchMessageOptions,
     Message,
     GroupDMChannel,
     TextChannel,
@@ -125,6 +126,7 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
     public async fetchMessages(
         channelId: Snowflake,
         messageId?: Snowflake,
+        options?: FetchMessageOptions,
     ): Promise<Collectionable<Snowflake, Message>> {
         if (messageId) {
             const message = await this.client.rest.get<APIMessage>(
@@ -144,6 +146,9 @@ export class ClientChannelManager extends CachedManager<Snowflake, AnyChannel> {
         } else {
             const messages = await this.client.rest.get<APIMessage[]>(
                 `/channels/${channelId}/messages`,
+                {
+                    query: options,
+                },
             );
 
             const result = new Collection<Snowflake, Message>();

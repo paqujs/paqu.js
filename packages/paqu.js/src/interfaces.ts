@@ -190,6 +190,13 @@ export interface FetchMemberOptions extends FetchOptions {
     after?: Snowflake;
 }
 
+export interface FetchMessageOptions extends FetchOptions {
+    around?: Snowflake;
+    before?: Snowflake;
+    after?: Snowflake;
+    limit?: number;
+}
+
 export interface FetchOptions {
     force?: boolean;
 }
