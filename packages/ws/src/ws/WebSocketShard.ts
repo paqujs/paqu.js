@@ -348,7 +348,7 @@ export class WebSocketShard extends TypedEmitter<WebSocketShardEvents> {
                     intents: this.manager.options.intents!,
                     large_threshold: this.manager.options.largeThreshold,
                     compress: zlib && this.manager.options.compress,
-                    presence: this.manager.options.presence,
+                    presence: PresenceDataResolver(this.manager.options.presence),
                     properties: {
                         ...this.manager.options.properties,
                         browser: 'paqu.js',

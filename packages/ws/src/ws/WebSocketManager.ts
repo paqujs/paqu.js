@@ -84,7 +84,7 @@ export class WebSocketManager extends TypedEmitter<WebSocketEvents> {
                     os: process.platform,
                 },
                 autoReconnect: true,
-                presence: null,
+                presence: {},
                 version: 10,
             },
         );
