@@ -24,16 +24,16 @@
     },
     "homepage": "https://github.com/paqujs/paqu.js#readme",
     "devDependencies": {
-        "@types/node": "^20.10.5",
+        "@types/node": "^20.11.16",
         "tsup": "^8.0.1",
         "typescript": "^5.3.3"
     },
     "dependencies": {
         "@paqujs/bitfields": "1.1.6",
-        "discord-api-types": "^0.37.66",
-        "file-type": "^18.7.0",
+        "discord-api-types": "^0.37.67",
+        "file-type": "^19.0.0",
         "tslib": "^2.6.2",
-        "undici": "^6.0.1"
+        "undici": "^6.6.0"
     },
     "type": "module"
 }
