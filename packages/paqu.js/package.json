@@ -1,6 +1,6 @@
 {
     "name": "paqu.js",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "description": "A powerful, easy-to-use library that allows you to interact with the Discord API.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
