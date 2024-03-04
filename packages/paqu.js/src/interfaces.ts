@@ -583,6 +583,7 @@ export interface CreateMessageData extends Omit<EditMessageData, ['embeds']> {
     tts?: boolean;
     stickers?: Snowflake[];
     embeds?: EmbedData[];
+    enforce_nonce?: boolean;
 }
 
 export interface MessageReferenceData extends APIMessageReference {
