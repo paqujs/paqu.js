@@ -22,8 +22,11 @@ export class MessageReactionManager extends CachedManager<Snowflake, MessageReac
             if (reaction.emoji.id) {
                 this.cache.set(reaction.emoji.id, {
                     count: reaction.count,
+                    countDetails: reaction.count_details,
                     me: reaction.me,
-                    emoji: EmojiResolver(reaction.emoji) as string,
+                    meBurst: reaction.me_burst,
+                    emoji: reaction.emoji,
+                    burstColors: reaction.burst_colors,
                 });
             }
         }

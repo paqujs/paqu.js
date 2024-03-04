@@ -117,6 +117,7 @@ import type {
     APIPartialEmoji,
     AutoModerationRuleTriggerType,
     GuildIntegrationType,
+    APIReactionCountDetails,
 } from './index';
 import type {
     PermissionFlagsBitField,
@@ -544,8 +545,11 @@ export type APIThreadableChannelResolvable = APITextChannel | APINewsChannel;
 
 export interface MessageReactionData {
     count: number;
+    countDetails: APIReactionCountDetails;
     me: boolean;
-    emoji: string;
+    meBurst: boolean;
+    emoji: APIPartialEmoji;
+    burstColors: string[];
 }
 
 export interface FetchReactionOptions {
